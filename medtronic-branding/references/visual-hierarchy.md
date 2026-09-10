@@ -65,7 +65,7 @@ and both are already documented:
 
 | Mechanism | Documented options |
 | --- | --- |
-| Weight | Thin (headlines) · Regular (body) · Demi (bold, buttons, eyebrows) — separate font files, never `font-weight` ([typography.md](./typography.md)) |
+| Weight | Bold (headlines) · Regular (body) · Demi (bold, buttons, eyebrows) — separate font files, never `font-weight` ([typography.md](./typography.md)) |
 | Color | `#170F5F` headline navy · `rgba(0,0,0,0.77)` body · `--mdtTextLow` reduced/secondary |
 | Case + tracking | `.txt01-eyebrow` / `.txt02-eyebrow`: uppercase Demi with 1.3px / 1.5px tracking |
 
@@ -80,7 +80,7 @@ generic output almost never reaches for:
 
 ```
 .txt01-eyebrow / .txt02-eyebrow   →  uppercase Demi, tracked, reduced color   (category)
-h2 / .txt06-headline_thin         →  Thin, #170F5F                            (the claim)
+h2 / .txt06-headline_bold         →  Bold, #170F5F                            (the claim)
 .txt03-body                       →  Regular, 77% black                       (the detail)
 ```
 

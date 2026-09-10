@@ -98,7 +98,7 @@ over-specified surface — it reads as noise. Pick the one that matches what the
 Most Medtronic dashboard cards are **background step** (`General.Surface.level 0` → `level 1`),
 not shadowed — shadow is for things that *lift*, and a card that never lifts shouldn't cast.
 
-When you do use shadow, it must be one of the two documented recipes in
+When you do use shadow, it must be one of the three documented recipes in
 [design-intuition.md](./design-intuition.md)'s Elevation Discipline. Never an ad hoc single-layer
 `box-shadow`.
 
@@ -165,7 +165,7 @@ p, .txt02-body, .txt03-body, .txt04-body { text-wrap: pretty; }
 ```
 
 - **`text-wrap: balance` on headings** evens the line lengths instead of leaving one orphaned word.
-  Medtronic headlines are Thin weight at 32–72px, where a single trailing word is very visible.
+  Medtronic headlines are Bold weight at 32–72px, where a single trailing word is very visible.
 - **`text-wrap: pretty` on body** prevents single-word last lines in paragraphs.
 - **`tabular-nums` on anything numeric** fixes column jitter — in proportional figures a `1` is
   narrower than a `0`, so live-updating KPIs and table columns visibly shimmy. This is close to
@@ -178,17 +178,21 @@ matters (1.3px on `.txt01-eyebrow`, 1.5px on `.txt02-eyebrow`, 0.6px on `.txt03-
 
 ## 6. Icons
 
+- **Carbon icons are `fill="currentColor"` by construction** — no hardcoded-fill problem, no
+  `-white` folder to swap. Set `color`, not `fill`, and the same file works on light or dark
+  backgrounds; see [carbon-design-system.md](./carbon-design-system.md) for sizing/lookup. This is
+  the default icon system for this skill (local override, see `SKILL.md`).
 - **Stroke weight tracks adjacent text weight.** An icon beside Regular-weight body copy wants a
   ~1.5px stroke; beside Demi (buttons, eyebrows, bold) it wants ~2px. A hairline icon next to bold
   text reads as a rendering bug.
 - **Size follows the parent component's tier**, per
   [layout-and-spacing.md §5](./layout-and-spacing.md) — 16px compact / 20–24px default / 24–28px
   spacious. Not one fixed size crammed into every button size.
-- **`currentColor` only if the file actually uses it.** [react-integration.md](./react-integration.md)
-  already warns that most bundled Medtronic SVGs hardcode a hex fill — that warning is authoritative.
-  Check the file; if it hardcodes, swap to the correct color-variant folder
-  (`functional-white`/`thematic-white` on dark or colored backgrounds) rather than fighting it with
-  CSS filters.
+- **Medtronic thematic icons are the opt-in case** (brand/editorial moments) and are the one place
+  the old hardcoded-fill caveat still applies: [react-integration.md](./react-integration.md) warns
+  most bundled Medtronic SVGs hardcode a hex fill — check the file, and if it hardcodes, swap to
+  the correct color-variant folder (`thematic-white` on dark/colored backgrounds) rather than
+  fighting it with CSS filters. Don't mix Carbon and Medtronic icons in the same UI region.
 - **Fill vs outline as state.** Where a set offers both, outline is the resting state and fill is the
   active/selected one. Don't encode that state with color alone
   ([ux-accessibility-checklist.md](./ux-accessibility-checklist.md)).
@@ -248,10 +252,12 @@ immediately — don't merely shorten the duration.
   `z-index: 9999`. The 64px fixed header ([global-header.md](./global-header.md)) is the base layer
   everything else stacks against, and it's also what `scroll-padding-top` must offset so keyboard
   focus never lands behind it.
-- **Square sizing from one property.** For genuinely square elements set a single size rather than a
-  `width` + `height` pair that can drift apart. This does **not** override
-  [sizing-standard.md](./sizing-standard.md)'s rule for brand artwork: non-square logos, lockups, the
-  Symbol, and thematic icons still get exactly one axis set, never both.
+- **Square sizing from one property.** For genuinely square elements (Carbon icons — real 32×32
+  `viewBox`) set a single size rather than a `width` + `height` pair that can drift apart. This does
+  **not** override [sizing-standard.md](./sizing-standard.md)'s rule for brand artwork: non-square
+  logos, lockups, the Symbol, and Medtronic's own functional and thematic icons (most of which are
+  not actually square despite the 24×24 grid they're documented against) still get exactly one axis
+  set, never both.
 
 ## 10. Quick self-check
 
