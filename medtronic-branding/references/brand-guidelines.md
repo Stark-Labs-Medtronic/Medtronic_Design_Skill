@@ -110,10 +110,15 @@ stacked lockup is specifically needed.
   source guidance this variant is **intended for social media and favicon use only**; do not use
   it as a general-purpose logo lockup in page headers/nav bars (use the plain wordmark or the
   standard logo+Symbol lockup below for that instead).
-- There is also a documented "Simplified Full-life Symbol for mobile application icons" —
-  the guidelines point to a separate "UI Design System" resource for it that is **not included**
-  in any of the source zips in this workspace. Don't invent a simplified variant; tell the user
-  it needs to be sourced from Medtronic's UI Design System directly if a mobile app icon is needed.
+- There is also a documented "Simplified Full-life Symbol for mobile application icons" — sourced
+  from the UI Design System and **bundled** at
+  [`assets/symbol/mobile-app-icon/`](../assets/symbol/mobile-app-icon/)
+  (`simplified-symbol-electric-blue.svg`, `simplified-symbol-navy.svg`,
+  `simplified-symbol-white.svg`). See [application-icons.md](./application-icons.md) for usage
+  rules. Note its navy fill is `#140e4b`, one character off the standard Navy token `#140F4B` — a
+  source-file artifact, flagged here rather than silently "corrected" in the asset itself. This
+  entry previously said the file was "not included in any of the source zips in this workspace,"
+  which was false — corrected, logged in `SKILL.md`'s Contradiction Ledger.
 
 Assets: [`assets/symbol/`](../assets/symbol/) (`symbol-full-color`, `symbol-full-color-reverse`,
 `symbol-white`, `symbol-black`, plus one-color `symbol-electric-blue` / `symbol-light-blue` /
@@ -130,10 +135,12 @@ production favicon (white "M" on Electric Blue), per the UI Design System; see
 
 ## Typography
 
-- Primary (and only) typeface: **Avenir Next World**. It is a licensed/proprietary font — it is
-  **not bundled** in this skill (no font files ship in the source zips either, only a license
-  agreement doc). See "Typography without the licensed font" below for what to actually do in
-  React/Streamlit.
+- Primary (and only) typeface: **Avenir Next World**. All 8 static weights are **bundled** at
+  [`assets/fonts/avenir-next-world/*.ttf`](../assets/fonts/avenir-next-world/) (Regular, Italic,
+  Thin, ThinIt, Demi, DemiIt, Bold, BoldIt) — self-host these directly rather than relying on a
+  system-font fallback for any Medtronic-internal work. It remains a commercially licensed,
+  proprietary typeface: see "Typography and the license" below for what's required to redistribute
+  it **outside** this workspace, to a vendor or 3rd party.
 - Headlines are **sentence case**, never title case or ALL CAPS.
 - Use Regular, Demi, or Bold weight for headlines; avoid Thin weight if it hurts legibility.
   `[MANDATORY]` **This skill resolves that to `AvenirNextWorld-Bold` for `h1`–`h3`.** This rule
@@ -148,7 +155,12 @@ production favicon (white "M" on Electric Blue), per the UI Design System; see
   backgrounds, or white on dark backgrounds. The electric-blue-to-blue gradient is allowed for
   **bold headlines ≥18pt on light backgrounds only**.
 
-### Typography without the licensed font
+### Typography and the license — redistributing outside this workspace
+
+**The font files are already bundled and usable directly for Medtronic-internal work** — this
+section is corrected from an earlier revision that wrongly said the files weren't included; see
+`SKILL.md`'s Contradiction Ledger. It governs a narrower case: a vendor or 3rd party who needs the
+files **outside** Medtronic's own systems.
 
 Avenir Next World is **not free-to-use artwork** — it's a commercially licensed typeface, and per
 `doc-avenir-next-world-agreement.docx` the license Medtronic holds *does* extend to vendors and
@@ -159,14 +171,15 @@ Avenir Next World is **not free-to-use artwork** — it's a commercially license
 2. The vendor must confirm they have a confidentiality or service-level agreement with Medtronic.
 3. The vendor agrees to use the font **only on Medtronic materials** and to remove it from their
    device(s) once the project or contract ends.
-4. The completed form is returned to Medtronic's Global Brand team, who then provisions the font.
+4. The completed form is returned to Medtronic's Global Brand team, who then provisions the font
+   **to that vendor/3rd party** — not relevant when working from this workspace, where the files
+   already are.
 
-The actual font files are **not included** in any of the brand asset zips in this workspace — they
-are provisioned separately, only after that agreement is completed. Don't tell the user the font
-is simply unavailable; tell them it requires filling out `doc-avenir-next-world-agreement.docx`
-and returning it to their Medtronic Global Brand contact, and that the font must be removed from
-their machine once the engagement ends. Until that's done, use this fallback stack for
-prototyping and say explicitly that it's a substitute, not the real brand font:
+If a task is genuinely for a vendor/3rd party who doesn't have workspace access, tell them it
+requires filling out `doc-avenir-next-world-agreement.docx` and returning it to their Medtronic
+Global Brand contact, and that the font must be removed from their machine once the engagement
+ends. For prototyping contexts where self-hosting the real files isn't set up yet, this fallback
+stack is a documented option — say explicitly that it's a substitute, not the real brand font:
 
 ```css
 font-family: "Avenir Next World", "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
