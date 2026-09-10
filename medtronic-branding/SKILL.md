@@ -1,11 +1,28 @@
 ---
 name: medtronic-branding
-description: 'Apply official Medtronic brand identity (logo, Full-life Symbol, tagline, exact color palette, Avenir Next World typography, iconography, composition rules) when building or restyling any UI — React, Streamlit, HTML/CSS, PowerPoint, or general design work. Use whenever the user mentions Medtronic branding, Medtronic brand guidelines, Medtronic colors/logo/symbol, "brand this app", "make this look like Medtronic", or asks to pull Medtronic assets/logos/icons/colors into a project. Bundles real logo/symbol/icon files and exact hex/RGB/CMYK color tokens extracted from the official brand guidelines — do not recreate the logo, guess brand colors, or invent a substitute palette.'
+
+description: >-
+  Apply official Medtronic brand identity (logo, Full-life Symbol, tagline, exact
+  color palette, Avenir Next World typography, iconography, composition rules)
+  when building or restyling any UI — React, Streamlit, HTML/CSS, PowerPoint, or
+  general design work. Use whenever the user mentions Medtronic branding,
+  Medtronic brand guidelines, Medtronic colors/logo/symbol, "brand this app",
+  "make this look like Medtronic", or asks to pull Medtronic assets/logos/icons/
+  colors into a project. Bundles real logo/symbol/icon files and exact
+  hex/RGB/CMYK color tokens extracted from the official brand guidelines — do not
+  recreate the logo, guess brand colors, or invent a substitute palette.
+
 argument-hint: 'optional: target stack (react/streamlit/html) and what you are building'
-compatibility: 'No network access or MCP server required — everything is bundled as local files (SVG/PNG assets + Markdown references). Works in Claude.ai, Claude Code, and GitHub Copilot Chat (VS Code). One optional enhancement: where the environment can render a page (browser/preview/screenshot tooling), the design review in references/design-review.md renders the build and inspects it, which materially improves output quality; where it cannot, that file defines a non-visual fallback so the workflow still completes — nothing here hard-requires a browser. Internal Medtronic use only — see the "Internal use only" note in the repo README.'
+
+compatibility: >-
+  No network access or MCP server required — everything is bundled as local files
+  (SVG/PNG assets + Markdown references). Works identically in Claude.ai, Claude
+  Code, and GitHub Copilot Chat (VS Code). Internal Medtronic use only — see the
+  "Internal use only" note in the repo README.
+
 metadata:
   author: Medtronic Global Brand (packaged by ms68)
-  version: 1.1.0
+  version: 1.3.0
   category: design-system
   tags: [branding, design-system, react, streamlit, ui]
 ---
@@ -45,6 +62,106 @@ variant for marketing contexts — product UI now has an official value in
 `dark-mode-ui-colors.md`, Photography/Illustration guidance) — check it before assuming something
 is missing that's actually covered, and add to it if you discover a new gap.
 
+## Rule Authority Table — which file wins, and what is negotiable
+
+Every rule in this skill carries one of three classifications. Reference files tag their own rules
+with these markers; this table is the tie-breaker when two files overlap. **Do not re-derive
+precedence from individual files — read it here.**
+
+- **`[MANDATORY]`** — a brand fact or a hard spec. Not the user's choice, not yours. Never
+  invented, never approximated.
+- **`[FLEXIBLE]`** — a real range or set of documented options. Choose deliberately within it and
+  say why; choosing is expected, inventing outside the range is not.
+- **`[ASK]`** — the user's decision. Ask it in the Step 0.5 batch before generating anything.
+
+| Domain | Authoritative file | It supersedes | Class |
+| --- | --- | --- | --- |
+| Brand colors, logo artwork, tagline, Symbol rules | `brand-guidelines.md`, `color-tokens.md` | — | `[MANDATORY]` |
+| Product/app **UI** color roles (light) | `ui-design-system-colors.md` | `color-tokens.md` for UI role mapping | `[MANDATORY]` |
+| Product/app **UI** color roles (dark) | `dark-mode-ui-colors.md` | `theme-presets.md` Navy Dark for *product* UI | `[MANDATORY]` |
+| Brand-asset sizing (logo/lockup/Symbol/icon) | `sizing-standard.md` | any spacing token, any eyeballed value | `[MANDATORY]` |
+| Breakpoints + page grid | `composition.md` | `layout-and-spacing.md` tiers, Carbon's 5-tier grid | `[MANDATORY]` |
+| Touch targets | `accessibility.md` (48×48 hard min) | `layout-and-spacing.md` 40/44/48 tiers | `[MANDATORY]` |
+| Global header height | `global-header.md` (64px, all platforms) | — | `[MANDATORY]` |
+| Type scale, font files, heading weight | `typography.md` Weight Context Matrix | `app-header-logo-lockup.md` weight prose | `[MANDATORY]`, context-dependent |
+| Button tiers | `sizing-standard.md` §8 | `layout-and-spacing.md` component tiers | `[MANDATORY]` |
+| **Icons** | `carbon-design-system.md` | Medtronic functional sets, Material icons | `[MANDATORY]` (local override — see below) |
+| Streamlit layout + alignment | `streamlit-layout.md` | `streamlit-integration.md` layout hints | `[MANDATORY]` |
+| Shell / hero / tile archetype | `design-intuition.md` | — | `[ASK]` |
+| Color combination (which documented preset) | `theme-presets.md` | — | `[ASK]` |
+| Light vs. dark vs. both | — | — | `[ASK]` |
+| Density / motion / variance within dial range | `design-intuition.md` dials | — | `[FLEXIBLE]` |
+| Spacing value within the 8px grid | `composition.md` spacing scale | `layout-and-spacing.md` generic scale | `[FLEXIBLE]` |
+| Thematic vs. Carbon icon for a brand/editorial moment | `carbon-design-system.md` | — | `[FLEXIBLE]` |
+
+## Local Overrides — deliberate departures from Brand Central
+
+These are decisions made by the owner of this skill that **knowingly differ** from what the source
+brand documentation says. They are recorded here so a future reader does not mistake them for brand
+facts, and so they can be reversed on purpose rather than by accident.
+
+| Override | What Brand Central says | What this skill does | Rationale |
+| --- | --- | --- | --- |
+| **Carbon is the default icon system** | `brand-guidelines.md` frames Carbon as an *approved fallback* only when the bundled Medtronic set doesn't cover a need; the old `carbon-design-system.md` forbade Carbon icons outside app-icon baselining | Carbon's 2,739 icons are the default for **all** UI iconography. The 377 Medtronic functional/thematic icons are opt-in | One coherent, complete set with `fill="currentColor"` — recolors for light/dark from the text token, which structurally eliminates the gray-icon-on-dark-background bug the dual-variant Medtronic sets exist to manage. Carbon is already Medtronic's own documented app-icon baseline |
+| **The user is asked to choose a color combination** | `design-intuition.md` and this file previously said never to ask about color, because the palette is fixed | The user picks from an enumerated menu of brand-legal combinations, and may name specific tokens | Selecting *among documented combinations* is not the same as inventing a palette. The never-fabricate rule below is unchanged: no hex outside the bundled tokens, ever |
+
+Both overrides are scoped: they change **which documented option is chosen by default**, never
+whether a value may be fabricated.
+
+## Contradiction Ledger
+
+Conflicts between reference files, with the winner stated once. **If you find a new conflict, add a
+row here rather than silently picking a side.**
+
+| Conflict | Resolution |
+| --- | --- |
+| **Headline weight: Bold vs. Thin — three conflicting Medtronic sources** | **Bold (`AvenirNextWorld-Bold`).** Brand Central says "Use Regular, Demi, or **Bold** weight for headlines; **avoid Thin** weight if it hurts legibility" — that outranks the framework starter CSS (`mdt-variables.css`, which ships Thin for h1–h3) and the UI Design System Colors page prose ("large thin fonts"). Thin at 44–72px is exactly the legibility case Brand Central warns about. The vendored CSS stays byte-accurate; `css/mdt-typography-override.css` carries the change. See `typography.md` |
+| `typography.md` `@font-face` table listed `AvenirNextWorld-Bold` for h1–h3 | The **font-family name was right, the provenance claim was wrong**: `mdt-variables.css` declares no Bold face, so an earlier revision was citing the framework CSS for something it doesn't contain. Bold is now used deliberately per the row above, with the `@font-face` declared in the override stylesheet |
+| Heading weight: Thin (`typography.md`) vs. "don't use thin-weight" (`app-header-logo-lockup.md`:59) | Now moot for page headings, which are Bold. `:59` still governs the **app name in the inline desktop header lockup** (standard black, not navy, not thin). The stacked mobile lockup's app name uses `.txt05-headline`, which is now **Bold** |
+| Body text `rgba(0,0,0,0.77)` vs. `#3C3C3C` (`theme-presets.md`, `streamlit-integration.md`, `react-integration.md`) | **`rgba(0,0,0,0.77)`** (`--mdtText`) for product/app UI body copy — confirmed byte-for-byte in `mdt-variables.css`. `#3C3C3C` ("Body Text Dark Gray") is still a **real** token: use it for marketing/print surfaces, and anywhere an opaque fill is required because alpha text over a photo or gradient renders inconsistently. It was wrong only as the *product UI default* |
+| `ui-design-system-colors.md` said "77% black (`rgba(0,0,0,0.75)`)" | Internally inconsistent — 77% is `0.77`. Corrected |
+| Light Blue step 40: `#49D6F9` vs `#48D6F9` | **`#48D6F9`** (`ui-design-system-colors.md`) — it is the UI-token source of record |
+| Navy `#140F4B` vs `#170F5F` | `#170F5F` (`--mdtTextPrimary`) for **text/headlines and the on-screen logo fill**; `#140F4B` (`--mdtColorPrimary`) for **surfaces/fills**. Both official, different roles |
+| Dark-mode Electric Blue | **Product UI: `#4A7DFF`** (`dark-mode-ui-colors.md`, official). **Marketing on Navy: `#1010EB`** unmodified. `color-tokens.md`'s "use a less saturated blue" with no hex is superseded for product UI |
+| Semantic tokens differ light vs. dark (Caution `#F7A800`/`#F7AD00`, Confirm `#59A719`/`#7ECA2A`, Important `#C121EB`/`#D24ADF`, Focus `#ED7008`/`#FFAD00`) | Both official. Use the table matching the active mode. Never mix |
+| `Text & Icon.Inverse.*` resolves to opposite values per mode | Correct in each mode. Always resolve Inverse *within* the active mode's table |
+| `typography.md` forbids `font-weight` but `react-integration.md` uses `font-weight: 600/700` | **Two valid strategies; don't mix them.** *Family-per-weight* (what `mdt-variables.css` does — `AvenirNextWorld-Bold` as a family name) requires `font-weight: normal`. *Single family + `@font-face` weight descriptors* (recommended for React) requires `font-weight: 700` and is correct, because the descriptor maps the weight to the real file. Pick one per project. Documented in both files |
+| Breakpoints: `composition.md` (1440/1200/768/375) vs `layout-and-spacing.md` (600/1024) vs Carbon (320/672/1056/1312/1584) | **`composition.md`.** The 480px boundary in `typography.md`'s mobile override matches it |
+| Touch target 40px floor vs 48×48 | **48×48** (`accessibility.md`) |
+| Accent tint stacks "only in the source PDF" (`color-tokens.md`:61-63) | **Stale.** `ui-design-system-colors.md` already publishes all of them. Don't send the user to the PDF |
+| `color-tokens.md`:50 stack labelled "Navy / Blue family" | **Mislabel** — those values are the Light Blue stack. Corrected |
+| Spacing scale: `composition.md` (0/4/8/16/24/32/40) vs `layout-and-spacing.md` (adds 12, 48) | `composition.md` is the Medtronic scale. 12 and 48 have no Medtronic token; use them only where no token applies, and never as a brand-asset dimension |
+| `mdt-variables.css` declares `--mdtBorderLightGray` twice (lines 39–40) | Upstream bug in Medtronic's own CSS. The second declaration (`0.20`) wins in the cascade. Flagged, not silently fixed |
+| Shadow recipe count: "two, and only two" (`design-intuition.md`, `craft-details.md`) vs. a third real recipe in `navigation.md` (floating header) | **Three** documented recipes: popover/dropdown/menu, modal/sheet, floating-header. The real shipped `mdt-app-template.css`/`mdt-components.css` use a *fourth*, different single-layer shadow for the actual header element and `.elevation-low` — that's a known shipped-CSS-vs-documented gap, not a fourth recipe to build from |
+| Functional icons "confirmed 24×24, safe to set both dimensions" (`sizing-standard.md`) | **False.** Measured all 286 files in `assets/icons/functional/`: only 2 are exactly 24×24, 119 are 28×28, the rest are mixed/non-square. Corrected to height-only sizing, matching thematic icons. (Carbon icons, 32×32, are genuinely square — unaffected) |
+| Avenir Next World font files / Simplified Symbol mobile-icon SVGs described in `brand-guidelines.md` as "not bundled"/"not included" | **False** — both are bundled (`assets/fonts/avenir-next-world/*.ttf`, `assets/symbol/mobile-app-icon/*.svg`), and already correctly documented as such by `typography.md`/`asset-manifest.md`/`application-icons.md`. Corrected; the real licensing/redistribution-to-3rd-parties process is preserved, reframed around the files existing |
+| `sizing-standard.md`'s Wordmark ratio (2.741:1, from `medtronic-logo-navy.svg`) used for header-logo sizing math, while the asset actually mandated for on-screen headers is `medtronic-logo-navy-digital.svg` | **6.091:1** (viewBox `438.57×72.00`) is the ratio to use for header-logo sizing math — added to `sizing-standard.md` §1. The 2.741:1 figure remains correct for the print/marketing wordmark specifically |
+| This file's own Example 1 said to copy `medtronic-logo-navy.svg` for a React dashboard **header** | Same bug as the row above — an on-screen header needs `medtronic-logo-navy-digital.svg`. Fixed in Example 1 below; `theme-presets.md`'s Signature Light preset already used the correct `-digital` variant |
+| `global-header.md`'s "always exactly 64px" rule vs. `navigation.md`'s 121px website-style top-nav footprint | Not a conflict — 64px header + a separate 56px nav row (confirmed in `mdt-app-template.css`'s `grid-template-rows: 64px 56px`) = ≈121px. Cross-referenced in both files |
+| `carbon-design-system.md` self-contradicted on the crawled page count (350 in one table vs. 356 in its own opening line); the 350 figure was also copy-pasted into `asset-manifest.md` | **356** — matches `catalog/manifest.json`'s `totalPages` and `catalog/REPORT.md`'s crawl count. (The on-disk `content.md` file count is 347, a residual crawl/dedup discrepancy not resolved by this doc fix) |
+| `composition.md`'s illustrative breakpoint snippet used desktop-first `max-width` queries while claiming cross-validation against the real `mdt-app-template.css`, which is mobile-first (`min-width`) | Snippet rewritten mobile-first to match the real shipped CSS |
+| `ui-design-system-colors.md`'s own token table said `rgba(0,0,0,0.75)` for the value its own prose calls "77% black" | **0.77**, matching `mdt-variables.css`'s `--mdtText`. The table itself, not just the prose, is now corrected |
+| `color-tokens.md`'s Teal tint stack step 70: `#67FFE2` vs. `ui-design-system-colors.md`'s `#66FFE2` | **`#66FFE2`** — matches `ui-design-system-colors.md`'s table and its raw design-token JSON |
+| Chart color order: `design-intuition.md` said to lead multi-series charts with Electric Blue; `ui-design-system-colors.md`'s own Do/Don't said the opposite | `ui-design-system-colors.md`'s single self-contradictory bullet split into three unambiguous rules (single-data-point vs. single-series vs. multi-series). `design-intuition.md` and `streamlit-integration.md`'s `BRAND_CHART_COLORS` sample now match: **lead multi-series charts with Navy, not Electric Blue** |
+| `layout-and-spacing.md` and `react-integration.md` both cited `sizing-standard.md` §8 as the source of a `12px 28px`/"~44–48px" button figure that doesn't appear anywhere in that section | The real default button (`sizing-standard.md` §8) is a fixed **40px height**, horizontal-padding-only (`0 1.5rem`) — the Absolute-floor touch-target tier, not the Recommended-default tier. Both files corrected to cite it accurately |
+| `forms-and-inputs.md`'s reference CSS applied `height: 40px` to `input, textarea, select` together | The real `mdt-components.css` applies `height: 40px` only to `input, select` — `textarea` is deliberately excluded so it can grow. Corrected |
+| The `#170F5F` navy variant is called four different names across files | "Navy Blue (digital text variant)" (`color-tokens.md`), `--mdtTextPrimary` (`typography.md`/`ui-design-system-colors.md`), "navy-digital"/`--mdt-navy-digital` (`react-integration.md`, `streamlit-integration.md`), "Navy Blue Text color"/"on-screen navy" (`app-header-logo-lockup.md`, `design-intuition.md`) — all the same hex, aliased for context. No rewrite needed across files; canonical name is **"Navy (digital text variant)"** in prose, **`--mdtTextPrimary`** in code |
+
+## Reporting the structure of a Markdown file
+
+When asked to read, describe, summarize, or show the structure of any `.md` file in this skill —
+including this one — present it as **discrete labeled fields, never as prose**:
+
+```
+name:          medtronic-branding
+description:   <full value, its own field>
+version:       1.3.0
+```
+
+Then the section hierarchy as a list. Never collapse `name` and `description` into a sentence, and
+never paraphrase a frontmatter value when showing structure — quote it. Frontmatter fields are
+data, not narrative.
+
 ## Two dimensions: brand fidelity and design quality
 
 **These are separate, and this skill has to pass both.** Getting every hex code and pixel size right
@@ -63,8 +180,8 @@ Report them separately when you finish. Never say "the checklist passed."
 
 ### The design-quality references
 
-Read [references/design-intuition.md](./references/design-intuition.md) before generating any UI —
-it's the macro layer, and it covers:
+Before generating any UI, read [references/design-intuition.md](./references/design-intuition.md)
+— it's the macro layer, and it covers:
 
 - A **Design Read** step: state the surface type (marketing / product dashboard / clinical
   internal tool / mobile app) and audience before writing code — this drives density and motion
@@ -75,8 +192,8 @@ it's the macro layer, and it covers:
   name the specific generic-AI patterns present, then fix them as a targeted diff.
 - **Consistency locks** (color/shape/typography/motion/elevation) that catch the specific ways
   Medtronic UI ends up looking like generic templated AI output even when the tokens are
-  technically correct — one accent color per screen, pill buttons only, Thin-weight navy
-  headlines, the two real documented shadow recipes (never an invented third), and a motion
+  technically correct — one accent color per screen, pill buttons only, Bold navy
+  headlines, the three real documented shadow recipes (never an invented fourth), and a motion
   system (Medtronic doesn't publish one — this borrows Carbon's, clearly marked as such).
 - Hard layout rules (64px header, one-line nav, no wrapped button text, hero fits the viewport,
   one CTA label per intent) that are about fit-and-finish, not brand facts, but matter just as
@@ -100,8 +217,9 @@ optional polish — they are where most of the "brand-correct but mediocre" gap 
 - [references/craft-details.md](./references/craft-details.md) — **read while writing component
   CSS.** Concentric radii, optical vs geometric alignment, which elevation mechanism a surface
   should use (and why dark mode uses a different one), the documented focus-ring tokens,
-  `text-wrap: balance`/`pretty` and `tabular-nums`, and motion mechanics (interruptible transitions,
-  named `transition-property`, scoped `will-change`, `scale(0.96)` press).
+  `text-wrap: balance`/`pretty` and `tabular-nums`, Carbon-as-default icon handling, and motion
+  mechanics (interruptible transitions, named `transition-property`, scoped `will-change`,
+  `scale(0.96)` press).
 - [references/content-and-copy.md](./references/content-and-copy.md) — words are design material.
   No lorem ipsum ever (it hides real wrapping/overflow failures), one label per action held
   consistent across the flow, and empty/error states written to be useful. Medtronic's own editorial
@@ -111,35 +229,73 @@ And [references/design-review.md](./references/design-review.md) — **the loop*
 before building, critique the build after, and Gate B. Where the environment can render a page, it
 says to actually look at the result; where it can't, it defines the non-visual fallback.
 
-## Step 0: Read the brief — ask questions only when genuinely ambiguous
+## Step 0.5: Ask the brief question — mandatory unless the brief already answers it
 
 This skill works from both a one-line request ("brand this app") and a fully-specified one
 ("React app, web app-style shell, App Dark Mode, KPI dashboard with an agent bar") — and both
 should produce a top-tier result. The difference is whether you need to ask anything first.
 
-**A prompt is already "structured" — skip straight to the Workflow below, no questions — when it
-already tells you:** the target stack/surface (step 1), and enough about what's being built that
-a composition archetype (per `design-intuition.md`) is obvious. Don't ask questions just to be
-thorough when the brief already answers them — that's friction, not diligence.
+**Skip the question entirely — go straight to the Workflow — when the brief already specifies** the
+target stack, the shell/page structure, and the color combination or mode. Don't re-interrogate a
+user who already told you. Asking questions the brief answers is friction, not diligence.
 
-**A prompt is "simple/vague" — ask before generating anything** when one or more of these is
-genuinely unclear and would change the output: target stack (React/Streamlit/HTML/other), surface
-type (marketing page / product dashboard / clinical-regulated tool / mobile app — this drives the
-VARIANCE/MOTION/DENSITY dials in `design-intuition.md`), light vs. dark mode, and whether this is
-a new build vs. restyling/matching an existing app (which triggers Audit-First Mode). Use the
-interactive questions tool to ask **up to 2–3 targeted questions in one batch** (not one-at-a-time,
-not an open-ended interview) covering only what's actually ambiguous — for example:
+**Otherwise, ask before generating anything.** Use the interactive questions tool for **one batch of
+up to 4 questions** — not one at a time, not an open-ended interview. Ask only what's genuinely
+unspecified:
 
-- "What are we building this for — a marketing page, an internal dashboard, or a clinical/
-  regulated tool?" (drives density/motion)
-- "What stack — React, Streamlit, plain HTML, something else?"
-- "Is this a new page, or restyling something that already exists?" (if restyling, triggers
-  audit-first mode in `design-intuition.md`)
+### Q1 — Page structure / shell archetype `[ASK]`
 
-**Never ask about anything that's already fixed by the brand** — colors, fonts, logo variant,
-button shape, spacing scale, etc. are not the user's choice to make; asking "what color scheme
-would you like?" is a hard miss for a skill whose entire point is that the palette is exact and
-non-negotiable. Only ask about *context*, never about *brand facts*.
+Offer the real archetypes from `design-intuition.md`, never a generic "how should it look":
+
+- **Website-style shell** — sticky top nav, no side nav, full-width sections
+- **Web app-style shell** — static top nav + collapsible side nav + floating content card
+- **Tile / bento dashboard** — KPI grid, no side nav, content-count-driven cells
+- **Hero-led landing page** — large hero, then stacked marketing sections
+- **Single-task form** — centered column, no nav chrome
+
+Also offer the background variant where it applies: gray header + white body (most general-purpose),
+white header + gray body, or transparent header + full footer.
+
+### Q2 — Color combination `[ASK]`
+
+Offer the named, brand-legal combinations from `theme-presets.md` as concrete options. The user may
+also **name specific tokens** ("use Navy for the header surface") and you honor it.
+
+**The never-fabricate rule is unchanged and absolute.** If the user asks for a color that is not a
+bundled token — a raw hex, a "brand teal" that doesn't exist, a tint you'd have to compute — refuse
+it, say specifically what's missing, and offer the nearest exact token. Selecting *among documented
+options* is the user's call; *inventing a value* is not, and never becomes one no matter who asks.
+
+### Q3 — Light, dark, or both `[ASK]`
+
+Dark mode changes the token table (`dark-mode-ui-colors.md`), not just a few values. "Both" means a
+runtime toggle, which in Streamlit has a real constraint — see the `config.toml` caveat in
+`streamlit-integration.md`.
+
+### Q4 — Target stack and surface type, if not already clear
+
+Stack: React / Streamlit / plain HTML / something else. Surface type: marketing page / product
+dashboard / clinical-regulated tool / mobile app — this drives the VARIANCE/MOTION/DENSITY dials in
+`design-intuition.md` far more than any color decision does.
+
+Also establish whether this is a **new build or a restyle** of something existing — a restyle
+triggers Audit-First Mode in `design-intuition.md`.
+
+### What is still never asked `[MANDATORY]`
+
+Ask about **selection among documented options**. Never ask about **brand facts**:
+
+| Never ask | Because |
+| --- | --- |
+| "What hex should the primary blue be?" | Electric Blue is `#1010EB`. Fixed |
+| "What font would you like?" | Avenir Next World. Fixed |
+| "Should buttons be rounded or pill-shaped?" | Pill. Fixed |
+| "What spacing scale should we use?" | The 8px grid. Fixed |
+| "How tall should the logo be?" | `sizing-standard.md` §0. Fixed |
+| "Which icon library?" | Carbon, by default. Fixed |
+
+The distinction: **which documented combination** is the user's decision; **what the values are** is
+never anyone's decision.
 
 After the (optional) questions, state the one-line **Design Read** from `design-intuition.md`
 Step 0 before generating anything, then proceed through the Workflow below.
@@ -150,10 +306,9 @@ Step 0 before generating anything, then proceed through the Workflow below.
    PowerPoint deck, a Word doc? This determines which integration reference to read (step 3) and
    whether assets need copying into an app-specific folder at all.
 
-2. **Read the references your task actually needs — route, don't read everything.** There are 20+
-   reference files; loading all of them before a small task crowds out the attention the design
-   itself needs, and an overloaded context is one of the reasons output drifts generic. Read the
-   core, then only the rows that apply.
+2. **Read the condensed guidelines first**, not just the color table — logo placement, tagline
+   usage, and Symbol rules have real "don't do this" constraints that a naive brand application
+   would violate.
 
    **Core — always, but read each at the moment it's used, not all at once:**
 
@@ -162,57 +317,77 @@ Step 0 before generating anything, then proceed through the Workflow below.
    | [design-intuition.md](./references/design-intuition.md) — composition, consistency locks, signature element, Gate A | Now, before anything else |
    | [visual-hierarchy.md](./references/visual-hierarchy.md) — type/space composition | While planning the layout (step 6) |
    | [color-tokens.md](./references/color-tokens.md) *or* the active preset in [theme-presets.md](./references/theme-presets.md) | At step 3, once you know the surface |
-   | [craft-details.md](./references/craft-details.md) — the micro-layer | While writing component CSS (step 8) |
+   | [craft-details.md](./references/craft-details.md) — the micro-layer | While writing component CSS (steps 6–9) |
    | [design-review.md](./references/design-review.md) — the critique loop and Gate B | Pass 1 at step 6, Pass 2 at step 10 |
+   | [content-and-copy.md](./references/content-and-copy.md) — copy as design material | Any time UI text is written |
 
-   **Then route by what you're building:**
+   **Then the rest, condensed:**
+   - [references/brand-guidelines.md](./references/brand-guidelines.md) — logo/tagline/symbol/
+     typography/icon/composition rules, condensed from the official guidelines.
+   - [references/color-tokens.md](./references/color-tokens.md) — exact hex/RGB/CMYK for every
+     brand color, plus tint stacks and usage rules (lead with blue, accents are sparing, etc).
+   - [references/dark-mode-ui-colors.md](./references/dark-mode-ui-colors.md),
+     [references/ui-design-system-colors.md](./references/ui-design-system-colors.md), and
+     [references/app-header-logo-lockup.md](./references/app-header-logo-lockup.md) — official
+     product/app UI Design System specifics (light + dark mode tokens including full tint
+     stacks, the `#170F5F` vs `#140F4B` logo color correction for on-screen headers, favicon
+     guidance, logo+app-name lockup measurements) that supplement/correct the Brand Central
+     guidelines above for digital product UI specifically.
+   - [references/accessibility.md](./references/accessibility.md) — APCA contrast, text-scaling,
+     and official touch-target minimums; check this before finalizing any interactive-element
+     sizing decision.
+   - [references/application-icons.md](./references/application-icons.md) — App Store/Play Store
+     app-icon guidance (approved backgrounds, the Simplified Symbol mobile-icon asset, export
+     Do/Don'ts); only relevant if the task is specifically producing an app-icon deliverable.
+   - [references/typography.md](./references/typography.md),
+     [references/composition.md](./references/composition.md),
+     [references/navigation.md](./references/navigation.md), and
+     [references/global-header.md](./references/global-header.md) — the official type scale,
+     exact breakpoints/grid, nav/breadcrumb/tab/popover/footer component specs, and the 64px
+     fixed-header rule, all sourced from Medtronic's real production CSS/design-system pages.
+     Read these before building any page shell, header, or nav from scratch.
+   - [references/ui-components.md](./references/ui-components.md) — badges, segmented buttons,
+     carousels, expansion panels/accordions, flags, hero banners, key-value pairs, and user
+     avatars (sizes, variants, usage rules); check here before hand-inventing any of these
+     components.
+   - [references/forms-and-inputs.md](./references/forms-and-inputs.md) — text fields/areas,
+     selects, multi-select, autocomplete, checkboxes/radios, toggles, date/number pickers, slider,
+     and search field (sizes, states, real reference CSS); check here before building any form
+     control from scratch.
+   - [references/overlays-and-feedback.md](./references/overlays-and-feedback.md) — modal
+     dialogs, side/bottom sheets, focus dimmer, page-loading spinners, progress indicators, and
+     tooltips.
+   - [references/carbon-design-system.md](./references/carbon-design-system.md) — **third-party**
+     (IBM, not Medtronic): the 2x Grid and Spacing systems, used only as supplementary "outer
+     layout" structure guidance when Medtronic's own `composition.md`/`layout-and-spacing.md`
+     don't cover something, and as the app-icon visual baseline. Medtronic's own specs always
+     take precedence — read the precedence rule in that file before using anything from it.
 
-   | Building… | Also read |
-   | --- | --- |
-   | Page shell, grid, breakpoints | `composition.md`, `layout-and-spacing.md` |
-   | Header, top/side nav, breadcrumbs, tabs, footer | `global-header.md`, `navigation.md`, `app-header-logo-lockup.md` |
-   | Buttons, badges, cards, accordions, carousels, avatars, hero banners | `ui-components.md`, `sizing-standard.md` |
-   | Any form control | `forms-and-inputs.md`, `accessibility.md` |
-   | Modals, sheets, tooltips, spinners, progress | `overlays-and-feedback.md` |
-   | Dark mode | `dark-mode-ui-colors.md`, `theme-presets.md` |
-   | Light-mode product UI colors, semantic/status colors | `ui-design-system-colors.md` |
-   | Charts / data visualization | `ux-accessibility-checklist.md` (chart-type table), `ui-design-system-colors.md` (accent order) |
-   | Type scale, headings, text styles | `typography.md` |
-   | Placing/sizing logo, Symbol, lockups, icons | `brand-guidelines.md`, `sizing-standard.md`, `asset-manifest.md` |
-   | Marketing / landing page | `ux-accessibility-checklist.md` (section-order archetypes), `theme-presets.md` (Gradient Hero) |
-   | Static HTML / no framework | `assets/code-templates/html-css-framework/` (see step 5) |
-   | An app-icon deliverable | `application-icons.md` |
-   | Restyling an existing UI | `design-intuition.md` audit-first mode, `design-review.md` |
-   | Any UI copy at all | `content-and-copy.md` |
-   | Accessibility sign-off | `accessibility.md`, `ux-accessibility-checklist.md` |
+3. **Offer a theme preset — don't invent a palette combination, and don't pick one silently.**
+   [references/theme-presets.md](./references/theme-presets.md) defines **six** ready-made,
+   asset-linked combinations: **Signature Light** (general default), **Atmospheric Light**
+   (data-dense dashboards — cards lift off the canvas), **App Dark Mode** (product UI dark mode,
+   official tokens), **Navy Dark** (marketing/brand surfaces only), **Navy Header Light** (brand
+   presence without a colored sidebar), and **Gradient Hero** (landing-page headlines only, tightly
+   scoped to the guidelines' gradient rule). These are the options presented in the Step 0.5 color
+   question. Each preset already specifies which exact logo/Symbol asset variant to pair with it —
+   use that pairing rather than mixing, e.g., a white logo on a light background.
 
-   **Three precedence rules that hold regardless of which rows you read:**
-   - For **digital product UI specifically**, `ui-design-system-colors.md`,
-     `dark-mode-ui-colors.md`, and `app-header-logo-lockup.md` supplement *and correct* the Brand
-     Central guidelines in `brand-guidelines.md` — including the `#170F5F` vs `#140F4B` logo color
-     correction for on-screen headers.
-   - `carbon-design-system.md` is **third-party** (IBM, not Medtronic) — supplementary outer-layout
-     structure only, when Medtronic's own `composition.md`/`layout-and-spacing.md` don't cover
-     something. Read the precedence rule in that file before using anything from it. Same status for
-     `ux-accessibility-checklist.md` and `craft-details.md`.
-   - Read `brand-guidelines.md` before any task that places the logo, tagline, or Symbol — those
-     have real "don't do this" constraints a naive brand application will violate.
-
-3. **Pick a theme preset instead of inventing a palette combination.**
-   [references/theme-presets.md](./references/theme-presets.md) defines three ready-made,
-   asset-linked combinations: **Signature Light** (default), **Navy Dark** (dark mode/dark
-   sidebar), and **Gradient Hero** (landing-page headlines only, tightly scoped to the
-   guidelines' gradient rule). Each preset already specifies which exact logo/Symbol/icon file
-   variant to pair with it — use that pairing rather than mixing, e.g., a white logo on a light
-   background or gray icons on a dark background.
+   Read that file's **anti-pattern rule** before generating any shell: a navy/blue left sidebar next
+   to a white content area is `[MANDATORY]` **not a default** — it is produced only when the user
+   chose it or the existing app already uses it.
 
 4. **Size every asset from [references/sizing-standard.md](./references/sizing-standard.md),
-   don't eyeball it.** Every logo/lockup/Symbol/icon has a real, measured aspect ratio (not a
+   don't eyeball it.** Start at that file's **§0 Logo Sizing Decision Table** — context in, exact
+   pixel value out, no interpolation. The common answers: **28px** for a header logo sharing a row
+   with nav, **60px** when the logo stands alone or in a hero, **15px** only for the one documented
+   mobile stacked lockup. Every logo/lockup/Symbol/icon has a real, measured aspect ratio (not a
    guess) and a recommended pixel tier per context (header, hero, footer, favicon, inline icon,
-   etc.). Two hard rules from that file: (1) never set both width and height on a non-square
-   asset — set one and let the other auto-compute, or you'll stretch official artwork; (2)
-   thematic icons don't share one fixed aspect ratio the way functional icons (24×24) do, so they
-   specifically need height-only (or width-only) sizing, never both.
+   etc.). Three hard rules from that file: (1) never set both width and height on a non-square asset
+   — set one and let the other auto-compute, or you'll stretch official artwork; (2) thematic icons
+   don't share one fixed aspect ratio the way functional icons (24×24) do, so they specifically need
+   height-only (or width-only) sizing, never both; (3) **never take a brand-asset dimension from a
+   spacing token** — `$spacing-xxs`/`--space-1` are 4px *gaps*, and a logo is never 4px tall.
 
    For everything beyond the brand assets themselves — spacing between elements, button/input/card
    sizing, touch targets, responsive breakpoints — use
@@ -225,22 +400,22 @@ Step 0 before generating anything, then proceed through the Workflow below.
 5. **Read the stack-specific integration guide**:
    - [references/react-integration.md](./references/react-integration.md) — CSS variables /
      Tailwind tokens, logo component pattern, pill-shaped buttons, icon usage.
-   - [references/streamlit-integration.md](./references/streamlit-integration.md) — native
-     `config.toml` theme mapping, `st.logo()`, pill-button CSS override, icon rendering, chart
-     color sequences. Follow the "native theming first" principle — don't hand-roll CSS for
-     things Streamlit's theme keys or widget params already do natively.
-   - **Static HTML/CSS — start from Medtronic's own production starter code, don't hand-roll it.**
-     [assets/code-templates/html-css-framework/](./assets/code-templates/html-css-framework/) is the
-     real shipped UI Design System kit: `page-template.html` (CSS Grid shell with correct responsive
-     margins/content areas), three working header variants (`header-no-nav.html`,
-     `header-simple-nav.html`, `header-dropdown-nav.html`), two footers
-     (`footer-standard.html`, `footer-minimal.html`), and `css/mdt-variables.css` (tokens + the full
-     type scale), `css/mdt-components.css` (buttons, inputs, focus rings), `css/mdt-app-template.css`
-     (grid/breakpoints/nav), `css/mdt-app-footer.css`. This is the source `typography.md`,
-     `composition.md`, and `sizing-standard.md` were derived *from* — building an HTML page from
-     scratch when this exists produces strictly worse output. Copy it in and extend it.
-   - Building a PowerPoint deck or Word doc? Apply the tokens and rules directly — those are
-     stack-agnostic and there's no separate reference file.
+   - Streamlit — **read both**:
+     [references/streamlit-layout.md](./references/streamlit-layout.md) for page shell, `layout`
+     choice, column ratios, the mandatory `gap`/`vertical_alignment` rules, container/card patterns,
+     the spacing translation table, and the alignment pre-flight; then
+     [references/streamlit-integration.md](./references/streamlit-integration.md) for native
+     `config.toml` theming, `st.logo()`, pill-button CSS override, Carbon icon rendering, and chart
+     color sequences. Follow the "native theming first" principle — don't hand-roll CSS for things
+     Streamlit's theme keys or widget params already do natively, and never inject CSS against
+     Streamlit's internal class names.
+   - Building something else (HTML/PPT/Word)? Apply the same tokens and rules directly. For HTML
+     specifically, start from Medtronic's own official starter code at
+     [assets/code-templates/html-css-framework/](./assets/code-templates/html-css-framework/) —
+     `css/mdt-variables.css` (all tokens + the full type scale), `css/mdt-components.css`
+     (buttons/cards), `css/mdt-app-template.css` (grid/breakpoints), `css/mdt-app-footer.css`, plus
+     working `header-*.html` / `footer-*.html` / `page-template.html` examples. Don't rewrite from
+     scratch what Medtronic already ships.
 
 6. **State the design plan and critique it — before writing any code.** This is the cheapest
    quality step in the whole workflow, and the only one that can still change the composition.
@@ -271,17 +446,13 @@ Step 0 before generating anything, then proceed through the Workflow below.
      for favicons and social media use **only**; don't reuse it as a general logo, and don't use
      the plain Symbol or wordmark for a favicon instead.
    - Hero/landing sections that want logo + tagline + Symbol together: [assets/logos/logo-tagline-symbol-combo/](./assets/logos/logo-tagline-symbol-combo/).
-   - Icons: [assets/icons/functional/](./assets/icons/functional/) (gray) and
-     [assets/icons/thematic/](./assets/icons/thematic/) (blue) on **light** backgrounds;
-     [assets/icons/functional-white/](./assets/icons/functional-white/) and
-     [assets/icons/thematic-white/](./assets/icons/thematic-white/) on **dark/color**
-     backgrounds (Navy Dark preset, colored gradient sections, etc.) — per the icon color rule,
-     never leave gray/blue icons sitting on a dark or colored background.
-   - Starter code (HTML/CSS builds): [assets/code-templates/html-css-framework/](./assets/code-templates/html-css-framework/)
-     — Medtronic's own shipped page shell, header/footer variants, and four production CSS files.
-     Copy these in rather than writing an equivalent from scratch (see step 5). Even on React or
-     Streamlit, `css/mdt-variables.css` and `css/mdt-components.css` are worth reading as the
-     authoritative source for the type scale, button tiers, and focus-ring implementation.
+   - Icons: **Carbon by default** `[MANDATORY]` — copy from
+     [assets/third-party/carbon-design-system/assets/icons/](./assets/third-party/carbon-design-system/assets/icons/)
+     (2,739 icons, `fill="currentColor"`, square 32×32 viewBox, so one file works on light *and*
+     dark backgrounds). Resolve names via `catalog/icons-manifest.json`, never guess a filename.
+     Set `color`, not `fill`. Use [assets/icons/thematic/](./assets/icons/thematic/) (blue) or
+     [thematic-white/](./assets/icons/thematic-white/) for brand/editorial moments only, sized
+     height-only. See [references/carbon-design-system.md](./references/carbon-design-system.md).
    - Full manifest of everything bundled vs. what's still only in the original zips (video,
      print/CMYK, vector source, PPT templates, full icon set, the 49-page style guide, font
      license form) is in [references/asset-manifest.md](./references/asset-manifest.md) — check
@@ -289,20 +460,25 @@ Step 0 before generating anything, then proceed through the Workflow below.
 
 8. **Apply the color tokens and typography exactly as documented** — copy hex values verbatim
    from `color-tokens.md` (or the relevant theme preset), use the sentence-case headline
-   convention, and use the documented Avenir Next World fallback stack (the real font is
-   licensed/proprietary and not bundled — see the typography section of `brand-guidelines.md`
-   for what to tell the user about that gap).
+   convention, and self-host the bundled `assets/fonts/avenir-next-world/*.ttf` files rather than
+   a system-font fallback (see the typography section of `brand-guidelines.md` for the
+   redistribution/licensing process if a vendor or 3rd party outside this workspace needs the
+   files).
 
-9. **Brand sanity-check**: logo not recolored/centered-in-clutter, Symbol not used
-   alone as the only brand mark, favicon uses the dedicated social-favicon-mark (not the plain
-   Symbol or wordmark), icon color variant matches the background (white icons on dark/color,
-   gray/blue on light — never mismatched), every logo/lockup/Symbol/icon sized per
-   `sizing-standard.md` with only one axis set explicitly (no stretched artwork), only exact
-   palette colors used (including tints — never an invented hex, not even a "reasonable-looking"
-   one — if a value genuinely isn't in the bundled tokens/assets, say so explicitly and fall back
-   to the closest exact existing token instead of guessing), buttons pill-shaped if the surface
-   calls for the brand button style, and any visible product name/trademark text follows the
-   `™`-placement rule in `brand-guidelines.md` rather than being guessed.
+9. **Sanity-check before finishing**: run the full pre-flight gate in `design-intuition.md` — every
+   box, honestly. Plus, for Streamlit, the alignment pre-flight in `streamlit-layout.md` §7. The
+   brand-specific essentials: logo not recolored/centered-in-clutter, Symbol not used alone as the
+   only brand mark, favicon uses the dedicated social-favicon-mark (not the plain Symbol or
+   wordmark), **every logo/lockup/Symbol size taken from `sizing-standard.md` §0 with only one axis
+   set — and never from a spacing token (a 4px logo is always a bug)**, icons are Carbon colored via
+   `currentColor` (thematic icons height-only if used), heading weight follows the Weight Context
+   Matrix with the weight expressed as a **font family name** rather than `font-weight: 100`, only
+   exact palette colors used (including tints — never an invented hex, not even a
+   "reasonable-looking" one — if a value genuinely isn't in the bundled tokens/assets, say so
+   explicitly and fall back to the closest exact existing token instead of guessing), buttons
+   pill-shaped if the surface calls for the brand button style, no blue-sidebar-by-default, and any
+   visible product name/trademark text follows the `™`-placement rule in `brand-guidelines.md`
+   rather than being guessed.
 
 10. **Critique the build, then run both gates.** Step 9 is Gate A material only — it cannot tell you
     whether the result is any good. Per [references/design-review.md](./references/design-review.md)
@@ -328,18 +504,15 @@ User says: *"brand this dashboard's header like Medtronic"*
 
 Actions:
 1. Read `brand-guidelines.md` (logo placement rule) + `theme-presets.md` (pick Signature Light).
-2. Copy `assets/logos/wordmark/medtronic-logo-navy.svg` into the app's asset folder.
+2. Copy `assets/logos/wordmark/medtronic-logo-navy-digital.svg` into the app's asset folder — the
+   `-digital` variant, not the plain `medtronic-logo-navy.svg`, per `app-header-logo-lockup.md`'s
+   on-screen-header color correction.
 3. Build the header per `react-integration.md`'s `MedtronicLogo` pattern — top-left, 28px height
-   (Compact tier from `sizing-standard.md`), only `height` set (no `width`).
+   (per `sizing-standard.md` §0's Logo Sizing Decision Table), only `height` set (no `width`).
 4. Apply `--mdt-electric-blue` etc. CSS variables from `react-integration.md` for nav/CTA colors.
-5. Gate B pass — the part that's easy to skip: nav items on one line at desktop with no wrapped
-   labels, a visible `:focus-visible` ring (`#ED7008`, per `craft-details.md`) on every nav link and
-   the avatar, the logo optically aligned against the nav baseline rather than just
-   `align-items: center`, and one shared left edge with the page content below it.
 
-Result: a header with a correctly-sized, correctly-placed navy logo and brand-accurate colors —
-no invented hex values, no stretched artwork — that also sits properly on the page instead of
-merely containing the right assets.
+Result: header with a correctly-sized, correctly-placed navy logo and brand-accurate colors —
+no invented hex values, no stretched artwork.
 
 ### Example 2: Add a dark-mode toggle to a Streamlit app
 
@@ -356,19 +529,35 @@ Actions:
 Result: a dark theme that's internally consistent (right assets, right colors) instead of just
 inverting the existing light theme's colors.
 
-### Example 3: User asks for a color/asset that isn't bundled
+### Example 3: User asks for an icon the Medtronic set doesn't have
 
-User says: *"make the icon pink to match our accent"* (no pink icon variant exists)
+User says: *"add a heart-rate icon to the vitals card"* (no such Medtronic functional icon)
 
 Actions:
-1. Check `color-tokens.md` — confirm Pink (`#E5057F`) is a real, exact accent token.
-2. Check `asset-manifest.md` — confirm no pink icon SVGs are bundled (only gray/blue/white).
-3. Don't recolor the SVG with a CSS filter/hue-hack to fake a pink icon.
+1. Look it up in Carbon's manifest — `catalog/icons-manifest.json`, `Health` category (110 icons).
+   Carbon is the default icon system, so this is the first stop, not a fallback.
+2. Copy the resolved SVG, render it square at 20px, color it via `color: var(--mdtText)` — it uses
+   `fill="currentColor"`, so the same file works if the card is later themed dark.
+3. Don't hand-draw an icon, and don't recolor a different Medtronic icon to stand in for it.
 
-Result: tell the user directly — "there's no pink icon variant bundled; the closest options are
-the gray/blue/white functional and thematic sets, or request the accent-color icon set from
-`Archive/coll-icons-png-svg.zip` if a true pink variant exists there" — per the Hard Rule, don't
-fabricate one.
+Result: the right icon, from the default set, working in both modes from one file.
+
+### Example 4: User asks for a color that isn't a bundled token
+
+User says: *"make the accent #FF5A5F to match our other tool"*
+
+Actions:
+1. Check `color-tokens.md` and `ui-design-system-colors.md` — `#FF5A5F` is not a Medtronic token.
+2. Refuse it, and name the gap specifically rather than silently substituting.
+3. Offer the nearest exact tokens: Critical `#E40A1A` if the intent is alarm/error, or Pink
+   `#E5057F` if the intent is a data-viz accent — and note that accent colors are charts-only, never
+   UI chrome.
+
+Result: *"`#FF5A5F` isn't a Medtronic token, so I can't use it. If that accent is signalling an error
+state, the exact token is Critical `#E40A1A`; if it's a chart series, Pink `#E5057F` is the closest
+accent. Which did you mean?"* — per the Hard Rule, the palette is selectable but never inventable.
+This holds even though the Step 0.5 question invites color input: **choosing among documented
+options is the user's call; a hex outside the tokens is not.**
 
 ## Troubleshooting
 
@@ -405,8 +594,37 @@ contact, Brand Central, or the raw source docs in `Archive/`) — never fill the
   on-screen text/headlines specifically). Canvas: white / atmospheric white `#F5F5F5`.
 - Tagline: **"engineering the extraordinary"** — sentence case, never all caps/italic, most
   common use is inside the logo lockup artwork, not standalone.
-- Typeface: **Avenir Next World** (licensed, not bundled — use a sans-serif fallback, see above).
+- Typeface: **Avenir Next World** — all 8 weights **are bundled** at
+  `assets/fonts/avenir-next-world/*.ttf`; self-host them rather than falling back to a system font.
+  (The font is licensed/proprietary — see the license note in `brand-guidelines.md` before
+  redistributing outside Medtronic.)
+- **Headlines (`h1`–`h3`) use `AvenirNextWorld-Bold`**, colored `#170F5F`. `h4` stays Regular. Set
+  weight via the **font family name**, never `font-weight`. Full matrix in `typography.md`.
 - Buttons are pill-shaped (full circular end radius, not just rounded corners).
 - Full source guideline docs (`1st Half Guidelines.docx`, `2nd Half Guidelines.docx`,
   `Style Guide.pdf`, `doc-color-palette-breakdown.pdf`) live in the `Archive/` folder if something
   isn't covered by the condensed references.
+
+## Version History
+
+- **1.3.0** — Merge of two divergent revisions (1.1.0, 1.2.0) plus a documentation-consistency
+  audit. Adopted from 1.2.0: Bold headlines (resolving a 3-way Medtronic source conflict), Carbon
+  as the default icon system (local override), the Rule Authority / Local Overrides / Contradiction
+  Ledger governance tables, the Step 0.5 question batch, six theme presets, and
+  `streamlit-layout.md`. Restored from 1.1.0 (deleted without replacement in 1.2.0): the two-gate
+  (Gate A/Gate B) framework, the four design-quality companion files (`craft-details.md`,
+  `visual-hierarchy.md`, `content-and-copy.md`, `design-review.md`), the "signature element"
+  section, and the plan-critique/build-critique Workflow steps — all patched to stay consistent
+  with the adopted 1.2.0 facts. Independently fixed in this pass (present in both prior versions):
+  false "not bundled" claims for the font files and the Simplified Symbol; a functional-icon
+  square-sizing claim contradicted by the actual SVGs; a missing `medtronic-logo-navy-digital.svg`
+  aspect ratio, and this file's Example 1, which used the wrong wordmark file for an on-screen
+  header (`theme-presets.md`'s Signature Light preset already had the correct variant); a
+  shadow-recipe count of "two" missing a real third recipe; a Carbon crawl page-count
+  self-contradiction; a desktop-first breakpoint
+  snippet contradicting the mobile-first CSS it claimed to match; a body-text opacity table value;
+  a Teal tint-stack typo; a chart-color-order rule that told the agent to lead multi-series charts
+  with the wrong color; a button-spec miscitation in two files; and a textarea height claim. See
+  the Contradiction Ledger above for the reasoning behind each brand-fact resolution.
+- **1.2.0** — competing revision, merged into 1.3.0 above.
+- **1.1.0** — prior stable baseline.
