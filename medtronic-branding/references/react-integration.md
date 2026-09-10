@@ -200,9 +200,14 @@ these two now have distinct recommended uses, see `app-header-logo-lockup.md`.
 
 ## 3. Buttons — pill-shaped, brand colors, tiered sizing
 
-Use the Compact/Default/Spacious tiers from
-[layout-and-spacing.md §4](./layout-and-spacing.md) rather than inventing a size per screen —
-`--default` matches this skill's other examples and lands at the ~44–48px touch-target minimum:
+**For an actual Medtronic app, use the real button spec in
+[sizing-standard.md §8](./sizing-standard.md) instead** — `.btn`/`.btn-small`/`.btn-large`/`.btn-xl`,
+fixed 40/32/48/56px heights with horizontal-only padding, from the bundled `mdt-components.css`.
+The Compact/Default/Spacious tiers below are this skill's own generic fallback for non-Medtronic-
+shaped custom buttons only — don't cite `--default`'s `12px 28px` padding as if it were the
+Medtronic spec, and note it lands at ~44–48px, not the 40px the real `.btn` class uses (that real
+default sits at the accessibility floor tier, not the recommended tier — see
+[layout-and-spacing.md §2](./layout-and-spacing.md)):
 
 ```css
 .btn-primary, .btn-outline {

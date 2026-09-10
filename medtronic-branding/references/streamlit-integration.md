@@ -210,11 +210,15 @@ SVGs for places you render freely with `st.markdown`.
 ## 5. Data viz colors
 
 For `st.bar_chart` / `st.line_chart` / Altair/Plotly charts, pass an explicit brand color
-sequence instead of the default palette — per the guidelines, lead with blues+gray, add one
-accent family before mixing multiple accents:
+sequence instead of the default palette — per `ui-design-system-colors.md`'s Do's/Don'ts, a
+**multi-series chart leads with Navy Blue, not Electric Blue** (Electric Blue is reserved for
+single-data-point charts), then continues in the documented preferred order:
 
 ```python
-BRAND_CHART_COLORS = ["#1010EB", "#777777", "#0FC9F7", "#00DCB9", "#7ECA2A"]
+BRAND_CHART_COLORS = ["#140F4B", "#1010EB", "#0FC9F7", "#E5057F", "#FFAD00"]
+# Navy, Electric Blue, Light Blue, Pink, Orange - leads with Navy per the
+# corrected multi-series rule (was previously #1010EB-first; logged in
+# SKILL.md's Contradiction Ledger).
 ```
 
 ## 6. Building beyond tokens/logo/buttons/icons
