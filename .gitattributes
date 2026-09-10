@@ -1,0 +1,20 @@
+# Treat these as binary - never line-ending-convert or diff as text. (No blanket
+# `* text=auto` rule here on purpose - this repo already has tracked text files
+# checked in with CRLF; retroactively renormalizing them would create a huge,
+# unrelated line-ending-only diff. Just fix the actual binary-type misdetection.)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.ico binary
+*.svg -text
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+*.zip binary
+*.mcpb binary
+*.ase binary
+*.pdf binary
+*.mp4 binary

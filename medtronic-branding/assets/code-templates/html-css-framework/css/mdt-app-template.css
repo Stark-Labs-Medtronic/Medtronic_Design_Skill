@@ -1,0 +1,813 @@
+/* mdt-app-template.css */
+/* -----------------------------------------------
+/* NOTE: This web app template uses CSS Grid for
+/* its responsive layouts; the code is simpler and
+/* more flexible than boostrap grid cols/rows. 
+/* ---------------------------------------------- */
+
+@import "mdt-variables.css";
+@import "mdt-app-footer.css";
+@import "mdt-components.css";
+
+/* Screen-reader-only hides content from viewer, 
+but content is still read by screen readers 
+for accessibility compliance */
+.sr-only {
+   border: 0 !important;
+   clip: rect(1px, 1px, 1px, 1px) !important;
+   -webkit-clip-path: inset(50%) !important;
+   clip-path: inset(50%) !important;
+   height: 1px !important;
+   margin: -1px !important;
+   overflow: hidden !important;
+   padding: 0 !important;
+   position: absolute !important;
+   width: 1px !important;
+   white-space: nowrap !important;
+}
+
+.sr-only-focusable:focus,
+.sr-only-focusable:active {
+   clip: auto !important;
+   -webkit-clip-path: none !important;
+   clip-path: none !important;
+   height: auto !important;
+   margin: auto !important;
+   overflow: visible !important;
+   width: auto !important;
+   white-space: normal !important;
+}
+
+/* |||||||||||||||||||| PAGE TEMPLATE STYLES ||||||||||||||||||||| */
+/* PAGE TEMPLATE USES CSS GRID:
+/* BODY + DIV.WRAPPER = REQUIRED
+/* DEFINES THE PAGE INTO THREE AREAS: 
+/* HEADER, MAIN, FOOTER */
+
+/* NOTE: Content sizes are fully accessible - rem for content that can scale, px for content that doesn't scale */
+
+body {
+   height: 100vh;
+   margin: 0;
+}
+
+/* ||||||||||| DEFINING THE GRID: STICKY HEADER + MAIN + FOOTER ||||||||||| */
+/* auto = shrink to fit contents */
+/* 1fr = fill remaning viewport space or expand to fit contents */
+div.wrapper {
+   display: grid;
+   gap: 0;
+   grid-template-rows: auto 1fr auto;
+   grid-template-columns: 100%;
+   min-height: 100%;
+   grid-template-areas:
+      "header"
+      "main"
+      "footer";
+}
+
+header {
+   grid-area: header;
+   max-width: 100%;
+   min-height: 4rem;
+   border-bottom: 1px solid var(--mdtBorderLight);
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+   position: sticky;
+   position: -webkit-sticky;
+   /* For macOS/iOS Safari */
+   top: 0;
+   background-color: #fff;
+}
+
+main {
+   grid-area: main;
+   background-color: var(--mdtColorBkdg);
+}
+
+footer {
+   grid-area: footer;
+   background-color: var(--mdtColorPrimary);
+   color: var(--mdtTextWhite);
+}
+
+/* ||||||||||| DEFINING THE CONTENT SECTIONS INSIDE THE MAIN GRID AREAS ||||||||||| */
+/* defines the grid content area for HEADER + defines sub-grid areas for header */
+.mdt-header {
+   margin: 0 auto;
+   padding: 0 16px;
+   max-width: 1312px;
+   background-color: #fff;
+   border-bottom: 1px solid var(--mdtBorderLight);
+   display: grid;
+   grid-template-rows: 4rem;
+   grid-template-columns: 2.5rem auto;
+   grid-template-areas:
+      "mdt-menu mdt-logo";
+}
+
+/* defines the grid content area for MAIN */
+.mdt-main {
+   max-width: 1312px;
+   margin: 0 auto;
+   padding: 8px 16px 16px 16px;
+}
+
+/* defines the grid content area for FOOTER */
+.mdt-footer {
+   max-width: 1312px;
+   margin: 0 auto;
+   padding: 16px;
+}
+
+/* |||||||||||||||| DEFINING THE AREAS INSIDE THE HEADER |||||||||||||||| */
+/* defines top header area with logo and utility nav */
+.mdt-logo {
+   grid-area: mdt-logo;
+   min-height: 62px;
+   display: grid;
+   align-content: center;
+   padding-left: 24px;
+}
+
+/* MDT logo */
+.mdt-logo img {
+   height: 20px;
+   display: block;
+   padding-bottom: 8px;
+}
+
+/* Application name */
+.txt05-appName {
+   font-family: "AvenirNextWorld-Thin";
+   font-size: 1.2rem;
+   line-height: 1.25rem;
+   color: var(--mdtText);
+}
+
+/* hides top utility menu on mobile */
+.mdt-utility {
+   display: none;
+}
+
+/* mobile navigation styles */
+.mdt-menu {
+   align-self: center;
+}
+
+/* hamburger menu */
+.mdt-menu label {
+   align-items: end;
+}
+
+/* checkbox toggles mobile nav menu */
+input[type="checkbox"]:checked~#menu {
+   transform: translateX(0);
+}
+
+input[type=checkbox] {
+   transition: all 0.3s;
+   box-sizing: border-box;
+   display: none;
+}
+
+.menu-toggle {
+   transition: all 0.3s;
+   box-sizing: border-box;
+   cursor: pointer;
+   position: absolute;
+   z-index: 99;
+   height: 100%;
+   width: 100%;
+   top: 20px;
+   height: 36px;
+   width: 36px;
+}
+
+.spinner {
+   transition: all 0.3s;
+   box-sizing: border-box;
+   position: absolute;
+   height: 3px;
+   width: 100%;
+   background-color: #170F5F;
+}
+
+.horizontal {
+   transition: all 0.3s;
+   box-sizing: border-box;
+   position: relative;
+   float: left;
+   margin-top: 6px;
+}
+
+.diagonal.part-1 {
+   position: relative;
+   transition: all 0.3s;
+   box-sizing: border-box;
+   float: left;
+}
+
+.diagonal.part-2 {
+   transition: all 0.3s;
+   box-sizing: border-box;
+   position: relative;
+   float: left;
+   margin-top: 6px;
+}
+
+input[type=checkbox]:checked~.menu-toggle>.horizontal {
+   transition: all 0.3s;
+   box-sizing: border-box;
+   opacity: 0;
+}
+
+input[type=checkbox]:checked~.menu-toggle>.diagonal.part-1 {
+   transition: all 0.3s;
+   box-sizing: border-box;
+   transform: rotate(135deg);
+   margin-top: 7px;
+}
+
+input[type=checkbox]:checked~.menu-toggle>.diagonal.part-2 {
+   transition: all 0.3s;
+   box-sizing: border-box;
+   transform: rotate(-135deg);
+   margin-top: -12px;
+}
+
+/* mobile nav menu */
+#menu {
+   height: calc(100vh - 64px);
+   position: fixed;
+   left: 0;
+   top: 64px;
+   width: 365px;
+   max-width: 100%;
+   transform: translateX(-370px);
+   transition: transform 250ms ease-in-out;
+   background-color: #fff;
+   box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.30);
+   border-right: 1px solid rgba(0, 0, 0, 0.30);
+   border-top: 1px solid rgba(0, 0, 0, 0.10);
+   border-radius: 0 0 16px 0;
+}
+
+.focus {
+   background-color: transparent;
+}
+
+input[type=checkbox]:checked .focus {
+   background-color: var(--mdtBkgdDimmer);
+}
+
+.menu-list {
+   margin: 0;
+   padding: 0;
+   border-top: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.menu-list li {
+   list-style: none;
+   color: #170f5f;
+   padding: 16px 16px 16px 10px;
+   cursor: pointer;
+   border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+   border-left: 6px solid transparent;
+}
+
+.menu-list li:hover {
+   color: #1010EB;
+   text-decoration: none;
+   background-color: rgba(20, 15, 75, 0.08);
+}
+
+.menu-list li a {
+   font-family: "AvenirNextWorld-Demi";
+   font-size: 1rem;
+   color: #170f5f;
+   cursor: pointer;
+   text-decoration: none;
+}
+
+.submenu {
+   display: flex;
+   flex-flow: row-reverse nowrap;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.submenu label {
+   font-family: "AvenirNextWorld-Demi";
+   flex-grow: 1;
+   cursor: pointer;
+}
+
+.submenu::before {
+   content: url('https://api.iconify.design/carbon/chevron-right.svg?width=24&height=24');
+   top: 5px;
+}
+
+/* submenu dropdown */
+.menu-list .submenu-list {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 365px;
+   height: 100vh !important;
+   transform: none;
+   transition: none;
+   background-color: #fff;
+   border-right: none;
+   border-top: 1px solid rgba(0, 0, 0, 0.10);
+   border-radius: 0 0 0 0;
+   padding-inline-start: 0;
+}
+
+.submenu-list {
+   display: flex;
+   flex-flow: column nowrap;
+}
+
+.submenu-list li {
+   font-size: 1rem;
+   border-right: 6px solid transparent;
+   width: auto;
+   margin-right: 0;
+}
+
+.submenu-list li a {
+   color: var(--mdtColorPrimary);
+}
+
+.submenu-list li:hover {
+   background-color: var(--mdtBkgdHover);
+}
+
+.submenu-list li:hover a {
+   color: var(--mdtColorAction);
+}
+
+.submenu-list li:hover a:hover {
+   text-decoration: none;
+}
+
+/* styles for back button at top of submenu on mobile */
+.submenu-list li.submenu-back {
+   border-bottom: 1px solid var(--mdtBorderLightGray);
+   padding: 0;
+}
+
+.submenu-list li.submenu-back button {
+   color: rgba(0, 0, 0, 0.55) !important;
+   font-family: "AvenirNextWorld";
+   font-size: 16px;
+   display: flex;
+   flex-flow: row nowrap;
+   width: 100%;
+   align-items: center;
+   border: none;
+   background-color: transparent;
+   padding: 16px 16px 16px 10px;
+   cursor: pointer;
+}
+
+.menu-list label {
+   cursor: pointer;
+   font-size: 1rem
+      /*16px*/
+   ;
+   text-transform: none;
+   letter-spacing: 0;
+   line-height: auto;
+   color: var(--mdtColorPrimary);
+}
+
+#services-list,
+#about-list {
+   max-width: 0px;
+   overflow: hidden;
+   pointer-events: none;
+   transition: 0.1s max-width ease-in-out;
+}
+
+input[type=checkbox] {
+   display: none;
+}
+
+input[type=checkbox]:checked~.remove-check {
+   display: none;
+}
+
+input[type=checkbox]:checked~#services-list,
+input[type=checkbox]:checked~#about-list {
+   max-width: 375px;
+   pointer-events: all;
+}
+
+
+
+
+
+
+/* mobile utility menu */
+.mdt-menu .utility-nav-mobile {
+   display: block;
+   border-top: 1px solid var(--mdtBorderLightGray);
+   margin-top: 1rem;
+   padding-top: 1rem;
+}
+
+.utility-links {
+   display: flex;
+   flex-flow: row nowrap;
+}
+
+.utility-nav-item {
+   display: flex;
+   flex-flow: row nowrap;
+   align-items: center;
+}
+
+.utility-nav-item div.icon {
+   padding-right: 6px;
+   height: 22px;
+   width: 22px;
+}
+
+.utility-nav-item:not(:last-of-type) {
+   padding-right: 20px;
+}
+
+
+/* DEFINES SMALLER CONTENT AREA PADDING FOR SMALLER SCREENS */
+/* 16px = mobile (less than 480px)*/
+/* 32px = tablet (greater than 480px)*/
+/* 48px = laptop (greater than 768px)*/
+/* 64px = desktop (greater than 1200px)*/
+@media only screen and (min-width: 480px) {
+
+   /* tablet portrait */
+   .mdt-header {
+      padding: 0 32px;
+   }
+
+   .mdt-main {
+      padding: 8px 32px 32px 32px;
+   }
+
+   .mdt-footer {
+      padding: 24px 32px 16px 32px;
+   }
+
+   .menu-list li {
+      list-style: none;
+      font-family: "AvenirNextWorld-Demi";
+      padding: 16px;
+      cursor: pointer;
+      border-left: 6px solid transparent;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+   }
+
+   .menu-list li a {
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      padding-left: 10px;
+   }
+
+   .submenu label {
+      padding-left: 10px;
+   }
+
+}
+
+@media only screen and (min-width: 768px) {
+
+   /* tablet landscape */
+   .mdt-header {
+      padding: 0 48px;
+   }
+
+   #menu {
+      height: 54px;
+      position: initial;
+      width: 100%;
+      transform: none;
+      transition: none;
+      background-color: #fff;
+      box-shadow: none;
+      border-right: 1px solid transparent;
+      border-top: 1px solid rgba(0, 0, 0, 0.10);
+      border-radius: 0 0 0 0;
+   }
+
+   .menu-list {
+      display: flex;
+      flex-flow: row nowrap;
+   }
+
+   ul.menu-list {
+      position: relative;
+      top: 4px;
+   }
+
+   .menu-list li {
+      padding: 8px 0 6px 0;
+      margin-right: 48px;
+      font-size: 1rem;
+      border-bottom: 6px solid transparent;
+      border-left: none;
+   }
+
+   .menu-list>li:hover {
+      border-left: none !important;
+      border-bottom: 6px solid #1010eb;
+      background-color: transparent;
+      color: var(--mdtColorPrimary);
+   }
+
+   .menu-list>li:hover>a {
+      color: var(--mdtColorPrimary);
+      text-decoration: none;
+      border-left: none !important;
+   }
+
+   .menu-list li.submenu label:focus-visible ul.submenu-list {
+      display: block;
+   }
+
+
+   li.active {
+      color: var(--mdtTextLink);
+      border-bottom: 6px solid #1010eb;
+   }
+
+   li.active a {
+      color: var(--mdtTextLink);
+   }
+
+   .submenu.active label {
+      color: var(--mdtTextLink);
+   }
+
+   .menu-list>li a {
+      padding-left: 0;
+   }
+
+   .menu-list .submenu-list {
+      height: auto;
+      position: absolute;
+      top: 50px;
+      width: auto;
+      transform: none;
+      transition: none;
+      background-color: #fff;
+      box-shadow: none;
+      border-right: none;
+      border-top: 1px solid rgba(0, 0, 0, 0.10);
+      border-radius: 0 0 0 0;
+      padding-inline-start: 0;
+      box-shadow: 0 2px 5px rgb(0 0 0 / 15%);
+   }
+
+   .submenu {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: center;
+   }
+
+   .submenu label {
+      padding-left: 0;
+   }
+
+
+   .submenu::before {
+      content: none;
+   }
+
+   .submenu-list li.submenu-back {
+      border-bottom: none;
+   }
+
+   .submenu-list li.submenu-back button {
+      display: none;
+   }
+
+   .submenu-list {
+      display: flex;
+      flex-flow: column nowrap;
+   }
+
+   .submenu-list li {
+      padding: 10px 48px 10px 24px;
+      font-size: 1rem;
+      border-bottom: 0;
+      width: auto;
+      margin-right: 0;
+   }
+
+   .submenu-list li a {
+      color: var(--mdtTextLow);
+   }
+
+   .submenu-list li:hover {
+      background-color: var(--mdtBkgdHover);
+   }
+
+   .submenu-list li:hover a {
+      color: var(--mdtColorPrimary);
+   }
+
+   .submenu-list li:hover a:hover {
+      text-decoration: none;
+      color: var(--mdtColorPrimary);
+   }
+
+   .menu-list label {
+      cursor: pointer;
+
+   }
+
+
+   /* Hide checkbox but keep accessible for dropdown menu */
+   .submenu input[type=checkbox] {
+      opacity: 0;
+   }
+
+   .submenu input[type=checkbox]:checked~.remove-check {
+      opacity: 0;
+   }
+
+   .submenu input[type="checkbox"]:focus+label,
+   .submenu input[type="checkbox"]:focus-visible+label {
+      outline: 2px solid #ed7008;
+      border-radius: 2px;
+   }
+
+   input[type=checkbox]:checked~#about-list {
+      max-height: 150px;
+      width: fit-content;
+      pointer-events: all;
+      left: 69px;
+   }
+
+   #about-list {
+      max-height: 0px;
+      overflow: hidden;
+      pointer-events: none;
+      transition: 0.1s max-height ease-in-out;
+   }
+
+   input[type=checkbox]:checked~#services-list {
+      max-height: 256px;
+      width: fit-content;
+      pointer-events: all;
+      left: 164px;
+   }
+
+   #services-list {
+      max-height: 0px;
+      overflow: hidden;
+      pointer-events: none;
+      transition: 0.1s max-height ease-in-out;
+   }
+
+
+
+
+   .mdt-main {
+      padding: 8px 48px 32px 48px;
+   }
+
+   .mdt-footer {
+      padding: 16px 48px 16px 48px;
+   }
+
+   .mdt-header {
+      margin: 0 auto;
+      background-color: #fff;
+      border-bottom: 1px solid var(--mdtBorderLight);
+      display: grid;
+      grid-template-rows: 64px 56px;
+      grid-template-columns: 1fr auto;
+      grid-template-areas:
+         "mdt-logo mdt-utility"
+         "mdt-nav mdt-nav";
+   }
+
+   .mdt-header.nonav {
+      margin: 0 auto;
+      background-color: #fff;
+      border-bottom: 1px solid var(--mdtBorderLight);
+      display: grid;
+      grid-template-rows: 64px;
+      grid-template-columns: 1fr auto;
+      grid-template-areas:
+         "mdt-logo mdt-utility";
+   }
+
+   .mdt-header.nonav #menu {
+      height: 0px !important;
+   }
+
+   .mdt-logo {
+      grid-area: mdt-logo;
+      display: flex;
+      flex-flow: row nowrap;
+      align-content: center;
+      padding-left: 0;
+      align-items: center;
+   }
+
+   .mdt-logo a {
+      display: inline-block;
+
+      vertical-align: middle;
+      align-self: center;
+   }
+
+   .mdt-logo img {
+      height: 24px;
+      padding-bottom: 0;
+   }
+
+   .txt05-appName {
+      display: inline-block;
+      font-size: 1.6rem !important;
+      /*24px*/
+      line-height: 1.5rem;
+      position: relative;
+      top: 4px;
+      align-self: center;
+   }
+
+   .txt05-appName::before {
+      content: "|";
+      font-size: 1.5rem !important;
+      padding: 0 0.8em;
+      color: var(--mdtTextLow);
+      position: relative;
+      top: -4px;
+   }
+
+   /* defining utility links in upper right-hand corner of nav bar */
+   .mdt-utility {
+      grid-area: mdt-utility;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-content: center;
+      min-height: 4rem;
+   }
+
+   nav {
+      grid-area: mdt-nav;
+   }
+
+   .mdt-menu {
+      padding-right: 0;
+   }
+
+   .mdt-menu label.menu-toggle {
+      display: none !important;
+   }
+
+   .mdt-menu .utility-nav-mobile {
+      display: none;
+   }
+
+   .utility-nav-item {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      font-size: 0.875rem;
+   }
+
+   .utility-nav-item div.icon {
+      padding-right: 6px;
+      height: 20px;
+      width: 20px;
+   }
+
+   .utility-nav-item:not(:last-of-type) {
+      padding-right: 20px;
+   }
+
+}
+
+@media only screen and (min-width: 1200px) {
+
+   /* desktop */
+   .mdt-header {
+      padding: 0 64px;
+   }
+
+   .mdt-main {
+      padding: 8px 64px 32px 64px;
+   }
+
+   .mdt-footer {
+      padding: 16px 64px 16px 64px;
+   }
+
+}

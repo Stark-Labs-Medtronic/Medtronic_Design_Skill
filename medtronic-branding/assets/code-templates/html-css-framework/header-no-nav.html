@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-compatible" content="IE=edge">
+
+   <!-- ------------------------------------------- -->
+   <!-- --------  ADD APP NAME HERE  -------------- -->
+   <title>Application Name | Medtronic</title>
+   <!-- ------------------------------------------- -->
+
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+   <link rel="stylesheet" href="css/mdt-app-template.css" />
+   <link rel="stylesheet" href="css/app.css" />
+   <!--<script src="css/mdt-app-nav.js"></script>-->
+
+   <!-- Iconify -->
+   <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+
+</head>
+
+<!-- -----------------------------------------------
+/* NOTE: This web app template uses CSS Grid for
+/* its responsive layouts; the code is simpler and
+/* more flexible than boostrap grid cols/rows. 
+------------------------------------------------ -->
+
+<body>
+   <div class="wrapper">
+      <!--||||||||||||||| HEADER AREA ||||||||||||||||-->
+      <header>
+         <div class="mdt-header nonav">
+            <div class="mdt-logo">
+               <!-- Medtronic logo -->
+               <a href="index.html"><img src="images/mdt-logo-navy.svg" /></a>
+               <!-- optional app name -->
+               <div class="txt05-appName">Application Name</div>
+            </div>
+            <!-- ---------- OPTIONAL UTILITY MENU ---------- -->
+            <div class="mdt-utility" role="navigation" aria-labelledby="utilityNav">
+               <span class="sr-only" id="utilityNav">Utility Navigation</span>
+               <div class="utility-links">
+                  <!-- utility item 1 -->
+                  <div class="utility-nav-item">
+                     <div class="icon">
+                        <iconify-icon icon="carbon:location" width="20" height="20" aria-label="Change region/language">
+                        </iconify-icon>
+                     </div>
+                     <div>English (US)</div>
+                  </div>
+                   <!-- utility item 2 -->
+                  <div class="utility-nav-item">
+                     <div class="icon">
+                        <iconify-icon icon="carbon:user-avatar" width="20" height="20" aria-label="User profile">
+                        </iconify-icon>
+                     </div>
+                     <div>Christina Yang</div>
+                  </div>
+               </div>
+            </div> 
+            <!-- ---------- MAIN MENU ---------- -->
+            <nav class="mdt-menu">
+               <input id="open-menu" type="checkbox" class="open-menu">
+               <label for="open-menu" class="menu-toggle" aria-label="Main menu">
+                  <div class="spinner diagonal part-1"></div>
+                  <div class="spinner horizontal"></div>
+                  <div class="spinner diagonal part-2"></div>
+               </label>
+
+               <div id="menu">
+                  <ul class="menu-list">
+                     <!-- mobile utility nav -->
+                     <div class="utility-nav-mobile">
+                        <li>
+                           <div class="utility-nav-item">
+                              <div class="icon">
+                                 <iconify-icon icon="carbon:location" width="20" height="20"
+                                    aria-label="Change region/language">
+                                 </iconify-icon>
+                              </div>
+                              <div>English (US)</div>
+                           </div>
+                        </li>
+                        <li>
+                           <div class="utility-nav-item">
+                              <div class="icon">
+                                 <iconify-icon icon="carbon:user-avatar" width="20" height="20"
+                                    aria-label="User profile">
+                                 </iconify-icon>
+                              </div>
+                              <div>Christina Yang</div>
+                           </div>
+                        </li>
+                     </div>
+
+                  </ul>
+               </div>
+            </nav>
+         </div>
+      </header>
+
+      <!--|||||||||||||||| MAIN AREA |||||||||||||||||-->
+      <main>
+         <div class="mdt-main">
+            <!-- all page content goes here -->
+            [ Page content goes here ]
+            <!-- end page content -->
+         </div>
+      </main>
+
+      <!--||||||||||||||| FOOTER AREA ||||||||||||||||-->
+      <footer>
+         <div class="mdt-footer">
+            <!-- MDT FOOTER: MINIMAL: Logo, Copyright -->
+            [ Footer content goes here ]
+            <!-- end MDT footer: minimal: logo, copyright -->
+         </div>
+      </footer>
+   </div>
+
+</body>
+
+</html>

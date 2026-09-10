@@ -1,0 +1,909 @@
+{
+  "url": "https://www.carbondesignsystem.com/guidelines/carbon-for-ai/",
+  "title": "Carbon for AI – Carbon Design System",
+  "description": "Carbon for AI is an extension of the Carbon system, designed to give AI instances in IBM products a visually and behaviorally distinct identity.",
+  "canonical": null,
+  "h1": "Carbon for AI",
+  "headings": [
+    {
+      "level": 1,
+      "text": "Carbon for AI",
+      "id": "page-title"
+    },
+    {
+      "level": 2,
+      "text": "Introduction",
+      "id": "introduction"
+    },
+    {
+      "level": 4,
+      "text": "Use the AI label and styling to mark any instances of AI usage",
+      "id": null
+    },
+    {
+      "level": 4,
+      "text": "Provide transparency of AI at each level of the experience",
+      "id": null
+    },
+    {
+      "level": 4,
+      "text": "Integrate explainability into the overall user workflow and experience",
+      "id": null
+    },
+    {
+      "level": 4,
+      "text": "Don’t use the Carbon for AI styling as decoration",
+      "id": null
+    },
+    {
+      "level": 3,
+      "text": "What Carbon for AI provides",
+      "id": "what-carbon-for-ai-provides"
+    },
+    {
+      "level": 3,
+      "text": "Assets",
+      "id": "assets"
+    },
+    {
+      "level": 2,
+      "text": "Style elements",
+      "id": "style-elements"
+    },
+    {
+      "level": 4,
+      "text": "Designed to illuminate AI to the users",
+      "id": null
+    },
+    {
+      "level": 4,
+      "text": "An extension of the IBM Design Language",
+      "id": null
+    },
+    {
+      "level": 4,
+      "text": "New color and style tokens for creating your AI experiences",
+      "id": null
+    },
+    {
+      "level": 2,
+      "text": "AI explainability",
+      "id": "ai-explainability"
+    },
+    {
+      "level": 4,
+      "text": "Well-designed explainability:",
+      "id": null
+    },
+    {
+      "level": 4,
+      "text": "Use the AI label as the path to explainability",
+      "id": null
+    },
+    {
+      "level": 4,
+      "text": "Start with summarized explanations",
+      "id": null
+    },
+    {
+      "level": 3,
+      "text": "Explainability resources",
+      "id": "explainability-resources"
+    },
+    {
+      "level": 5,
+      "text": "Designing for Explainable AI",
+      "id": null
+    },
+    {
+      "level": 5,
+      "text": "AI Explainability kit (Beta)",
+      "id": null
+    },
+    {
+      "level": 2,
+      "text": "AI label",
+      "id": "ai-label"
+    },
+    {
+      "level": 3,
+      "text": "When to use the AI label",
+      "id": "when-to-use-the-ai-label"
+    },
+    {
+      "level": 4,
+      "text": "Mark AI-generated content with an AI label",
+      "id": null
+    },
+    {
+      "level": 4,
+      "text": "Use the AI label to provide a consistent visual reference point for AI",
+      "id": null
+    },
+    {
+      "level": 4,
+      "text": "Use the AI label as a pathway to explainability",
+      "id": null
+    },
+    {
+      "level": 2,
+      "text": "AI chat",
+      "id": "ai-chat"
+    },
+    {
+      "level": 3,
+      "text": "Chat resources",
+      "id": "chat-resources"
+    },
+    {
+      "level": 5,
+      "text": "For IBMers only",
+      "id": null
+    },
+    {
+      "level": 4,
+      "text": "Chat component library",
+      "id": null
+    },
+    {
+      "level": 5,
+      "text": "Carbon AI Chat GitHub repo",
+      "id": null
+    },
+    {
+      "level": 2,
+      "text": "AI components",
+      "id": "ai-components"
+    },
+    {
+      "level": 4,
+      "text": "Start designing",
+      "id": null
+    },
+    {
+      "level": 4,
+      "text": "Start developing",
+      "id": null
+    },
+    {
+      "level": 3,
+      "text": "Revert functionality",
+      "id": "revert-functionality"
+    },
+    {
+      "level": 3,
+      "text": "Component list",
+      "id": "component-list"
+    },
+    {
+      "level": 5,
+      "text": "Checkbox",
+      "id": null
+    },
+    {
+      "level": 5,
+      "text": "Form",
+      "id": null
+    },
+    {
+      "level": 5,
+      "text": "Select",
+      "id": null
+    },
+    {
+      "level": 5,
+      "text": "Data table",
+      "id": null
+    },
+    {
+      "level": 5,
+      "text": "Modal",
+      "id": null
+    },
+    {
+      "level": 5,
+      "text": "Tag",
+      "id": null
+    },
+    {
+      "level": 5,
+      "text": "Date picker",
+      "id": null
+    },
+    {
+      "level": 5,
+      "text": "Number input",
+      "id": null
+    },
+    {
+      "level": 5,
+      "text": "Text input",
+      "id": null
+    },
+    {
+      "level": 5,
+      "text": "Dropdown",
+      "id": null
+    },
+    {
+      "level": 5,
+      "text": "Radio button",
+      "id": null
+    },
+    {
+      "level": 5,
+      "text": "Tile",
+      "id": null
+    },
+    {
+      "level": 2,
+      "text": "Accessibility",
+      "id": "accessibility"
+    },
+    {
+      "level": 4,
+      "text": "Tested for color contrast",
+      "id": null
+    },
+    {
+      "level": 4,
+      "text": "AI label provides accessible AI visibility",
+      "id": null
+    },
+    {
+      "level": 4,
+      "text": "Light spread is limited for readability",
+      "id": null
+    },
+    {
+      "level": 2,
+      "text": "AI resources",
+      "id": "ai-resources"
+    },
+    {
+      "level": 5,
+      "text": "For IBMers only",
+      "id": null
+    },
+    {
+      "level": 4,
+      "text": "Design for AI",
+      "id": null
+    },
+    {
+      "level": 2,
+      "text": "Feedback",
+      "id": "feedback"
+    }
+  ],
+  "tabNav": [
+    {
+      "href": "https://ibm.com/brand",
+      "text": "IBM Brand Center",
+      "active": false
+    },
+    {
+      "href": "https://ibm.com/design/language",
+      "text": "IBM Design Language",
+      "active": false
+    },
+    {
+      "href": "https://www.carbondesignsystem.com/",
+      "text": "Carbon Design System",
+      "active": false
+    },
+    {
+      "href": "http://ibm.biz/carbon4ibmproducts",
+      "text": "Carbon for IBM Products",
+      "active": false
+    },
+    {
+      "href": "https://ibm.biz/carbon4cloud",
+      "text": "Carbon for Cloud",
+      "active": false
+    },
+    {
+      "href": "https://www.ibm.com/standards/carbon/",
+      "text": "Carbon for IBM.com",
+      "active": false
+    },
+    {
+      "href": "https://www.ibm.com/design/event/",
+      "text": "IBM Event Design",
+      "active": false
+    },
+    {
+      "href": "https://www.ibm.com/design/workplace/",
+      "text": "IBM Workplace Design",
+      "active": false
+    },
+    {
+      "href": "https://www.ibm.com/design/thinking/",
+      "text": "Enterprise Design Thinking",
+      "active": false
+    },
+    {
+      "href": "https://www.ibm.com/able/",
+      "text": "IBM Accessibility",
+      "active": false
+    },
+    {
+      "href": "https://www.ibm.com/design/ai",
+      "text": "IBM Design for AI",
+      "active": false
+    },
+    {
+      "href": "https://www.ibm.com/design/research/",
+      "text": "IBM Design Research",
+      "active": false
+    },
+    {
+      "href": "https://w3.ibm.com/design/experience-standards/",
+      "text": "IBM Experience Standards",
+      "active": false
+    },
+    {
+      "href": "https://w3.ibm.com/design/",
+      "text": "IBM Design",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/all-about-carbon/what-is-carbon/",
+      "text": "What is Carbon?",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/all-about-carbon/who-uses-carbon/",
+      "text": "Who uses Carbon?",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/all-about-carbon/the-carbon-ecosystem/",
+      "text": "The Carbon ecosystem",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/all-about-carbon/releases/",
+      "text": "Releases",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/whats-happening/news-and-articles/",
+      "text": "News and articles",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/whats-happening/meetups/",
+      "text": "Meetups",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/designing/get-started/",
+      "text": "Get started",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/designing/kits/figma/",
+      "text": "Design kits",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/designing/design-resources/",
+      "text": "Other resources",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/developing/get-started/",
+      "text": "Get started",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/developing/frameworks/react/",
+      "text": "Frameworks",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/developing/carbon-mcp/overview/",
+      "text": "Carbon MCP",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/developing/dev-resources/resources/",
+      "text": "Developer resources",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/developing/react-tutorial/overview/",
+      "text": "React tutorial",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/developing/web-components-tutorial/overview/",
+      "text": "Web components tutorial",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/developing/community-frameworks/angular/",
+      "text": "Community frameworks",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/contributing/get-started/overview/",
+      "text": "Get started",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/contributing/product-development-lifecycle/",
+      "text": "Product Development Lifecycle",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/contributing/component-checklist/",
+      "text": "Component checklist",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/contributing/documentation/",
+      "text": "Documentation",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/migrating/guide/overview/",
+      "text": "Guide",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/migrating/faq/",
+      "text": "FAQs",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/elements/2x-grid/overview/",
+      "text": "2x Grid",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/elements/color/overview/",
+      "text": "Color",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/elements/icons/library/",
+      "text": "Icons",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/elements/pictograms/library/",
+      "text": "Pictograms",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/elements/motion/overview/",
+      "text": "Motion",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/elements/spacing/overview/",
+      "text": "Spacing",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/elements/themes/overview/",
+      "text": "Themes",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/elements/typography/overview/",
+      "text": "Typography",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/guidelines/accessibility/overview/",
+      "text": "Accessibility",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/guidelines/carbon-for-ai/",
+      "text": "Carbon for AI",
+      "active": true
+    },
+    {
+      "href": "https://carbondesignsystem.com/guidelines/content/overview/",
+      "text": "Content",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/overview/components/",
+      "text": "Overview",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/accordion/usage/",
+      "text": "Accordion",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/ai-label/usage/",
+      "text": "AI label",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/breadcrumb/usage/",
+      "text": "Breadcrumb",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/button/usage/",
+      "text": "Button",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/checkbox/usage/",
+      "text": "Checkbox",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/code-snippet/usage/",
+      "text": "Code snippet",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/contained-list/usage/",
+      "text": "Contained list",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/content-switcher/usage/",
+      "text": "Content switcher",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/data-table/usage/",
+      "text": "Data table",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/date-picker/usage/",
+      "text": "Date picker",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/dropdown/usage/",
+      "text": "Dropdown",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/file-uploader/usage/",
+      "text": "File uploader",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/form/usage/",
+      "text": "Form",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/inline-loading/usage/",
+      "text": "Inline loading",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/link/usage/",
+      "text": "Link",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/list/usage/",
+      "text": "List",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/loading/usage/",
+      "text": "Loading",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/menu/usage/",
+      "text": "Menu",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/menu-buttons/usage/",
+      "text": "Menu buttons",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/modal/usage/",
+      "text": "Modal",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/notification/usage/",
+      "text": "Notification",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/number-input/usage/",
+      "text": "Number input",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/pagination/usage/",
+      "text": "Pagination",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/popover/usage/",
+      "text": "Popover",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/progress-bar/usage/",
+      "text": "Progress bar",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/progress-indicator/usage/",
+      "text": "Progress indicator",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/radio-button/usage/",
+      "text": "Radio button",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/search/usage/",
+      "text": "Search",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/select/usage/",
+      "text": "Select",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/slider/usage/",
+      "text": "Slider",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/structured-list/usage/",
+      "text": "Structured list",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/tabs/usage/",
+      "text": "Tabs",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/tag/usage/",
+      "text": "Tag",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/text-input/usage/",
+      "text": "Text input",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/tile/usage/",
+      "text": "Tile",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/toggle/usage/",
+      "text": "Toggle",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/toggletip/usage/",
+      "text": "Toggletip",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/tooltip/usage/",
+      "text": "Tooltip",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/tree-view/usage/",
+      "text": "Tree view",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/UI-shell-header/usage/",
+      "text": "UI shell header",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/UI-shell-left-panel/usage/",
+      "text": "UI shell left panel",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/components/UI-shell-right-panel/usage/",
+      "text": "UI shell right panel",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/patterns/overview/",
+      "text": "Overview",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/patterns/common-actions/",
+      "text": "Common actions",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/patterns/dialog-pattern/",
+      "text": "Dialogs",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/patterns/disabled-states/",
+      "text": "Disabled states",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/patterns/disclosures-pattern/",
+      "text": "Disclosures",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/patterns/empty-states-pattern/",
+      "text": "Empty states",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/patterns/filtering/",
+      "text": "Filtering",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/patterns/fluid-styles/",
+      "text": "Fluid styles",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/patterns/forms-pattern/",
+      "text": "Forms",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/patterns/global-header/",
+      "text": "Global header",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/patterns/loading-pattern/",
+      "text": "Loading",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/patterns/login-pattern/",
+      "text": "Login",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/patterns/notification-pattern/",
+      "text": "Notifications",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/patterns/overflow-content/",
+      "text": "Overflow content",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/patterns/read-only-states-pattern/",
+      "text": "Read-only states",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/patterns/search-pattern/",
+      "text": "Search",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/patterns/status-indicator-pattern/",
+      "text": "Status indicators",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/patterns/text-toolbar-pattern/",
+      "text": "Text toolbar",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/community/overview/",
+      "text": "Overview",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/community/domain-guidance/",
+      "text": "Domain guidance",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/data-visualization/getting-started/",
+      "text": "Get started",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/data-visualization/chart-types/",
+      "text": "Chart types",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/data-visualization/chart-anatomy/",
+      "text": "Chart anatomy",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/data-visualization/simple-charts/",
+      "text": "Simple charts",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/data-visualization/flow-charts/",
+      "text": "Flow Charts",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/data-visualization/spatial-charts/",
+      "text": "Spatial Charts",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/data-visualization/gantt-charts/",
+      "text": "Gantt charts",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/data-visualization/color-palettes/",
+      "text": "Color palettes",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/data-visualization/axes-and-labels/",
+      "text": "Axes and labels",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/data-visualization/legends/",
+      "text": "Legends",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/data-visualization/dashboards/",
+      "text": "Dashboards",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/help/faq/",
+      "text": "FAQs",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/help/certificate-of-originality/",
+      "text": "Certificate of Originality",
+      "active": false
+    },
+    {
+      "href": "https://carbondesignsystem.com/help/contact-us/",
+      "text": "Contact us",
+      "active": false
+    },
+    {
+      "href": "https://github.com/carbon-design-system/carbon",
+      "text": "GitHub",
+      "active": false
+    }
+  ],
+  "codeBlockCount": 0,
+  "svgLibrary": null,
+  "crawledAt": "2026-09-05T10:41:25.404Z"
+}

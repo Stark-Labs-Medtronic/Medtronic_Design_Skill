@@ -1,0 +1,206 @@
+/* ||||||||||||||||| BUTTONS ||||||||||||||||| */
+
+*:focus:not(:focus-visible) {
+   outline: 2px solid transparent;
+}
+
+*:focus-visible {
+   outline: 2px solid #ed7008;
+   border-radius: 2px;
+}
+
+.btn {
+   font-family: "AvenirNextWorld";
+   font-size: 1rem;
+   letter-spacing: 0.6px;
+   padding: 0 1.5rem;
+   margin-top: 16px;
+   height: 40px;
+   border: 1px solid var(--mdtColorAction);
+   border-radius: 40px;
+   width: 100%;
+}
+
+@media only screen and (min-width: 480px) {
+   .btn {
+      width: fit-content;
+   }
+}
+
+.btn-primary {
+   background-color: var(--mdtColorAction);
+   color: var(--mdtTextWhite);
+}
+
+.btn-primary:hover {
+   background-color: var(--mdtColorAction-hover);
+   border: 1px solid var(--mdtColorAction-hover);
+   color: var(--mdtTextWhite);
+}
+
+.btn-secondary {
+   background-color: transparent;
+   color: var(--mdtTextLink);
+}
+
+.btn-secondary:hover {
+   background-color: var(--mdtBkgdSelected);
+   color: var(--mdtTextLink);
+}
+
+.btn-ghost {
+   background-color: transparent;
+   border: 1px solid transparent;
+   color: var(--mdtTextLink);
+}
+
+.btn-ghost:hover {
+   background-color: var(--mdtBkgdSelected);
+   border: 1px solid var(--mdtBkgdSelected);
+   color: var(--mdtTextLink);
+}
+
+.btn-small {
+   font-size: 0.875rem;
+   height: 32px;
+   padding: 0 1rem;
+   border-radius: 32px;
+}
+
+.btn-large {
+   font-size: 1rem;
+   height: 48px;
+   padding: 0 2rem;
+   border-radius: 48px;
+}
+
+.btn-xl {
+   font-size: 1.25rem;
+   height: 56px;
+   padding: 0 2.5rem;
+   border-radius: 56px;
+}
+
+
+/* ||||||||||||||||| CARDS ||||||||||||||||| */
+
+.card-white {
+   border: 1px solid var(--mdtBorder);
+   padding: 16px;
+   background-color: #fff;
+}
+
+.card-gray {
+   border: 1px solid var(--mdtBorder);
+   padding: 16px;
+   background-color: var(--mdtColorBkdg);
+}
+
+.rounded {
+   border: 1px solid var(--mdtBorder);
+   border-radius: 8px;
+}
+
+.mdtColorBkgd {
+   background-color: var(--mdtColorBkgd);
+}
+
+.elevation-low {
+   box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.2);
+}
+
+.card-white img,
+.card-gray img {
+   width: 100%;
+}
+
+.card-white .link,
+.card-gray .link {
+   padding-bottom: 0;
+   font-family: "AvenirNextWorld";
+   font-size: 0.875rem;
+   /*14px*/
+   color: var(--mdtText);
+}
+
+@media only screen and (min-width: 768px) {
+
+   .card-white {
+      border: 1px solid var(--mdtBorder);
+      padding: 24px;
+      background-color: #fff;
+   }
+
+   .card-gray {
+      border: 1px solid var(--mdtBorder);
+      padding: 24px;
+      background-color: var(--mdtColorBkdg);
+   }
+}
+
+/* ||||||||||||||||| FORMS ||||||||||||||||| */
+/* Every input needs to be in a container */
+.input-container {
+   transition: background-color 500ms;
+   margin-bottom: 1.5rem;
+}
+
+/* Standard label above form field */
+label {
+   display: block;
+   font-size: 0.75rem
+      /*12px*/
+   ;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   line-height: 1.67rem;
+   color: var(--mdtTextLow);
+}
+
+/* Required fields */
+label.required::before {
+   content: url('https://api.iconify.design/ph/asterisk-simple-bold.svg?color=%23c121eb&width=10&height=10');
+   padding-right: 3px;
+}
+
+/* Optional fields */
+label.optional::after {
+   content: "optional";
+   font-family: "AvenirNextWorld-Italic";
+   font-size: 12px;
+   letter-spacing: 0;
+   color: var(--mdtTextLow);
+   text-transform: none;
+   float: right;
+}
+
+input,
+textarea,
+select {
+   width: 100%;
+   box-sizing: border-box;
+   background: var(--mdtColorWhite);
+   caret-color: #1010EB;
+   border: 1px solid var(--mdtBorderDefaultGray);
+   border-radius: 4px;
+   color: var(--mdtTextHigh);
+   caret-color: #1010EB !important;
+   transition: border 500ms;
+   padding: 0 .8rem 0 .8rem;
+   font-size: 1rem
+      /*16px*/
+   ;
+}
+
+input,
+select {
+   height: 40px;
+}
+
+input:focus,
+input:focus-visible,
+select:focus,
+select:focus-visible {
+   outline: 2px solid var(--mdtColorAction);
+   border-radius: 2px;
+}

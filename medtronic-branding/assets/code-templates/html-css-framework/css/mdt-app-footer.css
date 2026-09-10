@@ -1,0 +1,124 @@
+/* ||||||||||||||||| MDT FOOTER CONTENT ||||||||||||||||| */
+
+footer .footer-logo-legal,
+footer .footer-address-copyright {
+   display: flex;
+   flex-flow: column wrap;
+   align-content: flex-start;
+   flex-grow: 1;
+   padding: 0;
+}
+
+footer .footer-address-copyright {
+   border-top: 1px solid var(--mdtBorderStandardWhite);
+   font-size: 12px;
+   margin-top: 1rem;
+   padding: 1rem 0;
+}
+
+footer .footer-address-copyright p,
+footer .footer-logo-legal a {
+   margin: 0 !important;
+}
+
+footer ul {
+   display: flex;
+   flex-flow: column wrap;
+   justify-content: start;
+   padding: 1rem 0 0 0;
+   margin: 0;
+}
+
+footer ul.social {
+   display: flex;
+   flex-flow: row nowrap;
+}
+
+footer ul.social li a {
+   color: var(--mdtTextWhite);
+}
+
+footer ul.social li::after {
+   content: "" !important;
+   padding: 0 0.6em;
+}
+
+footer ul.social li:last-child::after {
+   padding: 0 0;
+}
+
+footer li {
+   list-style: none;
+   padding: .4rem 0;
+}
+
+footer ul:not(.social) a {
+   text-decoration: none;
+   color: var(--mdtTextWhite);
+}
+
+footer a:hover,
+footer a:active,
+footer a:focus {
+   text-decoration: underline !important;
+   color: var(--mdtTextLinkDkBg) !important;
+   background-image: linear-gradient(to right, #4a7dff 50%, #4a7dff 50%);
+   background-position: 0 2.5em;
+   background-repeat: repeat-x;
+   background-size: 2px 1px;
+}
+
+footer .footer-address-copyright strong {
+   padding-right: 8px;
+}
+
+
+@media only screen and (min-width: 768px) {
+
+   footer .footer-logo-legal,
+   footer .footer-address-copyright {
+      flex-flow: row wrap;
+      justify-content: space-between;
+      align-items: center;
+   }
+
+   footer .footer-links {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: start;
+   }
+
+   footer ul {
+      display: flex;
+      flex-flow: row wrap;
+      padding: 0 0;
+   }
+
+   footer ul:not(.social) a {
+      color: var(--mdtTextWhite);
+   }
+
+   footer ul:not(.social) a:hover {
+      color: var(--mdtDarkModeAction);
+   }
+
+   footer li:not(:last-child)::after {
+      font-family: "AvenirNextWorld-Thin";
+      content: "|";
+      padding: 0 1em;
+   }
+
+   footer ul.legal li:first-child {
+      padding-left: 0;
+   }
+
+   footer ul.social li::after {
+      content: "" !important;
+      padding: 0 0.5em;
+   }
+
+   footer ul.social a:hover {
+      background-image: none;
+   }
+}
+

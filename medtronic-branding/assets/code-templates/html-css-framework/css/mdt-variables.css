@@ -1,0 +1,344 @@
+/* mdt-variables.css */
+
+:root {
+   box-sizing: border-box;
+   --mdtColorPrimary: #140f4b;
+   --mdtColorAction: #1010eb;
+   --mdtColorAction-hover: #0c0ca5;
+   --mdtColorBkdg: #f5f5f5;
+   --mdtColorWhite: #fff;
+   --mdtColorCritical: #e40a1a;
+   --mdtColorCaution: #f7a800;
+   --mdtColorConfirm: #59a719;
+   --mdtColorInfo: #008eff;
+   --mdtColorImportant: #c121eb;
+
+   --mdtText: rgba(0, 0, 0, 0.77);
+   --mdtTextHigh: rgba(0, 0, 0, 0.90);
+   --mdtTextLow: rgba(0, 0, 0, 0.55);
+   --mdtTextDisabled: rgba(0, 0, 0, 0.30);
+   --mdtTextPrimary: #170f5f;
+   --mdtTextLink: #1010eb;
+   --mdtTextLinkDkBg: #86A9FF;
+   --mdtTextCritical: #a3001e;
+   --mdtTextCaution: #b56409;
+   --mdtTextConfirm: #3f6e03;
+   --mdtTextInfo: #0a5694;
+   --mdtTextImportant: #871c80;
+   --mdtTextWhite: #fff;
+
+   --mdtBkgdHover: rgba(20, 15, 75, 0.08);
+   --mdtBkgdSelected: rgba(20, 15, 75, 0.12);
+   --mdtBkgdCritical: #ffefee;
+   --mdtBkgdCaution: #fff9db;
+   --mdtBkgdConfirm: #eff9e3;
+   --mdtBkgdInfo: #e9faff;
+   --mdtBkgdImportant: #f8ecff;
+   --mdtBkgdDimmer: rgba(16, 16, 32, 0.6);
+
+   --mdtBorderLightGray: rgba(0, 0, 0, 0.10);
+   --mdtBorderLightGray: rgba(0, 0, 0, 0.20);
+   --mdtBorderDefaultGray: rgba(0, 0, 0, 0.30);
+   --mdtBorderDarkGray: rgba(0, 0, 0, 0.55);
+
+   --mdtBorderDimWhite: rgba(255, 255, 255, 0.10);
+   --mdtBorderStandardWhite: rgba(255, 255, 255, 0.30);
+   --mdtBorderBrightWhite: rgba(255, 255, 255, 0.55);
+}
+
+/* |||||||||||||||||||| FONT STYLES ||||||||||||||||||||| */
+@font-face {
+   font-family: "AvenirNextWorld";
+   src: url(../fonts/AvenirNextWorld-Regular.ttf) format("truetype");
+}
+
+@font-face {
+   font-family: "AvenirNextWorld-Italic";
+   src: url(../fonts/AvenirNextWorld-Italic.ttf) format("truetype");
+}
+
+@font-face {
+   font-family: "AvenirNextWorld-Thin";
+   src: url(../fonts/AvenirNextWorld-Thin.ttf) format("truetype");
+}
+
+@font-face {
+   font-family: "AvenirNextWorld-Demi";
+   src: url(../fonts/AvenirNextWorld-Demi.ttf) format("truetype");
+}
+
+html {
+   font-size: 16px;
+   line-height: 30px;
+}
+
+body {
+   font-family: "AvenirNextWorld";
+   color: var(--mdtText);
+}
+
+h1,
+h2,
+h3 {
+   font-family: "AvenirNextWorld-Thin";
+   font-weight: normal;
+   color: var(--mdtTextPrimary);
+}
+
+h1 {
+   font-size: 2.75rem;
+   /*44px*/
+   line-height: 3.25rem;
+   margin: 1.5rem 0 1.5rem 0;
+}
+
+h2 {
+   font-size: 2rem;
+   /*32px*/
+   line-height: 2.5rem;
+   margin: 2rem 0 1rem 0;
+}
+
+h3 {
+   font-size: 1.5rem;
+   /*24px*/
+   line-height: 2rem;
+   margin: 2rem 0 1rem 0;
+}
+
+h4 {
+   font-family: "AvenirNextWorld";
+   font-weight: normal;
+   font-size: 1.25rem;
+   /*20px*/
+   line-height: 1.75rem;
+   color: var(--mdtTextPrimary);
+   margin: 2rem 0 1rem 0;
+}
+
+p {
+   margin-block-start: 0;
+   margin-block-end: 1em;
+   padding: 0;
+}
+
+a {
+   text-decoration: none;
+   color: var(--mdtTextLink);
+}
+
+a:hover,
+a:active {
+   text-decoration: underline;
+   color: var(--mdtTextPrimary);
+}
+
+a:focus:active {
+   outline: none !important;
+}
+
+b,
+strong,
+.strong {
+   font-family: "AvenirNextWorld-Demi" !important;
+}
+
+i,
+em,
+.em {
+   font-family: "AvenirNextWorld-Italic" !important;
+}
+
+.txt01-caption {
+   font-family: "AvenirNextWorld";
+   font-size: 0.75rem;
+   /*12px*/
+   margin-bottom: 0.75rem;
+}
+
+.txt01-caption_alt {
+   font-family: "AvenirNextWorld-Italic";
+   font-size: 0.75rem;
+   /*12px*/
+   margin-bottom: 0.75rem;
+}
+
+.txt01-eyebrow {
+   display: block;
+   font-family: "AvenirNextWorld-Demi";
+   font-size: 0.75rem;
+   /*12px*/
+   text-transform: uppercase;
+   letter-spacing: 1.3px;
+   line-height: 1rem;
+   margin-bottom: .75rem;
+   color: var(--mdtTextLow);
+}
+
+.txt01-label {
+   font-family: "AvenirNextWorld";
+   font-size: 0.75rem;
+   /*12px*/
+   text-transform: uppercase;
+}
+
+.txt02-body {
+   font-family: "AvenirNextWorld";
+   font-size: 0.875rem;
+   /*14px*/
+   color: var(--mdtText);
+   margin-bottom: 0.875rem;
+}
+
+.txt02-eyebrow {
+   display: block;
+   font-family: "AvenirNextWorld-Demi";
+   font-size: 0.875rem;
+   /*14px*/
+   text-transform: uppercase;
+   letter-spacing: 1.5px;
+   line-height: 1rem;
+   color: var(--mdtTextLow);
+   margin-bottom: 1rem;
+}
+
+.txt02-button {
+   font-family: "AvenirNextWorld-Demi";
+   font-size: 0.875rem;
+   /*14px*/
+}
+
+.txt03-body {
+   font-family: "AvenirNextWorld";
+   font-size: 1rem;
+   /*16px*/
+   color: var(--mdtText);
+   margin-bottom: 1rem;
+}
+
+.txt03-button {
+   font-family: "AvenirNextWorld-Demi";
+   font-size: 1rem;
+   letter-spacing: 0.6px;
+   /*16px*/
+}
+
+.txt04-body {
+   font-family: "AvenirNextWorld";
+   font-size: 1.25rem;
+   /*20px*/
+   color: var(--mdtText);
+   line-height: 1.75;
+}
+
+.txt04-headline {
+   font-family: "AvenirNextWorld";
+   font-size: 1.25rem;
+   /*20px*/
+   color: var(--mdtTextPrimary);
+   margin: 0 0 .6rem 0;
+}
+
+.txt05-body {
+   font-family: "AvenirNextWorld";
+   font-size: 1.5rem;
+   /*24px*/
+   color: var(--mdtText);
+}
+
+.txt05-headline {
+   font-family: "AvenirNextWorld-Thin";
+   font-weight: normal;
+   font-size: 1.5rem;
+   /*24px*/
+   line-height: 1.725rem;
+   color: var(--mdtTextPrimary);
+   margin: 0 0 1rem 0;
+}
+
+.txt06-headline {
+   font-family: "AvenirNextWorld";
+   font-weight: normal;
+   font-size: 2rem;
+   /*32px*/
+   line-height: 2.3rem;
+   color: var(--mdtTextPrimary);
+   margin: 0 0 1rem 0;
+}
+
+.txt06-headline_thin {
+   font-family: "AvenirNextWorld-Thin";
+   font-weight: normal;
+   font-size: 2rem;
+   /*32px*/
+   line-height: 2.3rem;
+   color: var(--mdtTextPrimary);
+   margin: 0 0 1rem 0;
+}
+
+.txt07-headline {
+   font-family: "AvenirNextWorld-Thin";
+   font-weight: normal;
+   font-size: 2.75rem;
+   /*44px*/
+   line-height: 3.16rem;
+   color: var(--mdtTextPrimary);
+   margin: .5rem 0 1rem 0;
+}
+
+.txt08-headline {
+   font-family: "AvenirNextWorld-Thin";
+   font-weight: normal;
+   font-size: 3.5rem;
+   /*56px*/
+   line-height: 4.025rem;
+   color: var(--mdtTextPrimary);
+   margin: 0 0 1.5rem 0;
+}
+
+.txt09-display {
+   display: block;
+   font-family: "AvenirNextWorld-Thin";
+   font-weight: normal;
+   font-size: 4.5rem;
+   /*72px*/
+   line-height: 5.175rem;
+   color: var(--mdtTextPrimary);
+   margin: 0 0 1.5rem 0;
+}
+
+@media only screen and (max-width: 480px) {
+   h1 {
+      font-size: 2.75rem;
+      /*44px*/
+      line-height: 3rem;
+      margin: 1.5rem 0 1rem 0;
+   }
+
+   h2 {
+      font-size: 2rem;
+      /*32px*/
+      line-height: 2.5rem;
+      margin: 2rem 0 1rem 0;
+   }
+
+   h3 {
+      font-family: "AvenirNextWorld";
+      font-weight: normal;
+      font-size: 1.5rem;
+      /*24px*/
+      line-height: 1.75rem;
+      color: var(--mdtTextPrimary);
+      margin: 2rem 0 1rem 0;
+   }
+
+   h4 {
+      font-family: "AvenirNextWorld-Demi";
+      font-weight: normal;
+      font-size: 1.25rem;
+      /*20px*/
+      line-height: 1.5rem;
+      color: var(--mdtText);
+      margin: 2rem 0 1rem 0;
+   }
+}

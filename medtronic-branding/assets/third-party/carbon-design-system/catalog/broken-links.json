@@ -1,0 +1,141 @@
+{
+  "generatedAt": "2026-09-05T10:58:56.521Z",
+  "description": "URLs discovered via in-site links that resolve to a 404 / not-found page. These are dead links in the source content, not crawler errors.",
+  "count": 33,
+  "links": [
+    {
+      "url": "https://www.carbondesignsystem.com/components/overview/",
+      "pageDir": "output\\pages\\components\\overview"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/design/",
+      "pageDir": "output\\pages\\design"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/components/notifications/usage/",
+      "pageDir": "output\\pages\\components\\notifications\\usage"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/patterns/overview/patterns/read-only-inputs-pattern/",
+      "pageDir": "output\\pages\\patterns\\overview\\patterns\\read-only-inputs-pattern"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/components/UI-shell-header/accessibility/components/UI-shell-right-panel/usage/",
+      "pageDir": "output\\pages\\components\\UI-shell-header\\accessibility\\components\\UI-shell-right-panel\\usage"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/components/ui-shell/usage/",
+      "pageDir": "output\\pages\\components\\ui-shell\\usage"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/components/accordion/usage/%5Bhttps:/www.carbondesignsystem.com/guidelines/content/general%5D(https:/www.carbondesignsystem.com/guidelines/content/general)/",
+      "pageDir": "output\\pages\\components\\accordion\\usage\\_5Bhttps_\\www.carbondesignsystem.com\\guidelines\\content\\general_5D_https_\\www.carbondesignsystem.com\\guidelines\\content\\general_"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/developing/frameworks/other-frameworks/",
+      "pageDir": "output\\pages\\developing\\frameworks\\other-frameworks"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/components/accordions/usage/",
+      "pageDir": "output\\pages\\components\\accordions\\usage"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/components/progress-bar/usage/Determinate/",
+      "pageDir": "output\\pages\\components\\progress-bar\\usage\\Determinate"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/components/progress-bar/usage/%5Bhttps:/www.carbondesignsystem.com/guidelines/content/overview/%5D/",
+      "pageDir": "output\\pages\\components\\progress-bar\\usage\\_5Bhttps_\\www.carbondesignsystem.com\\guidelines\\content\\overview\\_5D"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/components/default-slider/usage/",
+      "pageDir": "output\\pages\\components\\default-slider\\usage"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/components/range-slider/usage/",
+      "pageDir": "output\\pages\\components\\range-slider\\usage"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/elements/2x-grid/implementation/",
+      "pageDir": "output\\pages\\elements\\2x-grid\\implementation"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/guidelines/content/general/",
+      "pageDir": "output\\pages\\guidelines\\content\\general"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/accordion/usage/",
+      "pageDir": "output\\pages\\accordion\\usage"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/UI-shell-left-panel/usage/",
+      "pageDir": "output\\pages\\UI-shell-left-panel\\usage"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/contributing/get-started/overview/contributing/contribution-process/",
+      "pageDir": "output\\pages\\contributing\\get-started\\overview\\contributing\\contribution-process"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/data-visualization/legends/chart-anatomy/",
+      "pageDir": "output\\pages\\data-visualization\\legends\\chart-anatomy"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/contributing/add-ons/",
+      "pageDir": "output\\pages\\contributing\\add-ons"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/tutorial/react/step-3/",
+      "pageDir": "output\\pages\\tutorial\\react\\step-3"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/elements/typography/productive/",
+      "pageDir": "output\\pages\\elements\\typography\\productive"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/developing/frameworks/vanilla/",
+      "pageDir": "output\\pages\\developing\\frameworks\\vanilla"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/elements/components/overview/",
+      "pageDir": "output\\pages\\elements\\components\\overview"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/guidelines/content/writing-style/%5Bhttps:/www-03preprod.ibm.com/support/knowledgecenter/ibm_style/conversational-style.html%5D(https:/ibmdocs-test.mybluemix.net/docs/en/ibm-style/?topic=medium-conversational-style%29",
+      "pageDir": "output\\pages\\guidelines\\content\\writing-style\\_5Bhttps_\\www-03preprod.ibm.com\\support\\knowledgecenter\\ibm_style\\conversational-style.html_5D_https_\\ibmdocs-test.mybluemix.net\\docs\\en\\ibm-style___topic=medium-conversational-style_29"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/guidelines/accessibility/keyboard/developers/",
+      "pageDir": "output\\pages\\guidelines\\accessibility\\keyboard\\developers"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/contributing/get-started/",
+      "pageDir": "output\\pages\\contributing\\get-started"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/elements/color/implementation/",
+      "pageDir": "output\\pages\\elements\\color\\implementation"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/contributing/pattern/",
+      "pageDir": "output\\pages\\contributing\\pattern"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/patterns/filtering/components/checkbox/usage/",
+      "pageDir": "output\\pages\\patterns\\filtering\\components\\checkbox\\usage"
+    },
+    {
+      "url": "http://www.carbondesignsystem.com/guidelines/content/general/",
+      "pageDir": "output\\pages\\guidelines\\content\\general"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/components/ui-shell-header/usage/",
+      "pageDir": null,
+      "note": "Confirmed dead on the live site; shares a case-insensitive directory with a real page whose content takes precedence on disk."
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/components/Structured-list/usage/",
+      "pageDir": null,
+      "note": "Confirmed dead on the live site; shares a case-insensitive directory with a real page whose content takes precedence on disk."
+    }
+  ]
+}
