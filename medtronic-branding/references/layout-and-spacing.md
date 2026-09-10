@@ -33,6 +33,12 @@ icon padding, small badges, or tight inline gaps where 8px would feel too loose.
 }
 ```
 
+**For an actual Medtronic app, use [composition.md](./composition.md)'s real spacing scale**
+(`none/xxs/xs/s/m/l/xl` = 0/4/8/16/24/32/40px, mapped to `$spacing-*` Sass variables and
+`.p-0`–`.p-6` utility classes) instead of the generic scale above wherever it applies — the table
+here (which includes a 12px step and a 48px step with no Medtronic equivalent) remains a valid
+generic fallback only where no official Medtronic spec covers the value.
+
 > **`[MANDATORY]` Spacing tokens are never asset dimensions.** `--space-1: 4px` is the tightest
 > *gap* in the system, not a size. Never apply any `--space-*` value as the width or height of a
 > logo, lockup, Symbol, or icon — those come from `sizing-standard.md` §0. A logo height below 15px
@@ -50,8 +56,14 @@ icon padding, small badges, or tight inline gaps where 8px would feel too loose.
 | Safest cross-platform choice | 48×48px | Google Material Design — practitioner consensus is this is the more consistent choice when a product spans iOS + Android + web |
 
 Applies to buttons, icon buttons, tappable list items/rows, and nav links — not just literal
-`<button>` elements. This skill's pill-button padding (`12px 28px` with a 15–16px font, from
-`sizing-standard.md` §8) already lands at ~44–48px total height — validated in the browser test.
+`<button>` elements. **`[MANDATORY]` Correction, logged in `SKILL.md`'s Contradiction Ledger:**
+Medtronic's real default button (`sizing-standard.md` §8) is a **fixed 40px height** with
+**horizontal-only** padding (`padding: 0 1.5rem` — there is no vertical padding value, since height
+is set directly) — not the `12px 28px`/"~44–48px" figures this line previously (and wrongly)
+attributed to that section. That real 40px sits at this table's **Absolute-floor** tier, not the
+Recommended-default tier — it clears the general accessibility minimum but not Apple's 44px
+recommendation. The `12px 28px` figure is this file's *own* generic non-Medtronic fallback tier
+(§4 below), not the Medtronic spec — don't cite the two interchangeably.
 
 **Medtronic's own Digital Design System spec** (see [accessibility.md](./accessibility.md)) is
 more specific than the generic tiers above: **48×48px is a hard minimum** for essential

@@ -11,6 +11,15 @@ avoids a visual "jump" when a user moves from one app/page to another. Don't sca
 height responsively — only its *contents* (logo, app name, search) adapt; the 64px bar itself
 never changes, mobile included.
 
+> **This governs the 64px header bar itself, not a page's entire top chrome.**
+> [navigation.md](./navigation.md)'s website-style top-nav footprint is documented as 1440×121px —
+> that's this same 64px header **plus** a separate ~56px nav row stacked directly under it
+> (confirmed in the real shipped CSS,
+> [mdt-app-template.css](../assets/code-templates/html-css-framework/css/mdt-app-template.css):
+> `grid-template-rows: 64px 56px` once a nav row is present, ≈120px + a 1px border ≈ 121px). A page
+> with both a header and a below-header nav row is not a violation of the 64px rule — the rule
+> governs the header row in isolation. Logged in `SKILL.md`'s Contradiction Ledger.
+
 ## Two header styles
 
 Both are 64px tall, fill `#F5F5F5` (`General.Surface.level 1`), 1px inside border. Background can
