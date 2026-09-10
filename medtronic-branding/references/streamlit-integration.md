@@ -5,31 +5,73 @@ only reach for `unsafe_allow_html`/injected CSS for the handful of things native
 (pill-shaped buttons, the logo image, icon SVGs). This mirrors Streamlit's own guidance: don't
 hand-roll what a theme key or built-in widget parameter already covers.
 
+> **This file covers theming. For page structure, columns, alignment, and spacing, read
+> [streamlit-layout.md](./streamlit-layout.md) `[MANDATORY]`** — it is authoritative for Streamlit
+> layout and carries the alignment pre-flight checklist. Theming a misaligned layout still produces a
+> misaligned app.
+
 ## 1. `.streamlit/config.toml`
+
+**`[MANDATORY]` Pick the block matching the preset the user chose in Step 0.5.** There is no default
+sidebar treatment — see the anti-pattern rule in [theme-presets.md](./theme-presets.md).
+
+**Signature Light (preset 1) — general default:**
 
 ```toml
 [theme]
-primaryColor = "#1010EB"          # Electric Blue - buttons, active widgets, links
+primaryColor = "#1010EB"              # Electric Blue - buttons, active widgets, links
 backgroundColor = "#FFFFFF"
-secondaryBackgroundColor = "#F5F5F5"  # Atmospheric White - cards, sidebar, widget bg
-textColor = "#3C3C3C"             # Body Dark Gray
-font = "sans-serif"               # Avenir Next World isn't web-safe; see note below
-
-[theme.sidebar]
-primaryColor = "#0FC9F7"
-backgroundColor = "#140F4B"       # Navy - dark sidebar is an explicitly supported native combo
-secondaryBackgroundColor = "#170F5F"
-textColor = "#FFFFFF"
+secondaryBackgroundColor = "#F5F5F5"  # Atmospheric White - cards, widget bg
+textColor = "rgba(0,0,0,0.77)"        # --mdtText, the real 77% black body token
+font = "sans-serif"                   # see the font note below
 ```
 
-> Streamlit's `font` key only accepts a generic family name/CSS font stack, not arbitrary custom
-> font files. This skill now bundles the real licensed webfont files at
-> `assets/fonts/avenir-next-world/*.ttf` — copy them into the project's `static/` folder and load
-> a single `@font-face` (pointing at the actual `.ttf` files, base64-encoded or served as a static
-> asset) via `st.markdown(..., unsafe_allow_html=True)` at the top of the entrypoint page, then
-> reference `"Avenir Next World"` in `font`. See [typography.md](./typography.md) for the exact
-> type scale to replicate. If a project truly can't self-host the font, fall back to
-> `font = "sans-serif"` and tell the user the real brand font isn't available in-browser.
+**Atmospheric Light (preset 5) — data-dense dashboards, cards lift off the canvas:**
+
+```toml
+[theme]
+primaryColor = "#1010EB"
+backgroundColor = "#F5F5F5"           # page is Atmospheric White
+secondaryBackgroundColor = "#FFFFFF"  # cards are white
+textColor = "rgba(0,0,0,0.77)"
+font = "sans-serif"
+```
+
+> **No `[theme.sidebar]` block by default.** A colored sidebar is a *chosen* combination, never a
+> default — an earlier revision of this file shipped a navy sidebar as the default config, which is
+> the direct source of the generic blue-sidebar-plus-white-content output this skill is meant to
+> avoid. It also set the sidebar `primaryColor` to Light Blue `#0FC9F7`, which breaks the
+> one-accent-per-screen lock: Light Blue is a **data-visualization** color, never UI chrome.
+>
+> If the user explicitly chose a navy sidebar, add it deliberately and keep the accent Electric Blue:
+>
+> ```toml
+> [theme.sidebar]
+> primaryColor = "#1010EB"              # Electric Blue - the one accent, not Light Blue
+> backgroundColor = "#140F4B"           # Navy
+> secondaryBackgroundColor = "#170F5F"
+> textColor = "#FFFFFF"
+> ```
+>
+> For brand presence in a shell **without** a colored sidebar, use the **Navy Header Light** preset
+> instead — it puts the navy in the 64px header and leaves nav and content light.
+
+> **The `font = "sans-serif"` above is the fallback, not the target.** Streamlit's `font` key accepts
+> a generic family name or CSS font stack, not a font file. This skill bundles the real licensed
+> webfont files at `assets/fonts/avenir-next-world/*.ttf`, so the correct sequence is:
+>
+> 1. Copy the `.ttf` files into the project's `static/` folder and set
+>    `[server] enableStaticServing = true`.
+> 2. Load `@font-face` declarations for `AvenirNextWorld`, `-Bold`, `-Demi`, and `-Italic` via a
+>    single `st.markdown(..., unsafe_allow_html=True)` at the top of the entrypoint page — mirror the
+>    real declarations in `mdt-variables.css`, plus the `-Bold` face from
+>    `mdt-typography-override.css`. Headings use `AvenirNextWorld-Bold`.
+> 3. **Then change `font` to `"Avenir Next World"`** in every `config.toml` block above.
+>
+> Only leave `font = "sans-serif"` if the project genuinely can't self-host — and in that case tell
+> the user the real brand font isn't available in-browser. Bold survives a fallback face well, so
+> `font-weight: 700` on headings **is** acceptable when the real font is missing — see the
+> fallback caveat in [typography.md](./typography.md).
 
 ### Full dark mode instead (see `theme-presets.md`)
 
@@ -116,39 +158,54 @@ individually.
 
 ## 4. Icons
 
-Streamlit's built-in `:material/icon_name:` shortcodes do **not** match the Medtronic icon set —
-for a brand-accurate UI, render the bundled SVGs directly instead of Material icons. Pass the
-right color family for the surface — `functional`/`thematic` (gray/blue) on light backgrounds,
-`functional-white`/`thematic-white` on the Navy Dark preset or any colored background:
+**`[MANDATORY]` Carbon is the default icon system — use it without being asked.** See
+[carbon-design-system.md](./carbon-design-system.md). Carbon SVGs use `fill="currentColor"`, so a
+single file works on light and dark backgrounds — no `-white` variant to pair, no background-mismatch
+bug. Resolve names via `catalog/icons-manifest.json`; never guess a filename.
+
+Streamlit's built-in `:material/icon_name:` shortcodes do **not** match the Medtronic/Carbon visual
+language — for a brand-accurate UI, render SVGs directly wherever you control the markup:
 
 ```python
 from pathlib import Path
 import streamlit as st
 
-def brand_icon(name: str, family: str = "functional", size: int = 20):
-    svg = Path(f"assets/brand/icons/{family}/{name}.svg").read_text()
-    # functional icons are on a real fixed 24x24 grid (safe to force width+height equal).
-    # thematic icons do NOT share one fixed ratio between icons - only constrain height,
-    # or some icons will stretch more than others. See sizing-standard.md.
-    if family.startswith("functional"):
-        dims = f'width="{size}" height="{size}"'
-    else:
-        dims = f'height="{size}" width="auto"'
+CARBON = Path("assets/brand/icons/carbon")  # copied from assets/third-party/.../assets/icons/
+
+def icon(name: str, size: int = 20, color: str = "rgba(0,0,0,0.77)"):
+    """Carbon icons are square on a 32x32 viewBox - width and height are both safe."""
+    svg = (CARBON / f"{name}.svg").read_text()
+    svg = svg.replace("<svg", f'<svg width="{size}" height="{size}"', 1)
     st.markdown(
-        svg.replace("<svg", f'<svg {dims}', 1),
+        f'<span style="color:{color};display:inline-flex;vertical-align:middle">{svg}</span>',
         unsafe_allow_html=True,
     )
 
-# light background
-brand_icon("alarm_rgb", family="functional")
-# dark / Navy background
-brand_icon("alarm_rgb", family="functional-white")
+icon("dashboard")                          # inherits body text color
+icon("arrow--right", color="#1010EB")      # interactive only - one accent per screen
+icon("warning--alt", color="#B56409")      # semantic token, light mode
 ```
 
-For simple cases (e.g., inside `st.metric(icon=...)`, `st.button(icon=...)`) Streamlit only
-accepts an emoji or `:material/...:` shortcode, not an arbitrary SVG — in those specific
-widget-icon slots, pick the closest Material icon rather than fighting the API, and reserve the
-real bundled SVGs for places you render freely with `st.markdown`.
+`color` is the only thing that changes between light and dark mode — pass the active mode's text
+token. Do not maintain two icon folders.
+
+**Medtronic thematic icons `[FLEXIBLE]`** remain the better choice for brand/editorial moments
+(marketing feature rows, value-prop blocks). Those have **varying aspect ratios** — set height only:
+
+```python
+def thematic_icon(name: str, size: int = 24, dark_bg: bool = False):
+    family = "thematic-white" if dark_bg else "thematic"
+    svg = Path(f"assets/brand/icons/{family}/{name}.svg").read_text()
+    # height only - thematic ratios vary per icon, forcing width stretches them
+    st.markdown(svg.replace("<svg", f'<svg height="{size}" width="auto"', 1),
+                unsafe_allow_html=True)
+```
+
+Don't mix Carbon and Medtronic functional icons in the same UI region.
+
+For widget-icon slots that only accept an emoji or `:material/...:` shortcode (`st.metric(icon=)`,
+`st.button(icon=)`), pick the closest Material icon rather than fighting the API, and reserve real
+SVGs for places you render freely with `st.markdown`.
 
 ## 5. Data viz colors
 
@@ -167,11 +224,26 @@ skill — map the reference to the native widget rather than hand-rolling HTML/C
 
 | Need | Reference | Native Streamlit widget |
 | --- | --- | --- |
-| Page grid, breakpoints, shell choice | [composition.md](./composition.md) | `st.columns`, `st.container(horizontal=True)` |
-| Nav, breadcrumbs, tabs | [navigation.md](./navigation.md) | `st.tabs`, `st.sidebar` + `st.button` nav |
+| **Page shell, grid, alignment, spacing** | **[streamlit-layout.md](./streamlit-layout.md)** | `st.set_page_config`, `st.columns(gap=, vertical_alignment=)`, `st.container(border=, height=)` |
+| Breakpoints, archetype choice | [composition.md](./composition.md), [design-intuition.md](./design-intuition.md) | `layout="wide"` vs `"centered"` |
+| Nav, breadcrumbs, tabs | [navigation.md](./navigation.md) | `st.navigation` + `st.Page`, `st.tabs` |
 | Badges, flags, key-value pairs, avatars | [ui-components.md](./ui-components.md) | `st.badge`, inline `:color-badge[]`, `st.metric` |
 | Text fields, selects, checkboxes, toggles, sliders | [forms-and-inputs.md](./forms-and-inputs.md) | `st.text_input`, `st.selectbox`, `st.checkbox`, `st.toggle`, `st.slider` |
 | Modals, spinners, tooltips | [overlays-and-feedback.md](./overlays-and-feedback.md) | `st.dialog`, `st.spinner`, `help=` param on most widgets |
+
+**Where the native widget genuinely can't match the spec** — be honest about the gap rather than
+claiming coverage:
+
+| Spec | Gap |
+| --- | --- |
+| `ui-components.md` badge: 99+ overflow, 24×24, 2px top-right offset | `st.badge` has no overflow or offset control |
+| `overlays-and-feedback.md` modal: size tiers + 3-layer shadow | `st.dialog` offers `width` only, no shadow control |
+| `navigation.md` tabs: filled-vs-outline 56px variants | `st.tabs` has one visual style |
+| `composition.md` exact 8px padding | Container padding is fixed — see the spacing table in `streamlit-layout.md` |
+
+For these, use the native widget and accept the approximation, or state plainly that exact fidelity
+needs React. **Don't inject CSS against Streamlit's internal class names** — they aren't a public API
+and break on upgrade.
 
 Only reach for custom CSS/HTML when a native widget genuinely can't do it — see the
 developing-with-streamlit skill's own "native theming first" principle, cited in `theme-presets.md`.

@@ -136,6 +136,10 @@ production favicon (white "M" on Electric Blue), per the UI Design System; see
   React/Streamlit.
 - Headlines are **sentence case**, never title case or ALL CAPS.
 - Use Regular, Demi, or Bold weight for headlines; avoid Thin weight if it hurts legibility.
+  `[MANDATORY]` **This skill resolves that to `AvenirNextWorld-Bold` for `h1`–`h3`.** This rule
+  outranks both the framework starter CSS (`mdt-variables.css`, which ships Thin) and the UI Design
+  System Colors page's "large thin fonts" prose — see the resolution at the top of
+  [typography.md](./typography.md).
 - Don't apply outlines/strokes to type. Don't use more than two colors/styles of emphasis in one
   block of text.
 - Body/disclaimer text colors: `#3C3C3C` (body), `#777777` (disclaimer/fine print) — see
@@ -183,8 +187,16 @@ actions, e.g., search, close, download).
   libraries: **Carbon Design System** (Apache 2.0) and **Health Icons** (CC0) — both SVG,
   outlined style. Prefer these two over any other icon library for a Medtronic-branded product.
 
+> **`[MANDATORY]` This skill's default differs from the sentence above.** Brand Central treats
+> Carbon as a fallback; **this skill uses Carbon as the default icon system for all UI icons.** See
+> the Local Overrides table in `SKILL.md` and the Icons section of
+> [carbon-design-system.md](./carbon-design-system.md). The Medtronic **thematic** set remains the
+> preferred choice for brand/editorial moments. This is a recorded skill-owner decision, not a
+> Medtronic brand fact — don't cite it as one.
+
 Bundled: [`assets/icons/functional/`](../assets/icons/functional/) (286 SVGs, gray) and
-[`assets/icons/thematic/`](../assets/icons/thematic/) (91 SVGs, blue). Full icon set (all colors,
+[`assets/icons/thematic/`](../assets/icons/thematic/) (91 SVGs, blue), plus **2,739 Carbon icons**
+at `assets/third-party/carbon-design-system/assets/icons/`. Full Medtronic icon set (all colors,
 plus AI source + PNG) is in `coll-icons-png-svg.zip` / `coll-icons-ai.zip` in `Archive/`
 if a specific icon or color variant isn't in the bundled subset.
 

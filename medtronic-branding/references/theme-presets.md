@@ -2,9 +2,8 @@
 
 Ready-to-use combinations of the exact tokens in [color-tokens.md](./color-tokens.md), the rules
 in [brand-guidelines.md](./brand-guidelines.md), and the real asset files in [`../assets/`](../assets/).
-Use one of these as a starting point instead of re-deriving a palette/asset selection from scratch
-every time — pick the preset that matches the surface (normal app UI → Signature Light or Navy
-Dark; landing/marketing hero → Gradient Hero), then layer in the specific screen's content.
+**Offer these to the user as the Step 0.5 color-combination menu** (`SKILL.md`) rather than picking
+one silently, then layer in the specific screen's content.
 
 Every hex value below traces back to `color-tokens.md`. Where the source guidelines describe a
 rule but the exact value only exists in an uncaptioned diagram (not extractable as text — see the
@@ -12,7 +11,41 @@ rule but the exact value only exists in an uncaptioned diagram (not extractable 
 substitute value is invented** — the preset falls back to an exact, already-documented token
 instead of guessing a new one.
 
-## 1. Signature Light (default — most app/dashboard UI)
+## `[MANDATORY]` Anti-pattern: the blue-sidebar default
+
+**A navy or blue left sidebar next to a white main content area is not a default.** It is one
+combination among several, and it is only produced when:
+
+1. The user explicitly chose it in the Step 0.5 question, **or**
+2. The app being restyled already uses that structure.
+
+Producing it by reflex on every request is the single most recognizable generic-AI output this skill
+has generated, and it is a failure of the skill rather than a neutral choice. Other tells to avoid in
+the same breath:
+
+- A colored sidebar added purely as decoration, with no navigation in it
+- An accent color used as sidebar chrome (this also breaks the one-accent lock — Light Blue
+  `#0FC9F7` is a **data-visualization** color, never UI chrome)
+- Every screen using the same shell regardless of what it does
+- A full-width `layout="wide"` container holding a single narrow form
+- Equal-weight cards in a uniform grid where the content isn't equally important
+
+**Pick the shell archetype from `design-intuition.md` and the color combination from this file as two
+separate, deliberate decisions.** Note that the combinations below are *page-level* themes — none of
+them prescribes a sidebar treatment, and picking one does not imply a colored sidebar.
+
+## Preset index
+
+| # | Preset | Best for | Mode |
+| --- | --- | --- | --- |
+| 1 | **Signature Light** | Most app/dashboard UI, general default | Light |
+| 2 | **Navy Dark** | Marketing/brand surfaces, promotional moments | Dark |
+| 3 | **App Dark Mode** | Product UI dark mode (official tokens) | Dark |
+| 4 | **Gradient Hero** | Landing pages, promotional sections only | Light |
+| 5 | **Atmospheric Light** | Data-dense dashboards, clinical tools | Light |
+| 6 | **Navy Header Light** | Web-app shells wanting brand presence without a colored sidebar | Light |
+
+## 1. Signature Light (general default — most app/dashboard UI)
 
 The standard "lead with blue and white" look the guidelines describe as the default.
 
@@ -22,13 +55,18 @@ The standard "lead with blue and white" look the guidelines describe as the defa
 | Card / section background | Atmospheric White | `#F5F5F5` |
 | Primary / CTA / links | Electric Blue | `#1010EB` |
 | Headline text | Navy (digital) | `#170F5F` |
-| Body text | Body Dark Gray | `#3C3C3C` |
-| Secondary / disclaimer text | Disclaimer Gray | `#777777` |
+| Body text | Text.Normal (`--mdtText`) | `rgba(0, 0, 0, 0.77)` |
+| Secondary / disclaimer text | Text.Normal.low (`--mdtTextLow`) | `rgba(0, 0, 0, 0.55)` |
 | Divider / border | Navy at low opacity | `rgba(20, 15, 75, 0.12)` *(structural opacity of the Navy token, not a new hue)* |
 
-**Assets to use:** logo = `assets/logos/wordmark/medtronic-logo-navy.svg` · symbol (if used) =
-`assets/symbol/symbol-full-color.svg` · icons = `assets/icons/functional/` (gray) for generic UI,
-`assets/icons/thematic/` (blue) for Medtronic/health concepts.
+> **Corrected:** body text was previously listed as `#3C3C3C`. The real value is
+> `rgba(0, 0, 0, 0.77)` (`--mdtText`), confirmed byte-for-byte in `mdt-variables.css`. `#3C3C3C` was
+> an approximation and failed `design-intuition.md`'s own "body is 77% black" pre-flight box. Logged
+> in `SKILL.md`'s Contradiction Ledger.
+
+**Assets to use:** logo = `assets/logos/wordmark/medtronic-logo-navy-digital.svg` (`#170F5F`, the
+on-screen variant) · symbol (if used) = `assets/symbol/symbol-full-color.svg` · icons = **Carbon**,
+colored via `color: var(--text)`; `assets/icons/thematic/` (blue) for brand/editorial moments.
 
 ```css
 :root {
@@ -36,8 +74,8 @@ The standard "lead with blue and white" look the guidelines describe as the defa
   --surface: #F5F5F5;
   --primary: #1010EB;
   --headline: #170F5F;
-  --text: #3C3C3C;
-  --text-muted: #777777;
+  --text: rgba(0, 0, 0, 0.77);
+  --text-muted: rgba(0, 0, 0, 0.55);
   --border: rgba(20, 15, 75, 0.12);
 }
 ```
@@ -162,19 +200,113 @@ for the hero itself — treat the lockup as a single unit, generous clear space,
 the standalone tagline as a headline on the same screen (avoids the repetition the guidelines
 warn against).
 
+## 5. Atmospheric Light (data-dense dashboards, clinical tools)
+
+Inverts Signature Light's surface relationship: the **page** is Atmospheric White and **cards** are
+pure white, so cards lift off the canvas instead of sinking into it. Better than Signature Light when
+a screen is mostly cards — a white-on-white dashboard needs borders to do all the work, which reads as
+flat and washed out at high density.
+
+Every value is an existing token; nothing new is introduced.
+
+| Role | Token | Value |
+| --- | --- | --- |
+| Page background | Atmospheric White | `#F5F5F5` |
+| Card / raised surface | White | `#FFFFFF` |
+| Primary / CTA / links | Electric Blue | `#1010EB` |
+| Headline text | Navy (digital) | `#170F5F` |
+| Body text | `--mdtText` | `rgba(0, 0, 0, 0.77)` |
+| Secondary text | `--mdtTextLow` | `rgba(0, 0, 0, 0.55)` |
+| Divider / border | Navy at low opacity | `rgba(20, 15, 75, 0.12)` |
+| Row hover | `--mdtBkgdHover` | `rgba(20, 15, 75, 0.08)` |
+| Row selected | `--mdtBkgdSelected` | `rgba(20, 15, 75, 0.12)` |
+
+```css
+:root {
+  --bg: #F5F5F5;
+  --surface: #FFFFFF;
+  --primary: #1010EB;
+  --headline: #170F5F;
+  --text: rgba(0, 0, 0, 0.77);
+  --text-muted: rgba(0, 0, 0, 0.55);
+  --border: rgba(20, 15, 75, 0.12);
+  --row-hover: rgba(20, 15, 75, 0.08);
+  --row-selected: rgba(20, 15, 75, 0.12);
+}
+```
+
+Pairs naturally with the "gray header + white body" shell variant in `design-intuition.md`. At
+DENSITY 6+, prefer `.txt06-headline` (Regular, 32px) over the Bold variant for *section* headings, so
+the Bold `h1`/`h2` stays the dominant tier — see the Weight Context Matrix in `typography.md`.
+
+**Assets:** same as Signature Light. Carbon icons at `color: var(--text)`.
+
+## 6. Navy Header Light (brand presence without a colored sidebar)
+
+For a web-app shell that wants visible brand presence but **no colored sidebar**. The header carries
+the navy; navigation and content stay light. This is the preset to reach for when the instinct says
+"navy sidebar" — it satisfies the same goal without the generic-AI layout.
+
+| Role | Token | Value |
+| --- | --- | --- |
+| Header surface (64px) | Navy | `#140F4B` |
+| Header text / logo | White | `#FFFFFF` — use the **white** wordmark here |
+| Header divider | Border.dim white | `rgba(255, 255, 255, 0.10)` |
+| Page background | White | `#FFFFFF` |
+| Card / section surface | Atmospheric White | `#F5F5F5` |
+| Side nav surface (if present) | White | `#FFFFFF` — **not** navy |
+| Side nav active item | `--mdtBkgdSelected` | `rgba(20, 15, 75, 0.12)` |
+| Primary / CTA / links | Electric Blue | `#1010EB` |
+| Headline text | Navy (digital) | `#170F5F` |
+| Body text | `--mdtText` | `rgba(0, 0, 0, 0.77)` |
+
+```css
+:root {
+  --header-bg: #140F4B;
+  --header-text: #FFFFFF;
+  --header-border: rgba(255, 255, 255, 0.10);
+  --bg: #FFFFFF;
+  --surface: #F5F5F5;
+  --nav-bg: #FFFFFF;
+  --nav-active: rgba(20, 15, 75, 0.12);
+  --primary: #1010EB;
+  --headline: #170F5F;
+  --text: rgba(0, 0, 0, 0.77);
+}
+```
+
+**Assets:** logo = `assets/logos/wordmark/medtronic-logo-white.svg` (white, because the header is
+navy — never the navy wordmark on a navy bar). Carbon icons in the header at
+`color: rgba(255,255,255,0.9)`, in the body at `color: var(--text)` — one file, two contexts, because
+Carbon inherits `currentColor`.
+
+Header is 64px per `global-header.md`, logo at 28px per `sizing-standard.md` §0.
+
 ## Picking a preset
 
-- Default to **Signature Light** unless the user asks for dark mode or the existing app is
-  already dark-themed.
-- Use **App Dark Mode** for a real product/app dark-mode toggle — this is the one with official
-  UI Design System tokens (`#121212` background, `#4A7DFF` action color), not an approximation.
-- Use **Navy Dark** specifically for marketing/brand surfaces — a dark sidebar, an "end-title"/
-  promotional moment paired with the Symbol — not as a general app dark-mode theme.
-- Use **Gradient Hero** treatments sparingly, only for a landing page's main headline or a
-  section's accent shapes — never mix more than one gradient into the same screen, and never
-  apply it to body copy or UI chrome (buttons, nav, form fields).
+**Offer these to the user in the Step 0.5 question rather than choosing silently** (`SKILL.md`). The
+notes below are for framing the options and for the case where the brief already decided.
+
+- **Signature Light** — the safe general default for most app/dashboard UI.
+- **Atmospheric Light** — prefer over Signature Light when the screen is mostly cards or a dense
+  data table; cards need to lift off the canvas.
+- **App Dark Mode** — the correct choice for a real product/app dark-mode toggle. This is the one
+  with official UI Design System tokens (`#121212` background, `#4A7DFF` action color), not an
+  approximation.
+- **Navy Dark** — marketing/brand surfaces and promotional "end-title" moments paired with the
+  Symbol. **Not** a general app dark-mode theme, and **not** a license to build a navy sidebar. If
+  the goal is brand presence in a product shell, use **Navy Header Light** instead.
+- **Navy Header Light** — brand presence in a web-app shell without a colored sidebar.
+- **Gradient Hero** — sparingly, only for a landing page's main headline or a section's accent
+  shapes. Never more than one gradient per screen, never on body copy or UI chrome (buttons, nav,
+  form fields).
 - These presets aren't mutually exclusive within one product: a marketing site can use Gradient
   Hero for its landing page and Signature Light for the rest of the app; a data-heavy dashboard
   with a dark-mode toggle should use App Dark Mode (not Navy Dark) and lean on the
-  data-visualization color-sequence guidance in `brand-guidelines.md` instead of introducing a
-  fifth ad-hoc palette.
+  data-visualization color-sequence guidance in `brand-guidelines.md` instead of introducing an
+  ad-hoc seventh palette.
+
+**In every preset, the one-accent lock holds:** Electric Blue `#1010EB` (or `#4A7DFF` in App Dark
+Mode) is the only accent used for interactive UI chrome. Light Blue, Teal, Pink, Orange, and the rest
+of the accent palette are **data-visualization colors only** — never a sidebar fill, never a
+secondary button.

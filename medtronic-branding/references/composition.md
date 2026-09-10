@@ -37,6 +37,10 @@ tiers/pixel values instead of the simplified generic ones.
 8px grid: spacing between UI elements should be multiples of 8px. Smaller components (icons,
 type) may align to a 4px grid instead.
 
+> **`[MANDATORY]` These are gap/padding/margin values only.** Never use a value from this table as
+> the width or height of a logo, lockup, Symbol, or icon. Brand-asset dimensions come from
+> `sizing-standard.md` §0 and nowhere else — a 4px logo is always a bug.
+
 | Spacing | Value | Sass variable |
 | --- | --- | --- |
 | None | 0 | `$spacing-none` |

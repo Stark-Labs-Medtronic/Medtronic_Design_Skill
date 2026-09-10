@@ -33,6 +33,14 @@ icon padding, small badges, or tight inline gaps where 8px would feel too loose.
 }
 ```
 
+> **`[MANDATORY]` Spacing tokens are never asset dimensions.** `--space-1: 4px` is the tightest
+> *gap* in the system, not a size. Never apply any `--space-*` value as the width or height of a
+> logo, lockup, Symbol, or icon — those come from `sizing-standard.md` §0. A logo height below 15px
+> means a spacing token was read as a dimension.
+>
+> Note also that `--space-3` (12px) and `--space-8` (48px) have **no** Medtronic equivalent in
+> `composition.md`'s official scale — prefer the official tiers where one applies.
+
 ## 2. Touch targets — minimum interactive size
 
 | Tier | Size | Source |

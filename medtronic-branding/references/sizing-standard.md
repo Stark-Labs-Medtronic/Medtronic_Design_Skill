@@ -30,6 +30,46 @@ just the wordmark and a large empty white area below it looked thin/lost at a ~2
 height; bumping to 60px (Hero tier) is the right call there, not staying at Compact just because
 the element happens to sit at the top of the page.
 
+## 0. Logo Sizing Decision Table `[MANDATORY]` — read this before writing any logo markup
+
+Context in, exact pixel value out. **No lookup, no interpolation, no arithmetic.** If your context
+is in this table, use the value and stop reading.
+
+| Context | Value | CSS |
+| --- | --- | --- |
+| Header / nav bar, logo shares the row with nav items | **28px height** | `height: 28px; width: auto;` |
+| Header / title area, logo is visually alone (empty space around it) | **60px height** | `height: 60px; width: auto;` |
+| Hero / standalone / "celebrate the identity" moment | **60px height** | `height: 60px; width: auto;` |
+| Splash screen / large-format | **96–120px height** | `height: 96px; width: auto;` |
+| Footer, horizontal tagline lockup | **28–32px height** | `height: 28px; width: auto;` |
+| Hero, horizontal tagline lockup (tagline must be readable) | **56–80px height** | `height: 64px; width: auto;` |
+| Sidebar / mobile / square tile, vertical stacked lockup | **64–80px height** | `height: 72px; width: auto;` |
+| Standalone Full-life Symbol, footer / end-of-flow | **80–120px height** | `height: 96px; width: auto;` |
+| Mobile stacked logo-above-app-name lockup **only** | **15px height** | `height: 15px; width: auto;` |
+| Favicon / app icon | platform sizes — see §6 | — |
+| Streamlit `st.logo()` | fixed ~32px internally, not settable | use `st.image` for other tiers |
+
+**Set exactly one axis. Always `width: auto` (or `height: auto`) on the other.** Setting both on a
+non-square asset stretches official artwork, which the guidelines explicitly prohibit.
+
+### Guard: a brand asset dimension is never a spacing token `[MANDATORY]`
+
+**The minimum logo height in this entire skill is 15px, and that is one specific documented mobile
+lockup — not a general small size.** There is no context in which a Medtronic logo is 4px, 8px, or
+12px tall.
+
+If you are about to write a logo height below 15px, you have picked up a **spacing** value by
+mistake. The usual culprits, all of which are gaps and padding, never asset dimensions:
+
+- `composition.md`'s `xxs | 4px | $spacing-xxs` — the first row of the spacing table
+- `layout-and-spacing.md`'s `--space-1: 4px` — the first CSS custom property in that file
+- Carbon's `$spacing-02 | 0.25rem | 4px`
+- `accessibility.md`'s "4px margin on all sides" — a *margin* on small icons, not a size
+- The "4px sub-grid" note for icons and type — a *grid*, not a dimension
+- The leading digit of an aspect ratio (`4.289 : 1`) — a ratio, not pixels
+
+Stop, return to the decision table above, and take the value for your actual context.
+
 ## 1. Wordmark (plain logo, no tagline)
 
 Real aspect ratio (measured): **2.741 : 1** (width ÷ height) — e.g. `medtronic-logo-navy.svg`.
