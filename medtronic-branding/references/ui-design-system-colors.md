@@ -16,7 +16,7 @@ are now resolved below).
 | `General.Interface.Action` | `#1010EB` | Electric Blue — controls/components users can interact with |
 | `General.Interface.Action hover` | `#0C0CA5` | Button hover state |
 | `General.Interface.Action active` | `#140F4B` | |
-| `General.Interface.Action: secondary` | `#1010EB` | Non-primary buttons use white text/icons/borders in dark mode (per source note) |
+| `General.Interface.Action: secondary` | `#1010EB` | Non-primary (secondary/outline) buttons in **light mode**: Electric Blue text/icon/border on a transparent fill — see `sizing-standard.md` §8's `.btn-secondary` variant. For the dark-mode equivalent (white text/icon/border), see `dark-mode-ui-colors.md`'s own Action:secondary entry |
 | `General.Interface.Focus` | `#ED7008` | Focus ring/outline — note this differs from the dark-mode Focus color (`#FFAD00`) |
 
 ## Surface (backgrounds)
@@ -53,7 +53,7 @@ contrast better on non-white backgrounds.
 | Token | Value |
 | --- | --- |
 | `Text & Icon.Normal.Emphasis` | `rgba(0, 0, 0, 0.9)` |
-| `Text & Icon.Normal.Standard` | `rgba(0, 0, 0, 0.75)` |
+| `Text & Icon.Normal.Standard` | `rgba(0, 0, 0, 0.77)` |
 | `Text & Icon.Normal.Reduced` | `rgba(0, 0, 0, 0.55)` |
 | `Text & Icon.Normal.Disabled` | `rgba(0, 0, 0, 0.3)` |
 | `Text & Icon.Normal.Accent` | `#100D78` |
@@ -148,9 +148,16 @@ fills (Navy Blue is the one exception for large fills).
 **Preferred order** (chosen for accessibility/color-blindness, holds up in grayscale too):
 Electric Blue, Navy Blue, Light Blue, Pink, Orange, Lavender, Green, Purple, Teal, Red, Brown.
 
-- Do use Electric Blue as the accent for a single-data-point chart; don't use any accent color at
-  all when there's only one data source, and don't lead with Electric Blue in a multi-color chart
-  (lead with Navy Blue instead, following the preferred order above).
+- Do use Electric Blue as the sole accent for a **single-data-point chart** (one number — a gauge,
+  a donut showing one %, a single KPI visualization).
+- Don't use any accent color when a chart has **only one data series across multiple points**
+  (e.g. a single-line trend chart) — use Navy Blue or a neutral gray instead; an accent implies
+  "one of several," which isn't true here.
+- Don't lead with Electric Blue in a **multi-series/multi-color chart** — lead with Navy Blue,
+  then continue in the preferred order above (Light Blue → Pink → Orange → Lavender → Green →
+  Purple → Teal → Red → Brown). See the Contradiction Ledger in `SKILL.md` — this bullet used to
+  read as self-contradictory (Electric Blue for "single-data-point" vs. "only one data source" in
+  the same breath); split into three unambiguous cases above.
 - Don't use Navy Blue alone in a chart — it reads as near-black.
 - Don't use tint-stack colors for charts, and don't mix Electric Blue with other accent colors.
 

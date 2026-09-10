@@ -227,7 +227,7 @@ grid's columns specifically).
 
 | Bundled | Not bundled | Why |
 | --- | --- | --- |
-| `pages/**/content.md` + `meta.json` (cleaned text + metadata, ~9MB, 350 pages) | `pages/**/page.html` (raw rendered DOM) | The raw HTML alone was **~997MB** — almost entirely duplicated inline SVG icon-gallery markup already available standalone in `assets/icons/`/`assets/pictograms/`. Pure bloat with no unique content over `content.md`. |
+| `pages/**/content.md` + `meta.json` (cleaned text + metadata, ~9MB, 356 pages per `catalog/manifest.json`'s `totalPages` and `catalog/REPORT.md`'s crawl count — was previously misstated as 350 here, self-contradicting this file's own opening line; note the actual on-disk `content.md` file count is 347, a residual crawl/dedup discrepancy not resolved by this doc fix, flagged for whoever next re-runs the crawl tooling) | `pages/**/page.html` (raw rendered DOM) | The raw HTML alone was **~997MB** — almost entirely duplicated inline SVG icon-gallery markup already available standalone in `assets/icons/`/`assets/pictograms/`. Pure bloat with no unique content over `content.md`. |
 | `assets/icons/*.svg` (2739 files), `assets/pictograms/*.svg` (1565 files) | — | The actual Carbon icon-baseline referenced by `application-icons.md` |
 | `assets/images/*`, `assets/documents/*` (IBM color palettes, Carbon builder tool, MCP extension), `assets/data/*` (`llms.txt`, Carbon's own AI-agent instructions) | — | Kept per explicit instruction to bundle the full crawl |
 | `catalog/*` (manifest.json, icons-manifest.json, pictograms-manifest.json, asset-index.json, external-resources.json, REPORT.md) | — | Indices needed to actually look up an icon/pictogram by name |

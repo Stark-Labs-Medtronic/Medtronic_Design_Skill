@@ -86,8 +86,22 @@ Real aspect ratio (measured): **2.741 : 1** (width ÷ height) — e.g. `medtroni
 > "mobile" tier — don't apply 15px outside that exact context, and don't round it into the
 > Compact range above. See [app-header-logo-lockup.md](./app-header-logo-lockup.md).
 
+> **`[MANDATORY]` The on-screen header asset has a different, wider ratio than the plain wordmark
+> above — don't use the 2.741:1 figure to size it.** `medtronic-logo-navy.svg` (2.741:1, the ratio
+> the table above is built from) is the print/Brand-Central wordmark. For app/website headers,
+> [app-header-logo-lockup.md](./app-header-logo-lockup.md) and `brand-guidelines.md` both mandate
+> `medtronic-logo-navy-digital.svg` instead — and that file's real, measured aspect ratio is
+> **6.091 : 1** (viewBox `438.5736084 × 72.0010681`), more than double the plain wordmark's ratio.
+> Using 2.741:1 to compute a header logo's width silently produces an asset less than half as wide
+> as it should be. Logged in `SKILL.md`'s Contradiction Ledger.
+>
+> | Context | Height | Resulting width (`-digital`, 6.091:1) |
+> | --- | --- | --- |
+> | Compact header / nav bar | 28px | ~171px |
+> | Hero / standalone | 60px | ~365px |
+
 ```css
-.logo--header { height: 28px; width: auto; }
+.logo--header { height: 28px; width: auto; } /* medtronic-logo-navy-digital.svg on-screen */
 .logo--hero   { height: 60px; width: auto; }
 ```
 
@@ -146,24 +160,30 @@ centered, don't stretch it to force an exact square.
 
 ## 7. Icons
 
-**Functional icons** are on a genuinely fixed **24×24 grid (ratio exactly 1.0)** — confirmed both
-by the guidelines' own text ("Draw icons on a 24×24-unit frame") and by inspecting the SVG files
-directly. Safe to set both width and height equally.
+**`[MANDATORY]` Functional icons are documented as a 24×24 grid, but the shipped SVGs don't match
+that spec — don't hardcode both dimensions.** The guidelines' own text says "Draw icons on a
+24×24-unit frame," but measuring all 286 files in `assets/icons/functional/` directly: only **2**
+are exactly 24×24. The dominant real size is **28×28** (119 icons, ~42%), and **156 of 286 (55%)**
+are non-square (e.g. `10.07×29`, `24.08×21.59`, `25×16`, `30×29`). Setting both `width` and
+`height` per the old guidance stretches or squashes the majority of the set. Logged in `SKILL.md`'s
+Contradiction Ledger.
 
-**Thematic icons do NOT share one fixed ratio** — verified by inspecting multiple files (e.g. one
-sampled icon measured `24 × 16.25`, ratio 1.477, not square). **Never hardcode both width and
-height for thematic icons** — set only one dimension (height is usually more useful for aligning
-icons in a row of mixed content) and let width auto-compute per icon, or every icon will stretch
-by a different, inconsistent amount.
+**Both functional and thematic icons need height-only sizing.** Thematic icons do NOT share one
+fixed ratio either — verified by inspecting multiple files (e.g. one sampled icon measured
+`24 × 16.25`, ratio 1.477, not square). **Never hardcode both width and height for either icon
+set** — set only one dimension (height is usually more useful for aligning icons in a row of mixed
+content) and let width auto-compute per icon, or icons will stretch by a different, inconsistent
+amount. (Carbon icons are the one icon set in this skill that's genuinely square — see
+`carbon-design-system.md` §Sizing — don't apply this height-only rule to those.)
 
-| Context | Size (functional, square) | Size (thematic, height only) |
+| Context | Size (functional, height only) | Size (thematic, height only) |
 | --- | --- | --- |
-| Inline with body text / list item | 16–20px | 16–20px height |
-| Standalone in a card or button | 24–28px | 24–28px height |
-| Large feature icon | 32–48px | 32–48px height |
+| Inline with body text / list item | 16–20px height | 16–20px height |
+| Standalone in a card or button | 24–28px height | 24–28px height |
+| Large feature icon | 32–48px height | 32–48px height |
 
 ```css
-.icon--functional { width: 24px; height: 24px; } /* safe: fixed 1:1 grid */
+.icon--functional { height: 24px; width: auto; } /* ratio varies per icon - see note above */
 .icon--thematic   { height: 24px; width: auto; }  /* required: ratio varies per icon */
 ```
 

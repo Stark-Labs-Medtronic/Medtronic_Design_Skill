@@ -9,9 +9,18 @@ compose them* — the layer most brand-token skills skip, and the reason AI-gene
 often looks templated even when every hex code is correct.
 
 **This file is mandatory reading before writing any UI code, not optional polish.** The
-[pre-flight check](#pre-flight-check-mandatory-gate-not-a-suggestion) at the end is a **gate**:
-if you can't honestly check every box, the work isn't done — go back and fix it, don't ship it
-and mention the gaps in prose afterward.
+[pre-flight check](#pre-flight--two-gates-and-passing-the-first-proves-nothing-about-the-second)
+at the end is a **gate**: if you can't honestly check every box, the work isn't done — go back and
+fix it, don't ship it and mention the gaps in prose afterward.
+
+**This file is the macro layer. Four companions carry the rest, and they are not optional:**
+
+| File | Covers | Read it |
+| --- | --- | --- |
+| [visual-hierarchy.md](./visual-hierarchy.md) | How to *compose* the type and spacing scales — step budgets, real steps, spacing that encodes grouping, alignment, density calibration | While planning the layout |
+| [craft-details.md](./craft-details.md) | The micro-layer: concentric radii, optical alignment, elevation mechanism, focus rings, `text-wrap`/`tabular-nums`, motion mechanics | While writing component CSS |
+| [content-and-copy.md](./content-and-copy.md) | Copy as design material — no lorem ipsum ever (it hides real layout failures), one label per action | While writing any UI text |
+| [design-review.md](./design-review.md) | Critique the plan before building, critique the build after — and **Gate B, the design-quality gate** that this file's Gate A deliberately does not cover | Before and after building |
 
 ## Step 0: Read the brief before touching code
 
@@ -125,6 +134,40 @@ Instead:
   scale) multiplied consistently — mixing an arbitrarily-sized tile into an otherwise consistent
   grid is the visible "didn't plan the grid" tell.
 
+## The signature element — one deliberate moment per screen
+
+Picking an archetype from the tables above stops you producing the *worst* default. It does not, on
+its own, produce something memorable — a page assembled entirely from correct menu selections is
+competent and anonymous. The missing question is positive rather than defensive: **what is the one
+thing someone remembers about this screen?**
+
+Pick exactly one, name it in the Design Read, and then **keep everything else quiet so it lands.**
+Boldness spent in two places cancels out; boldness spent in five is noise.
+
+**Within Medtronic's brand this is a composition decision, never a decoration decision.** The
+VARIANCE ≤6 cap above still binds, and the consistency locks below are not negotiable. A signature
+is *never* a new color, font, radius, shadow, gradient, or motion curve — those are all fixed, and
+reaching for one is a brand failure, not a bold choice. What's actually available:
+
+| Signature | What it looks like in this system |
+| --- | --- |
+| **A data moment** | The primary metric treated as the hero — `.txt08-headline`/`.txt09-display` scale on the number itself, with the chart as quiet support. Or one genuinely well-chosen chart type (per `ux-accessibility-checklist.md`) instead of three generic ones. |
+| **A typographic moment** | One Bold-weight 56px/72px headline given real space, against otherwise compact type — per the Weight Context Matrix in `typography.md`. The documented display scale exists and is almost never used. |
+| **A composed empty/first-run state** | The state most products neglect, done properly — Symbol or thematic icon, one clear sentence, one action. Memorable precisely because nobody expects care here. |
+| **A structural asymmetry** | A deliberate hero split or a 2:1 tile anchoring an otherwise 1:1 grid — using the documented aspect ratios, not an invented layout. |
+| **A meaningful Symbol placement** | The Full-life Symbol at an end-of-flow or completion moment, per its documented complementary-mark role — never as the only brand mark on the screen. |
+
+**Surface calibration.** The higher the stakes, the quieter the signature:
+
+- Marketing / website — a signature is expected; use the fuller end of the range.
+- Product dashboard — usually the data moment or a composed empty state. Restrained.
+- Clinical / regulated tool — the signature is *clarity itself*: the most important reading being
+  unmistakably the most prominent thing on screen. Nothing expressive. A clinician mid-task is not
+  an audience for a design flourish.
+
+If you can't name the signature in one sentence, the page doesn't have one yet — and it will read as
+generic no matter how correct its tokens are.
+
 ## Audit-first mode (redesigning or restyling an existing UI)
 
 When the task is "brand this existing app/page" or "redesign X to match Medtronic," **don't start
@@ -157,9 +200,13 @@ Medtronic UI ends up looking like generic Bootstrap/Tailwind-default slop wearin
   or links just because it's technically in `ui-design-system-colors.md` — those accents are for
   **data visualization only**, never UI chrome. A screen with an Electric Blue primary button and
   a Teal secondary button is a Do NOT documented explicitly in `ui-design-system-colors.md`.
-- If multiple data series need color, use the documented preferred order (Electric Blue → Navy →
-  Light Blue → Pink → Orange → Lavender → Green → Purple → Teal → Red → Brown) — never invent a
-  different order or skip straight to a "nice looking" color out of sequence.
+- **Chart color depends on series count — don't reach for Electric Blue by reflex.** A
+  single-data-point chart (one gauge/donut/KPI number) uses Electric Blue as its sole accent. A
+  chart with only one data series across many points uses Navy Blue or a neutral, not an accent —
+  an accent implies "one of several." A **multi-series/multi-color chart leads with Navy Blue, not
+  Electric Blue**, then continues in the documented preferred order (Light Blue → Pink → Orange →
+  Lavender → Green → Purple → Teal → Red → Brown). Never invent a different order or skip straight
+  to a "nice looking" color out of sequence. See `ui-design-system-colors.md`'s Do's/Don'ts.
 - Light and dark mode use **different exact tokens** (see `dark-mode-ui-colors.md` vs
   `ui-design-system-colors.md`) — never algorithmically darken/lighten a light-mode hex to fake a
   dark-mode color.
@@ -227,16 +274,22 @@ cleanup, not relying on animation-end for state correctness).
 
 ### Elevation Discipline
 
-Two, and only two, documented shadow recipes exist in this system — use the one that matches what
-you're building, never invent a third:
+**Three, and only three, documented shadow recipes exist in this system** — use the one that
+matches what you're building, never invent a fourth. (Previously documented as "two, and only
+two" — the floating-header recipe was missed; corrected, see `SKILL.md`'s Contradiction Ledger.)
 
 - **Popover/dropdown/menu elevation** (`navigation.md`):
   `0 1px 8px rgba(0,0,0,.12), 0 3px 4px rgba(0,0,0,.14), 0 3px 3px rgba(0,0,0,.2)`
 - **Modal/sheet elevation** (`overlays-and-feedback.md`, stronger):
   `0 1px 18px rgba(0,0,0,.12), 0 6px 10px rgba(0,0,0,.14), 0 3px 5px rgba(0,0,0,.2)`
+- **Floating top-nav header elevation** (`navigation.md`, distinct opacities from both above):
+  `0 3px 5px rgba(0,0,0,.1), 0 1px 18px rgba(0,0,0,.06), 0 6px 10px rgba(0,0,0,.06)`
 
 Never use a generic single-layer `box-shadow: 0 4px 6px rgba(0,0,0,0.3)` default — flat single-tone
-shadows are a visible generic-AI tell next to these real, layered, tuned recipes.
+shadows are a visible generic-AI tell next to these real, layered, tuned recipes. (The real shipped
+`mdt-app-template.css`/`mdt-components.css` use a fourth, different single-layer shadow for the
+actual header element and `.elevation-low` — that's a known shipped-CSS-vs-documented-recipe gap,
+not a fourth recipe to build from; see the Contradiction Ledger.)
 
 ### Layout Hard Rules (fit-and-finish, not just brand accuracy)
 
@@ -268,7 +321,24 @@ For every list/table/card view, plan for — and actually implement — all of:
 - **Error state:** inline for forms (per `forms-and-inputs.md`'s error state), a Critical-semantic
   banner/toast for system-level failures (`General.Semantic.Critical`, not a generic red).
 
-## Pre-flight check (mandatory gate, not a suggestion)
+## Pre-flight — two gates, and passing the first proves nothing about the second
+
+**Brand fidelity and design quality are separate dimensions.** This file's gate checks the first.
+A screen can use the exact palette, the real font files, the documented radii, the three real
+shadow recipes, and a 64px header — and still be a flat, generic, badly-composed page. That result
+passes Gate A completely. It is still a failure of this skill.
+
+So there are two gates, and **both are mandatory**:
+
+| | What it checks | Where |
+| --- | --- | --- |
+| **Gate A — Brand Compliance** | Tokens, assets, type, shape, shadow, sizing, no fabrication | Below |
+| **Gate B — Design Quality** | Hierarchy, spacing rhythm, alignment, density, signature, craft, content, states — and whether the build was actually reviewed | [design-review.md](./design-review.md) |
+
+Never report Gate A as "the checklist passed." Report them separately, and if Gate B has never
+failed for you on a first attempt, you are not really running it.
+
+### Gate A — Brand Compliance
 
 Every box must be honestly checkable before the work is done — this is a gate, not a
 retrospective. If a box fails, fix the work; don't ship it with a caveat in prose.
@@ -296,7 +366,7 @@ retrospective. If a box fails, fix the work; don't ship it with a caveat in pros
       hardcoded fills, and no paired light/dark variant folders
 - [ ] Any Medtronic thematic icons used are sized **height-only** (`width: auto`), and Carbon and
       Medtronic functional icons are not mixed in the same UI region
-- [ ] Any shadow used is one of the two documented recipes, not an ad hoc single-layer shadow
+- [ ] Any shadow used is one of the three documented recipes, not an ad hoc single-layer shadow
 - [ ] Any animation uses a documented duration + productive easing curve, `transform`/`opacity`
       only, nothing linear or bouncy
 - [ ] Header is 64px; nav fits on one line at desktop; hero fits the first viewport
@@ -320,3 +390,11 @@ retrospective. If a box fails, fix the work; don't ship it with a caveat in pros
       [streamlit-layout.md](./streamlit-layout.md) §7 also passes
 - [ ] For anything not covered above, [ux-accessibility-checklist.md](./ux-accessibility-checklist.md)
       was checked before shipping
+
+### Gate B — Design Quality
+
+**Gate A above does not satisfy this.** Run
+[design-review.md](./design-review.md)'s Gate B — hierarchy, spacing rhythm, alignment, density,
+signature element, craft details, content, interaction states — and its build critique (render and
+look at the result where the environment allows; otherwise run the stated non-visual fallback and
+say which items couldn't be verified). Work isn't done until both gates pass.
