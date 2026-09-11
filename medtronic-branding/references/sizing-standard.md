@@ -85,7 +85,7 @@ Real aspect ratio (measured): **2.741 : 1** (width ÷ height) — e.g. `medtroni
 > lockup (logo above the app name). That's a precise spec for that one pattern, not a general
 > "mobile" tier — don't apply 15px outside that exact context, and don't round it into the
 > Compact range above. See [app-header-logo-lockup.md](./app-header-logo-lockup.md).
-
+>
 > **`[MANDATORY]` The on-screen header asset has a different, wider ratio than the plain wordmark
 > above — don't use the 2.741:1 figure to size it.** `medtronic-logo-navy.svg` (2.741:1, the ratio
 > the table above is built from) is the print/Brand-Central wordmark. For app/website headers,
