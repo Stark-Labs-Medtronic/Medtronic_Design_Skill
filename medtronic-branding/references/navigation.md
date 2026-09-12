@@ -7,7 +7,9 @@ verbatim as data. Figma component links from the source are preserved as citatio
 
 ## Top nav (website-style shell)
 
-- **Flat header:** 1440×121px, 1px inside border, no fill specified (transparent/inherits page bg).
+- **Flat header:** 1440×121px (64px header + 56px nav row, per `global-header.md`'s 64px hard
+  rule — see that file's reconciling note; this is not a violation of it), 1px inside border, no
+  fill specified (transparent/inherits page bg).
 - **Floating header:** same 1440×121px footprint, fill `#F5F5F5` (`General.Surface.level 1`), 1px
   inside border, plus a 3-layer drop shadow:
   `0 3px 5px rgba(0,0,0,0.1)`, `0 1px 18px rgba(0,0,0,0.06)`, `0 6px 10px rgba(0,0,0,0.06)`

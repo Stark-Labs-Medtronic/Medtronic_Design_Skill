@@ -1,0 +1,92 @@
+/* mdt-typography-override.css
+ *
+ * Headline weight override: Thin -> Bold.
+ *
+ * WHY THIS FILE EXISTS
+ * --------------------
+ * Medtronic ships three sources that disagree about headline weight:
+ *
+ *   1. Brand Central guidelines: "Use Regular, Demi, or Bold weight for headlines;
+ *      avoid Thin weight if it hurts legibility."          <- brand rule
+ *   2. UI Design System (Colors page): "Do use large thin fonts ... for headlines."
+ *   3. mdt-variables.css (this starter kit): h1,h2,h3 { AvenirNextWorld-Thin }
+ *
+ * Brand Central is the higher authority on a brand question than framework starter
+ * code, and it explicitly sanctions Bold while cautioning against Thin. Thin at
+ * 44-72px is precisely the legibility case that warning is about.
+ *
+ * mdt-variables.css is left byte-accurate for provenance, so this override carries
+ * the change instead. See references/typography.md for the full resolution and the
+ * Weight Context Matrix.
+ *
+ * USAGE - load AFTER mdt-variables.css:
+ *   <link rel="stylesheet" href="css/mdt-variables.css">
+ *   <link rel="stylesheet" href="css/mdt-typography-override.css">
+ *
+ * The mobile de-escalation from the source CSS is preserved exactly: h3 -> Regular
+ * and h4 -> Demi below 480px. Only the top-end weight changed.
+ */
+
+@font-face {
+   font-family: "AvenirNextWorld-Bold";
+   src: url(../fonts/AvenirNextWorld-Bold.ttf) format("truetype");
+}
+
+/* ---- Headings: h1-h3 Bold. h4 is unchanged (Regular). ---- */
+h1,
+h2,
+h3 {
+   font-family: "AvenirNextWorld-Bold";
+   font-weight: normal; /* weight lives in the family name, never font-weight */
+}
+
+/* ---- Named headline/display styles ---- */
+.txt05-headline,
+.txt07-headline,
+.txt08-headline,
+.txt09-display {
+   font-family: "AvenirNextWorld-Bold";
+   font-weight: normal;
+}
+
+/* Renamed from .txt06-headline_thin so the class name doesn't lie about its weight.
+   The _thin alias is retained for existing markup - both render Bold. */
+.txt06-headline_bold,
+.txt06-headline_thin {
+   font-family: "AvenirNextWorld-Bold";
+   font-weight: normal;
+}
+
+/* .txt04-headline (20px) and .txt06-headline (32px) intentionally stay Regular -
+   they provide the secondary tier under a Bold heading. Not overridden here. */
+
+/* ---- Mobile: preserve the source CSS de-escalation ----
+   h1/h2 stay Bold; h3 drops to Regular; h4 to Demi. Matches mdt-variables.css. */
+@media only screen and (max-width: 480px) {
+   h3 {
+      font-family: "AvenirNextWorld";
+      font-weight: normal;
+   }
+
+   h4 {
+      font-family: "AvenirNextWorld-Demi";
+      font-weight: normal;
+   }
+}
+
+/* ---- Fallback ----
+   Bold survives a fallback face well (unlike Thin, which synthesises as hairline).
+   If the licensed font fails to load, allow a real bold weight on the system face. */
+@supports not (font-family: "AvenirNextWorld-Bold") {
+
+   h1,
+   h2,
+   h3,
+   .txt05-headline,
+   .txt06-headline_bold,
+   .txt07-headline,
+   .txt08-headline,
+   .txt09-display {
+      font-weight: 700;
+   }
+}

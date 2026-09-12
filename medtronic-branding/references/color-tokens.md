@@ -46,21 +46,36 @@ Use tints instead of opacity/alpha tricks when you need a lighter/darker variant
 color (e.g., chart series, hover states, subtle backgrounds). Order is darkest (index 0, "shade
 900"-ish) to lightest (index 9, "shade 50"-ish).
 
-**Navy / Blue family** (anchors Electric Blue):
-`#082542, #083C71, #0A5694, #0073B4, #009BDA, #0FC9F7, #49D6F9, #86E4FB, #C2F1FD, #E1F8FE`
+**Light Blue family** (the `#0FC9F7` accent's tint stack — **not** the Medtronic Blues / Navy stack;
+for Navy and Electric Blue tints see the `Medtronic Blues` stack in `ui-design-system-colors.md`):
+`#082542, #083C71, #0A5694, #0073B4, #009BDA, #0FC9F7, #48D6F9, #86E4FB, #C2F1FD, #E1F8FE`
 
 **Teal**:
-`#002922, #003D33, #006655, #008F77, #00B899, #00DCB9, #00F5CC, #67FFE2, #AAFAF0, #D6FFF8`
+`#002922, #003D33, #006655, #008F77, #00B899, #00DCB9, #00F5CC, #66FFE2, #AAFAF0, #D6FFF8`
 
 **Green**:
 `#1C2A0A, #26460F, #376415, #599518, #64AD28, #7ECA2A, #9EDD5A, #BEE891, #DFF4C8, #EFF9E3`
 
 **Orange**:
-`#331D05, #4A2D00, #8C5300, #CC7A00, #F59300, #FFAD00, #FFC240, #FFD780, #FFEBBF` (9 steps captured)
+`#331D05, #4A2D00, #8C5300, #CC7A00, #F59300, #FFAD00, #FFC240, #FFD780, #FFEBBF, #FFF5DF`
 
-> Pink, Purple, Lavender, Red, and Brown also have tint stacks in the source PDF; if a task needs
-> a specific tint not listed above, open `doc-color-palette-breakdown.pdf` (page 2) at the
-> workspace's `Archive/` folder rather than guessing a hex value.
+> **`[MANDATORY]` Three corrections to this section, logged in `SKILL.md`'s Contradiction Ledger:**
+>
+> 1. The first stack was previously labelled "Navy / Blue family (anchors Electric Blue)". That was a
+>    **mislabel** — those values are the **Light Blue** stack. Navy and Electric Blue live in the
+>    separate `Medtronic Blues` stack. Going to this stack for a Navy tint gives the wrong hue family.
+> 2. Step 40 of that stack is **`#48D6F9`**, not `#49D6F9`. `ui-design-system-colors.md` is the UI
+>    token source of record.
+> 3. The Teal stack's step 70 is **`#66FFE2`**, not `#67FFE2` — a one-character hex typo. Corrected
+>    against `ui-design-system-colors.md`'s Teal table and its raw design-token JSON, both of which
+>    already had the right value.
+>
+> Orange is now the full 10 steps (was truncated at 9).
+
+> **Pink, Purple, Lavender, Red, and Brown tint stacks are already published in full** in
+> [ui-design-system-colors.md](./ui-design-system-colors.md) — read them there. (An earlier revision
+> of this file sent readers to `doc-color-palette-breakdown.pdf` in `Archive/`; that pointer was stale
+> and is no longer necessary.)
 
 ## Usage rules (from brand guidelines)
 

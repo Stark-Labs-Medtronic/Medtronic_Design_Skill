@@ -15,6 +15,13 @@ Bundles real logo/symbol/icon artwork and exact hex/RGB/CMYK color tokens extrac
 Medtronic's official Brand Central guidelines, so Copilot doesn't recreate the logo, guess brand
 colors, or invent a substitute palette.
 
+While this repo is laid out as GitHub Copilot Agent Skills (`SKILL.md`-per-folder, see the install
+steps below), the skill itself works identically in Claude.ai and Claude Code — see the
+`compatibility` note in [`medtronic-branding/SKILL.md`](./medtronic-branding/SKILL.md)'s
+frontmatter. The Copilot-specific install steps below (personal skill directories, the `skills`
+CLI) are genuinely Copilot-specific; Claude.ai/Claude Code users should follow that tool's own
+skill-installation flow instead.
+
 > **Internal use only.** This repo contains Medtronic's proprietary logo, Full-life Symbol, and
 > icon artwork under Medtronic's brand license. Do not make this repo public, and do not use these
 > assets outside of Medtronic-approved work. See [`medtronic-branding/references/brand-guidelines.md`](./medtronic-branding/references/brand-guidelines.md)
@@ -149,7 +156,10 @@ broader `Skill for Medtronic Branding` working folder (not included in this repo
 The full Medtronic brand kit (animated Symbol videos, AI vector source, PowerPoint templates,
 production graphics toolkit) is several hundred MB to ~1.5GB total, including files larger than
 GitHub's 100MB per-file limit. This repo intentionally ships only the compact, curated subset
-(~6MB) needed for day-to-day app/UI work. If you need something beyond what's bundled here (print
-CMYK files, animated Symbol video, the full icon set in every color), get it from Brand Central or
-your Global Brand contact — see [`references/asset-manifest.md`](./medtronic-branding/references/asset-manifest.md)
-for exactly what's bundled vs. not.
+needed for day-to-day app/UI work — see
+[`references/asset-manifest.md`](./medtronic-branding/references/asset-manifest.md) for exactly
+what's bundled and its current size (dominated by the third-party Carbon Design System crawl; the
+"~6MB" figure previously quoted here was stale from before that crawl was added — don't hardcode a
+size here again, it'll drift). If you need something beyond what's bundled here (print CMYK files,
+animated Symbol video, the full icon set in every color), get it from Brand Central or your Global
+Brand contact.

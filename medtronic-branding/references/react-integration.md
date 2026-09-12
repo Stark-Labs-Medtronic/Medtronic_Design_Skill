@@ -8,16 +8,49 @@ Don't hand-roll colors — copy the exact values from
 **Plain CSS variables** (`src/styles/tokens.css`):
 
 Self-host the real typeface instead of relying on the system-font fallback — copy
-`assets/fonts/avenir-next-world/*.ttf` into the project and declare it once:
+`assets/fonts/avenir-next-world/*.ttf` into the project and declare it once. **In React, prefer the
+single-family + `font-weight`-descriptor approach below** — it maps each weight to its real file, so
+`font-weight: 700` resolves to `AvenirNextWorld-Bold.ttf` rather than being synthesised:
 
 ```css
-@font-face { font-family: "Avenir Next World"; src: url("/fonts/AvenirNextWorld-Regular.ttf") format("truetype"); }
+@font-face { font-family: "Avenir Next World"; font-weight: 400; src: url("/fonts/AvenirNextWorld-Regular.ttf") format("truetype"); }
 @font-face { font-family: "Avenir Next World"; font-weight: 600; src: url("/fonts/AvenirNextWorld-Demi.ttf") format("truetype"); }
+@font-face { font-family: "Avenir Next World"; font-weight: 700; src: url("/fonts/AvenirNextWorld-Bold.ttf") format("truetype"); }
 @font-face { font-family: "Avenir Next World"; font-style: italic; src: url("/fonts/AvenirNextWorld-Italic.ttf") format("truetype"); }
 ```
 
-See [typography.md](./typography.md) for the full official type scale (exact sizes/weights for
+> **Reconciling this with `typography.md`'s "never use `font-weight`" rule.** There are two valid
+> strategies, and the rule is about not mixing them:
+>
+> | Strategy | Weight expressed as | `font-weight` |
+> | --- | --- | --- |
+> | **Family-per-weight** — what `mdt-variables.css` does | a distinct family name (`AvenirNextWorld-Bold`) | must stay `normal` |
+> | **Single family + descriptors** — recommended for React | `font-weight: 700` | correct and required |
+>
+> The prohibition in `typography.md` applies to the first strategy, where a numeric `font-weight`
+> would synthesise a fake weight on top of an already-weighted file. With the `@font-face` block
+> above, `font-weight: 700` is the correct way to reach Bold. **Pick one strategy per project.**
+
+**Headings are Bold** (`font-weight: 700` under this strategy) — see the headline-weight resolution in
+[typography.md](./typography.md), which also has the full type scale (exact sizes/weights for
 headings, body, buttons, captions) to build matching React text components from.
+
+```css
+h1, h2, h3 {
+  font-family: var(--mdt-font);
+  font-weight: 700;              /* AvenirNextWorld-Bold */
+  color: var(--mdt-navy-digital); /* #170F5F */
+}
+h1 { font-size: 2.75rem; line-height: 3.25rem; }
+h2 { font-size: 2rem;    line-height: 2.5rem; }
+h3 { font-size: 1.5rem;  line-height: 2rem; }
+h4 { font-weight: 400; font-size: 1.25rem; line-height: 1.75rem; color: var(--mdt-navy-digital); }
+
+@media (max-width: 480px) {
+  h3 { font-weight: 400; line-height: 1.75rem; }          /* de-escalates to Regular */
+  h4 { font-weight: 600; line-height: 1.5rem; color: var(--mdt-text); } /* Demi */
+}
+```
 
 ```css
 :root {
@@ -26,6 +59,17 @@ headings, body, buttons, captions) to build matching React text components from.
   --mdt-navy-digital: #170F5F; /* headline/text use on screen */
   --mdt-white: #FFFFFF;
   --mdt-atmospheric-white: #F5F5F5;
+
+  /* Product UI text tokens - use THESE for app/dashboard body copy.
+     Exact values from mdt-variables.css (--mdtText etc.). */
+  --mdt-text: rgba(0, 0, 0, 0.77);          /* body copy - the 77% black rule */
+  --mdt-text-high: rgba(0, 0, 0, 0.90);     /* emphasis */
+  --mdt-text-low: rgba(0, 0, 0, 0.55);      /* secondary / eyebrow */
+  --mdt-text-disabled: rgba(0, 0, 0, 0.30);
+
+  /* Solid grays - marketing/print surfaces and anywhere an opaque fill is required
+     (alpha text over a photo or gradient renders inconsistently). Not the default
+     for product UI body copy. */
   --mdt-body-gray: #3C3C3C;
   --mdt-disclaimer-gray: #777777;
 
@@ -81,7 +125,9 @@ colors: {
   'mdt-navy': '#140F4B',
   'mdt-navy-digital': '#170F5F',
   'mdt-atmospheric': '#F5F5F5',
-  'mdt-body': '#3C3C3C',
+  'mdt-text': 'rgba(0,0,0,0.77)',   // product UI body copy - use this by default
+  'mdt-text-low': 'rgba(0,0,0,0.55)',
+  'mdt-body': '#3C3C3C',            // solid gray: marketing/print, or text over imagery
   'mdt-disclaimer': '#777777',
   'mdt-teal': '#00DCB9',
   'mdt-green': '#7ECA2A',
@@ -154,9 +200,14 @@ these two now have distinct recommended uses, see `app-header-logo-lockup.md`.
 
 ## 3. Buttons — pill-shaped, brand colors, tiered sizing
 
-Use the Compact/Default/Spacious tiers from
-[layout-and-spacing.md §4](./layout-and-spacing.md) rather than inventing a size per screen —
-`--default` matches this skill's other examples and lands at the ~44–48px touch-target minimum:
+**For an actual Medtronic app, use the real button spec in
+[sizing-standard.md §8](./sizing-standard.md) instead** — `.btn`/`.btn-small`/`.btn-large`/`.btn-xl`,
+fixed 40/32/48/56px heights with horizontal-only padding, from the bundled `mdt-components.css`.
+The Compact/Default/Spacious tiers below are this skill's own generic fallback for non-Medtronic-
+shaped custom buttons only — don't cite `--default`'s `12px 28px` padding as if it were the
+Medtronic spec, and note it lands at ~44–48px, not the 40px the real `.btn` class uses (that real
+default sits at the accessibility floor tier, not the recommended tier — see
+[layout-and-spacing.md §2](./layout-and-spacing.md)):
 
 ```css
 .btn-primary, .btn-outline {
@@ -183,26 +234,49 @@ Use the Compact/Default/Spacious tiers from
 
 ## 4. Icons
 
-Import SVGs directly from `assets/icons/functional/` (gray) / `assets/icons/thematic/` (blue) on
-**light** backgrounds, or `assets/icons/functional-white/` / `assets/icons/thematic-white/` on
-**dark or color** backgrounds (Navy Dark preset, a colored banner, the electric-blue-to-blue
-gradient) — the guidelines require white icons on any color/dark background, so swap the whole
-folder rather than trying to recolor the gray/blue SVGs with CSS. They're single-color SVGs —
-recolor via a wrapper `currentColor` swap only if the SVG's fill uses `currentColor` (check the
-file first; if it hardcodes a hex fill, don't fight it — use the closest color/background variant
+**`[MANDATORY]` Carbon is the default icon system — use it by default, without being asked.** See
+[carbon-design-system.md](./carbon-design-system.md) for the rationale and the manifest lookup
+procedure. Copy from `assets/third-party/carbon-design-system/assets/icons/`; resolve names via
+`catalog/icons-manifest.json` rather than guessing a filename.
 
-Sizing (see `sizing-standard.md` for the measured data behind this): functional icons are on a
-real, fixed 24×24 grid — safe to set `width` and `height` equally. Thematic icons do **not**
-share one fixed ratio between icons — set only `height` (`width: auto`) or you'll stretch some
-icons more than others.
+Carbon SVGs are square on a **32×32 `viewBox`** and use **`fill="currentColor"`**, which means one
+file serves light and dark mode — set `color`, not `fill`, and never maintain paired variants:
 
-```css
-.icon-functional { width: 24px; height: 24px; }
-.icon-thematic { height: 24px; width: auto; }
+```tsx
+// vite-plugin-svgr / SVGR: currentColor flows through from CSS
+import Dashboard from "@/assets/icons/carbon/dashboard.svg?react";
+import ArrowRight from "@/assets/icons/carbon/arrow--right.svg?react";
+
+<Dashboard className="icon" />                       {/* inherits text color */}
+<ArrowRight className="icon icon--action" />         {/* interactive only */}
 ```
 
-that already exists, or the Carbon Design System / Health Icons libraries per the guidelines if
-you need a color/style these files don't have).
+```css
+.icon           { width: 20px; height: 20px; color: var(--mdt-text); }
+.icon--action   { color: var(--mdt-electric-blue); }  /* one accent per screen */
+[data-theme="dark"] .icon { color: rgba(255, 255, 255, 0.9); }
+```
+
+| Context | Size |
+| --- | --- |
+| Inline with body text, dense table row | 16px |
+| Default UI icon (buttons, nav, form affordances) | 20px |
+| Standalone in a card, toolbar, icon button | 24px |
+| Large feature / empty-state icon | 32px |
+
+**Medtronic thematic icons `[FLEXIBLE]`** are still the better choice for brand/editorial moments
+(marketing feature rows, value-prop blocks) — Carbon has no equivalent of the blue brand-illustrative
+set. Those hardcode their fills, so pair the variant to the background (`thematic/` on light,
+`thematic-white/` on dark or color), and note their **aspect ratios vary per icon** — set `height`
+only, never both axes:
+
+```css
+.icon-thematic { height: 24px; width: auto; } /* required: ratio varies per icon */
+```
+
+Don't mix Carbon and Medtronic functional icons in the same UI region — a toolbar containing both
+reads as two design systems collided. If you need an icon Carbon genuinely lacks, Health Icons (CC0)
+is the other library the guidelines approve.
 
 ## 5. Building beyond tokens/logo/buttons/icons
 

@@ -56,7 +56,11 @@ Two documented layout patterns for pairing the Medtronic logo with an app's own 
   visual match.
 - Application name: standard black text.
 - Divider pipe: low-emphasis black (light gray), not full-strength black.
-- **Don't** use navy-blue-colored or thin-weight fonts for the application name.
+- **Don't** use navy-blue-colored or thin-weight fonts for the application name. `[MANDATORY]`
+  **Scope: this rule governs the inline horizontal desktop lockup only** (logo | App Name on one
+  baseline). It does **not** govern page headings — `h1`–`h3` are **Bold** per `typography.md`, and
+  that is not a conflict. It also does not govern the mobile stacked lockup below, which has its own
+  explicit spec.
 - **Don't** pair the logo+tagline lockup together with an application name in the same header —
   pick one or the other, not both (avoids two competing brand statements in one header).
 
@@ -68,9 +72,24 @@ Two documented layout patterns for pairing the Medtronic logo with an app's own 
   specific spec for this *particular* stacked mobile lockup pattern — don't average the two or
   treat them as interchangeable).
 - Application name: set in "Text 5-Heading Thin" (a named type style from Medtronic's UI
-  typography scale — if that exact style isn't available in a project's type system, use the
-  smallest/thinnest heading-weight style available and flag the gap rather than guessing a
-  pixel size).
+  typography scale — resolved: this is `.txt05-headline` in `typography.md`, 24px/27.6px,
+  `--mdtTextPrimary` `#170F5F`. **Note the weight is now Bold, not Thin** — see the headline-weight
+  resolution in `typography.md`; the Medtronic style *name* still contains "Thin" but the style
+  renders Bold).
+
+> **`[MANDATORY]` Resolving the apparent conflict between the two arrangements above.** The inline
+> desktop rule forbids thin + navy app names; the mobile stacked rule specifies a style that is both
+> thin *and* navy. Both are correct — they are **different, non-interchangeable arrangements**, and
+> Medtronic specifies them differently on purpose:
+>
+> | Arrangement | App name style |
+> | --- | --- |
+> | Inline horizontal (desktop): `logo \| App Name` | Standard black, **not** bold-headline styled, **not** navy |
+> | Stacked (mobile): logo above app name | `.txt05-headline` — Bold, 24px, navy `#170F5F` |
+>
+> Pick the arrangement first, then take that row's style. Never blend them, and never apply the
+> desktop prohibition to the stacked lockup or vice versa. Logged in `SKILL.md`'s Contradiction
+> Ledger.
 
 ## Logo combination hierarchy
 

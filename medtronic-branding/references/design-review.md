@@ -130,6 +130,10 @@ ticking all of these on the first attempt every time, you are not reviewing.
 - [ ] A signature element exists, is genuinely the one bold thing, and everything else is quiet
 - [ ] Structural devices (eyebrows, numbering, dividers, rules) encode something true — no ornament
 - [ ] The layout would be materially different for a different brief
+- [ ] The shell and color combination came from Step 0.5 (or an already-specified brief), not a
+      silent default — a blue/navy left sidebar beside white content, defaulted to rather than
+      chosen, is exactly the generic-SaaS tell this pass exists to catch, even though its
+      mechanical check lives in Gate A's pre-flight (`design-intuition.md`)
 
 **Craft**
 - [ ] [craft-details.md §10](./craft-details.md) self-check passes
@@ -179,7 +183,7 @@ duration and productive easing curve, no invented anything.
   box-shadow: 0 1px 8px rgba(0,0,0,.12), 0 3px 4px rgba(0,0,0,.14), 0 3px 3px rgba(0,0,0,.2);
   transition: all 240ms cubic-bezier(0.2, 0, 0.38, 0.9);
 }
-.kpi-title { font-family: "AvenirNextWorld-Thin"; font-size: 24px; color: #170F5F;            margin-bottom: 24px; }
+.kpi-title { font-family: "AvenirNextWorld-Bold"; font-size: 24px; color: #170F5F;            margin-bottom: 24px; }
 .kpi-value { font-family: "AvenirNextWorld";      font-size: 24px; color: rgba(0,0,0,0.77);   margin-bottom: 24px; }
 .kpi-delta { font-family: "AvenirNextWorld";      font-size: 16px; color: rgba(0,0,0,0.77); }
 ```
@@ -213,7 +217,7 @@ What's wrong, none of which Gate A can see:
   margin-bottom: 4px;                     /* tight: same object */
 }
 .kpi-value {                              /* rank 1 — the number */
-  font-family: "AvenirNextWorld-Thin";
+  font-family: "AvenirNextWorld-Bold";
   font-size: 44px; line-height: 52px;
   color: #170F5F;
   font-variant-numeric: tabular-nums;

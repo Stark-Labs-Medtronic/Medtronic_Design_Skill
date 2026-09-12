@@ -33,7 +33,6 @@ States: inactive, active (focused), filled, filled+disabled, disabled, error.
 ```css
 input, textarea, select {
   width: 100%;
-  height: 40px;
   background: #fff;
   caret-color: #1010EB;
   border: 1px solid rgba(0, 0, 0, 0.3); /* --mdtBorderDefaultGray */
@@ -42,6 +41,15 @@ input, textarea, select {
   padding: 0 0.8rem;
   font-size: 1rem; /* 16px */
 }
+input, select {
+  height: 40px;
+}
+/* textarea is deliberately excluded from the fixed height so it can grow —
+   confirmed against the real mdt-components.css, which applies `height: 40px`
+   to input/select only. Set an explicit min-height/rows per the Text area
+   guidance above instead. This corrects an earlier version of this snippet
+   that applied height: 40px to all three; logged in SKILL.md's Contradiction
+   Ledger. */
 label {
   display: block;
   font-size: 0.75rem; /* 12px */

@@ -3,7 +3,7 @@
 **Source:** Medtronic's internal UI Design System (Zeroheight styleguide, "Composition" page) —
 handed to this skill directly by a user with authenticated access, pasted verbatim as data.
 Breakpoint content-area widths are cross-validated against the real `mdt-app-template.css`
-(`max-width: 1312px` at desktop, media queries at 480/768/1200px) — see
+(`max-width: 1312px` at desktop, mobile-first `min-width` media queries at 480/768/1200px) — see
 [typography.md](./typography.md)'s source note for the same code kit.
 
 ## Breakpoints
@@ -18,15 +18,20 @@ All padding is **inside** the specified artboard width — subtract it to get th
 | Mobile | 375px | 16px (`1rem`) | 343px | `240px–480px` |
 
 ```css
-/* Small devices (mobile) */
-@media (max-width: 480px) { ... }
-/* Medium devices (tablets portrait) */
-@media (max-width: 768px) { ... }
-/* Large devices (tablet landscape) */
-@media (max-width: 1200px) { ... }
-/* Extra large devices (desktops) */
-@media (min-width: 1201px) { ... }
+/* Base styles (mobile) — no query needed, this is the default */
+/* Tablet portrait and up */
+@media (min-width: 480px) { ... }
+/* Tablet landscape / laptop and up */
+@media (min-width: 768px) { ... }
+/* Desktop and up */
+@media (min-width: 1200px) { ... }
 ```
+
+Mobile-first, matching the real shipped `mdt-app-template.css` exactly (`min-width: 480px`,
+`min-width: 768px`, `min-width: 1200px`). An earlier revision of this snippet used desktop-first
+`max-width` queries, which is the opposite cascade direction from the CSS this file claims to be
+cross-validated against — corrected. If you write `max-width` queries instead, they must cascade in
+the opposite pixel order (widest first) or later rules silently win over earlier ones.
 
 This **supersedes** the generic 3-tier breakpoint convention previously documented in
 `layout-and-spacing.md` §3 for anything built to this Design System — use these four exact
@@ -36,6 +41,10 @@ tiers/pixel values instead of the simplified generic ones.
 
 8px grid: spacing between UI elements should be multiples of 8px. Smaller components (icons,
 type) may align to a 4px grid instead.
+
+> **`[MANDATORY]` These are gap/padding/margin values only.** Never use a value from this table as
+> the width or height of a logo, lockup, Symbol, or icon. Brand-asset dimensions come from
+> `sizing-standard.md` §0 and nowhere else — a 4px logo is always a bug.
 
 | Spacing | Value | Sass variable |
 | --- | --- | --- |

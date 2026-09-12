@@ -9,26 +9,25 @@ compose them* — the layer most brand-token skills skip, and the reason AI-gene
 often looks templated even when every hex code is correct.
 
 **This file is mandatory reading before writing any UI code, not optional polish.** The
-[pre-flight check](#pre-flight--two-gates-and-passing-the-first-proves-nothing-about-the-second) at
-the end is a **gate**: if you can't honestly check every box, the work isn't done — go back and fix
-it, don't ship it and mention the gaps in prose afterward.
+[pre-flight check](#pre-flight--two-gates-and-passing-the-first-proves-nothing-about-the-second)
+at the end is a **gate**: if you can't honestly check every box, the work isn't done — go back and
+fix it, don't ship it and mention the gaps in prose afterward.
 
-**This file is the macro layer. Three companions carry the rest, and they are not optional:**
+**This file is the macro layer. Four companions carry the rest, and they are not optional:**
 
 | File | Covers | Read it |
 | --- | --- | --- |
 | [visual-hierarchy.md](./visual-hierarchy.md) | How to *compose* the type and spacing scales — step budgets, real steps, spacing that encodes grouping, alignment, density calibration | While planning the layout |
 | [craft-details.md](./craft-details.md) | The micro-layer: concentric radii, optical alignment, elevation mechanism, focus rings, `text-wrap`/`tabular-nums`, motion mechanics | While writing component CSS |
+| [content-and-copy.md](./content-and-copy.md) | Copy as design material — no lorem ipsum ever (it hides real layout failures), one label per action | While writing any UI text |
 | [design-review.md](./design-review.md) | Critique the plan before building, critique the build after — and **Gate B, the design-quality gate** that this file's Gate A deliberately does not cover | Before and after building |
-
-Copy is design material too — [content-and-copy.md](./content-and-copy.md) covers it, and no
-placeholder text is ever acceptable (it hides real layout failures).
 
 ## Step 0: Read the brief before touching code
 
-Medtronic's brand identity is fixed — you're never choosing a palette or typeface. What you *are*
-choosing, every time, is composition: density, motion, hierarchy, and restraint. Get this from
-context before generating anything:
+Medtronic's brand **values** are fixed — you never invent a hex, a typeface, or a logo treatment.
+What gets **chosen**, every time, is composition (density, motion, hierarchy, restraint) and, with
+the user, which documented color combination and page structure to use. Get this from context before
+generating anything:
 
 1. **Surface type** — marketing/website, product/app dashboard, clinical or regulated internal
    tool, mobile app. This is the single biggest driver of the dials below.
@@ -44,11 +43,18 @@ motion, App Dark Mode available, web-app-style shell with side nav."*
 *"Reading this as: a public marketing landing page — moderate density, restrained-but-present
 motion, website-style shell, Signature Light theme, hero-scale logo."*
 
-If genuinely ambiguous, ask — don't guess and rebuild later. See `SKILL.md`'s "Step 0" for the full
-rule on when to ask vs. when the prompt is already structured enough to skip straight to work: use
-the interactive questions tool for **up to 2–3 batched, targeted questions** about *context only*
-(surface type, stack, new-build vs. restyle) — never about brand facts (color/font/logo/shape),
-those are fixed and not the user's choice.
+Unless the brief already specifies them, **ask** — don't guess and rebuild later. See `SKILL.md`'s
+**Step 0.5** for the full rule and the exact question set: one batch of up to 4 questions covering
+**page structure / shell archetype**, **color combination** (from the documented menu in
+`theme-presets.md`), **light vs. dark**, and **stack / surface type**.
+
+> **This supersedes the earlier "never ask about color" rule in this file.** The distinction that
+> matters is between *selecting among documented options* — which is the user's call, and should be
+> asked — and *inventing a value*, which is never anyone's call. Asking "which of these brand-legal
+> combinations do you want?" is correct. Asking "what hex would you like for the primary?" is still
+> a hard miss. Never ask about brand facts: exact hex values, the typeface, logo variant rules,
+> button shape, the spacing scale, or logo sizing — those are fixed. Recorded in `SKILL.md`'s Local
+> Overrides table.
 
 ## The three dials, calibrated for Medtronic
 
@@ -146,7 +152,7 @@ reaching for one is a brand failure, not a bold choice. What's actually availabl
 | Signature | What it looks like in this system |
 | --- | --- |
 | **A data moment** | The primary metric treated as the hero — `.txt08-headline`/`.txt09-display` scale on the number itself, with the chart as quiet support. Or one genuinely well-chosen chart type (per `ux-accessibility-checklist.md`) instead of three generic ones. |
-| **A typographic moment** | One Thin-weight 56px/72px headline given real space, against otherwise compact type. The documented display scale exists and is almost never used. |
+| **A typographic moment** | One Bold-weight 56px/72px headline given real space, against otherwise compact type — per the Weight Context Matrix in `typography.md`. The documented display scale exists and is almost never used. |
 | **A composed empty/first-run state** | The state most products neglect, done properly — Symbol or thematic icon, one clear sentence, one action. Memorable precisely because nobody expects care here. |
 | **A structural asymmetry** | A deliberate hero split or a 2:1 tile anchoring an otherwise 1:1 grid — using the documented aspect ratios, not an invented layout. |
 | **A meaningful Symbol placement** | The Full-life Symbol at an end-of-flow or completion moment, per its documented complementary-mark role — never as the only brand mark on the screen. |
@@ -194,9 +200,13 @@ Medtronic UI ends up looking like generic Bootstrap/Tailwind-default slop wearin
   or links just because it's technically in `ui-design-system-colors.md` — those accents are for
   **data visualization only**, never UI chrome. A screen with an Electric Blue primary button and
   a Teal secondary button is a Do NOT documented explicitly in `ui-design-system-colors.md`.
-- If multiple data series need color, use the documented preferred order (Electric Blue → Navy →
-  Light Blue → Pink → Orange → Lavender → Green → Purple → Teal → Red → Brown) — never invent a
-  different order or skip straight to a "nice looking" color out of sequence.
+- **Chart color depends on series count — don't reach for Electric Blue by reflex.** A
+  single-data-point chart (one gauge/donut/KPI number) uses Electric Blue as its sole accent. A
+  chart with only one data series across many points uses Navy Blue or a neutral, not an accent —
+  an accent implies "one of several." A **multi-series/multi-color chart leads with Navy Blue, not
+  Electric Blue**, then continues in the documented preferred order (Light Blue → Pink → Orange →
+  Lavender → Green → Purple → Teal → Red → Brown). Never invent a different order or skip straight
+  to a "nice looking" color out of sequence. See `ui-design-system-colors.md`'s Do's/Don'ts.
 - Light and dark mode use **different exact tokens** (see `dark-mode-ui-colors.md` vs
   `ui-design-system-colors.md`) — never algorithmically darken/lighten a light-mode hex to fake a
   dark-mode color.
@@ -213,10 +223,12 @@ Medtronic UI ends up looking like generic Bootstrap/Tailwind-default slop wearin
 
 ### Typography Discipline
 
-- Headlines (`h1`–`h3`, `.txt06`+) are **always** the Thin weight file, **always** colored
-  `#170F5F` (on-screen navy) — never the Regular/Demi weight, never plain black, never a random
-  accent color, per `typography.md`.
-- Body copy is **77% black** (`rgba(0,0,0,0.75)` / `--mdtText`), not pure black — pure-black body
+- Headlines (`h1`–`h3`, `.txt05`/`.txt07`+) use the **Bold** weight file (`AvenirNextWorld-Bold`),
+  **always** colored `#170F5F` (on-screen navy) — never plain black, never a random accent color,
+  per `typography.md`. Set the weight via the **family name**, never `font-weight`. `h4` and
+  `.txt04`/`.txt06-headline` stay Regular as the secondary tier — don't promote everything to Bold, or
+  the hierarchy flattens into one loud block.
+- Body copy is **77% black** (`rgba(0,0,0,0.77)` / `--mdtText`), not pure black — pure-black body
   text is a generic-AI tell in this system specifically because Medtronic's own guidelines call
   out 77% black by name.
 - **Never substitute a system font** (Inter, Roboto, Arial, "sans-serif" left un-overridden) when
@@ -262,30 +274,22 @@ cleanup, not relying on animation-end for state correctness).
 
 ### Elevation Discipline
 
-Two, and only two, documented shadow recipes exist in this system — use the one that matches what
-you're building, never invent a third:
+**Three, and only three, documented shadow recipes exist in this system** — use the one that
+matches what you're building, never invent a fourth. (Previously documented as "two, and only
+two" — the floating-header recipe was missed; corrected, see `SKILL.md`'s Contradiction Ledger.)
 
 - **Popover/dropdown/menu elevation** (`navigation.md`):
   `0 1px 8px rgba(0,0,0,.12), 0 3px 4px rgba(0,0,0,.14), 0 3px 3px rgba(0,0,0,.2)`
 - **Modal/sheet elevation** (`overlays-and-feedback.md`, stronger):
   `0 1px 18px rgba(0,0,0,.12), 0 6px 10px rgba(0,0,0,.14), 0 3px 5px rgba(0,0,0,.2)`
+- **Floating top-nav header elevation** (`navigation.md`, distinct opacities from both above):
+  `0 3px 5px rgba(0,0,0,.1), 0 1px 18px rgba(0,0,0,.06), 0 6px 10px rgba(0,0,0,.06)`
 
 Never use a generic single-layer `box-shadow: 0 4px 6px rgba(0,0,0,0.3)` default — flat single-tone
-shadows are a visible generic-AI tell next to these real, layered, tuned recipes.
-
-**Two limits on when a shadow is the right mechanism at all** — see
-[craft-details.md §3](./craft-details.md):
-
-- **Shadow means "floating above", not "is a surface".** A resting card that never lifts should be
-  separated by a background step (`General.Surface.level 0` → `level 1`) or a border, not a shadow.
-  The two recipes above are for popovers/menus and modals/sheets — things that are temporarily on
-  top. A page of shadowed resting cards is the generic SaaS-card look wearing Medtronic colors.
-- **Both recipes above are light-mode only.** They're black-based and effectively invisible on
-  `#121212`. [dark-mode-ui-colors.md](./dark-mode-ui-colors.md) says so directly — *"Elevation in
-  dark mode is conveyed with progressively lighter grays, not drop shadows alone"* — and ships
-  `elevated` surface tokens that step one level lighter for exactly this purpose. In App Dark Mode,
-  raise a surface with its `elevated` token (plus `General.Borders & Lines.light` if needed), not
-  with these recipes.
+shadows are a visible generic-AI tell next to these real, layered, tuned recipes. (The real shipped
+`mdt-app-template.css`/`mdt-components.css` use a fourth, different single-layer shadow for the
+actual header element and `.elevation-low` — that's a known shipped-CSS-vs-documented-recipe gap,
+not a fourth recipe to build from; see the Contradiction Ledger.)
 
 ### Layout Hard Rules (fit-and-finish, not just brand accuracy)
 
@@ -320,9 +324,9 @@ For every list/table/card view, plan for — and actually implement — all of:
 ## Pre-flight — two gates, and passing the first proves nothing about the second
 
 **Brand fidelity and design quality are separate dimensions.** This file's gate checks the first.
-A screen can use the exact palette, the real font files, the documented radii, the two real shadow
-recipes, and a 64px header — and still be a flat, generic, badly-composed page. That result passes
-Gate A completely. It is still a failure of this skill.
+A screen can use the exact palette, the real font files, the documented radii, the three real
+shadow recipes, and a 64px header — and still be a flat, generic, badly-composed page. That result
+passes Gate A completely. It is still a failure of this skill.
 
 So there are two gates, and **both are mandatory**:
 
@@ -340,6 +344,10 @@ Every box must be honestly checkable before the work is done — this is a gate,
 retrospective. If a box fails, fix the work; don't ship it with a caveat in prose.
 
 - [ ] Design Read stated (surface type, audience, dial values) before code was generated
+- [ ] The **Step 0.5 question** was asked (page structure, color combination, mode) unless the brief
+      already specified all three — the shell and palette were **chosen**, not defaulted to
+- [ ] No blue/navy left sidebar beside a white content area unless the user explicitly chose it or
+      the existing app already uses it
 - [ ] A composition archetype (hero/shell/tile rhythm) was consciously picked, not defaulted to
       the first/most obvious option
 - [ ] Exactly one accent color (Electric Blue) used for interactive UI chrome; any other accent
@@ -347,16 +355,23 @@ retrospective. If a box fails, fix the work; don't ship it with a caveat in pros
 - [ ] Buttons are pill-shaped at the correct tier height (32/40/48/56px); no other radius sneaks
       onto a button
 - [ ] Cards/inputs/modals use their documented small radius (4px or 8px) — nothing squircle-shaped
-- [ ] Headlines are Thin weight + `#170F5F`; body is 77% black; no system-font fallback visible
-      (fonts actually self-hosted, not just named in CSS)
+- [ ] Heading weight follows the **Weight Context Matrix** in `typography.md`: h1/h2 Bold, h3 Bold on
+      desktop and Regular ≤480px, h4 never Bold; all headings `#170F5F`
+- [ ] Weight is set via the **font family name** (`AvenirNextWorld-Bold`), never a numeric or keyword
+      `font-weight` on the real font
+- [ ] Body is `rgba(0,0,0,0.77)`; no system-font fallback visible (fonts actually self-hosted, not
+      just named in CSS) — `b`/`strong` is **Demi**, not Bold, so emphasis stays distinct from headings
 - [ ] Bold text uses the Demi font file, not `font-weight: bold` on Regular
-- [ ] Any shadow used is one of the two documented recipes, not an ad hoc single-layer shadow, and
-      is on something that actually lifts (popover/menu/modal/sheet) rather than a resting card
-- [ ] In dark mode, elevation comes from the `elevated` surface tokens — the light-mode shadow
-      recipes were not carried over
+- [ ] Icons are **Carbon**, sized square (16/20/24/32px), colored via `color`/`currentColor` — not
+      hardcoded fills, and no paired light/dark variant folders
+- [ ] Any Medtronic thematic icons used are sized **height-only** (`width: auto`), and Carbon and
+      Medtronic functional icons are not mixed in the same UI region
+- [ ] Any shadow used is one of the three documented recipes, not an ad hoc single-layer shadow
 - [ ] Any animation uses a documented duration + productive easing curve, `transform`/`opacity`
       only, nothing linear or bouncy
 - [ ] Header is 64px; nav fits on one line at desktop; hero fits the first viewport
+- [ ] Every logo/lockup/Symbol size came from `sizing-standard.md` **§0 Decision Table**, with only
+      one axis set — and **no brand-asset dimension was taken from a spacing token** (no 4px logo)
 - [ ] No wrapped button text; one CTA label per intent on the page
 - [ ] Loading/empty/error states are designed, not just the happy path
 - [ ] Light/dark mode each use their own exact documented tokens, not a derived/algorithmic guess
@@ -371,6 +386,8 @@ retrospective. If a box fails, fix the work; don't ship it with a caveat in pros
 - [ ] Nothing was invented — every color/size/font/shadow traces to a specific file in
       `references/`; if something genuinely isn't documented, it was flagged as a gap (per
       `brand-guidelines.md`'s no-fabrication rule), not guessed
+- [ ] **Streamlit only:** the alignment pre-flight in
+      [streamlit-layout.md](./streamlit-layout.md) §7 also passes
 - [ ] For anything not covered above, [ux-accessibility-checklist.md](./ux-accessibility-checklist.md)
       was checked before shipping
 

@@ -15,6 +15,13 @@ non-essential ones** — that is stricter than (and takes precedence over) the g
 floor cited below, which applies to the *general web minimum with exceptions*, not to Medtronic's
 essential-element rule specifically.
 
+**Same precedence applies to contrast methodology.** [accessibility.md](./accessibility.md)
+mandates APCA (not the older WCAG 2.x ratio formula) for Medtronic digital product UI. Some
+figures below — notably the "4.5:1" CTA-contrast checks in the marketing/landing archetype
+tables — are WCAG 2.x shorthand carried over from this file's third-party source material. Where
+a surface falls under `accessibility.md`'s APCA mandate, APCA is authoritative; treat a "4.5:1"
+figure here as a quick conservative floor, not this skill's actual contrast method.
+
 ## Motion hygiene (tool-agnostic — complements `design-intuition.md`'s Motion section)
 
 - **Always honor `prefers-reduced-motion`.** When it matches, skip non-essential motion entirely
