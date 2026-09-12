@@ -47,7 +47,7 @@ color (e.g., chart series, hover states, subtle backgrounds). Order is darkest (
 900"-ish) to lightest (index 9, "shade 50"-ish).
 
 **Light Blue family** (the `#0FC9F7` accent's tint stack — **not** the Medtronic Blues / Navy stack;
-for Navy and Electric Blue tints see the `Medtronic Blues` stack in `ui-design-system-colors.md`):
+for Navy and Electric Blue tints see the `Medtronic Blues` stack in [ui-design-system-colors.md](./ui-design-system-colors.md)):
 `#082542, #083C71, #0A5694, #0073B4, #009BDA, #0FC9F7, #48D6F9, #86E4FB, #C2F1FD, #E1F8FE`
 
 **Teal**:

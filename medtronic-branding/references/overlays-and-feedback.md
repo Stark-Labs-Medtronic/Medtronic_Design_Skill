@@ -13,7 +13,7 @@ action before the user can proceed further.
 
 All three share: fill `#FFFFFF` (`General.Surface.level 0 elevated`), 1px inside border, **8px**
 border radius, and this exact 3-layer drop shadow (distinct from the popover-menu shadow in
-`navigation.md` — modals get a stronger, more pronounced elevation):
+[navigation.md](./navigation.md) — modals get a stronger, more pronounced elevation):
 
 ```css
 box-shadow:

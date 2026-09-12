@@ -22,11 +22,11 @@ separate font files, and the CSS pairs every one of them with an explicit `font-
 
 All 8 static weights (Regular, Italic, Thin, ThinIt, Demi, DemiIt, **Bold**, BoldIt) are bundled at
 `assets/fonts/avenir-next-world/*.ttf` — self-host these rather than relying on a system-font
-fallback, per the existing font-license note in `brand-guidelines.md`.
+fallback, per the existing font-license note in [brand-guidelines.md](./brand-guidelines.md).
 
 Base document: `html { font-size: 16px; line-height: 30px; }`, `body` uses `AvenirNextWorld` with
 color `var(--mdtText)` (`rgba(0,0,0,0.77)` — the "77% black" body-text rule already documented in
-`ui-design-system-colors.md`, confirmed byte-for-byte from source code).
+[ui-design-system-colors.md](./ui-design-system-colors.md), confirmed byte-for-byte from source code).
 
 ## `[MANDATORY]` Headlines are Bold
 
@@ -37,7 +37,7 @@ and time-pressured clinical users much of this skill's output serves.
 
 Medtronic's HTML/CSS Framework starter kit originally shipped Thin for `h1`–`h3` and the named
 headline/display classes. This skill uses `AvenirNextWorld-Bold` there instead — a documented
-**Local Override** (see the table in `SKILL.md`), baked directly into the bundled
+**Local Override** (see the table in [SKILL.md](../SKILL.md)), baked directly into the bundled
 `mdt-variables.css` rather than layered on top of it, so there's one file to read instead of two.
 If you're writing fresh CSS rather than using the starter kit, just follow the matrix below.
 
@@ -110,7 +110,7 @@ At 32px the design system ships two headline variants. With Bold headlines, the 
 | `.txt06-headline` | Regular | 32px | Denser product UI, section headings inside a card, secondary hierarchy under a Bold `h2` |
 | `.txt06-headline_bold` | **Bold** | 32px | Primary section headings, marketing, hero sub-heads |
 
-Pick by surface type per `design-intuition.md`'s DENSITY dial: on a dense screen, a Regular 32px
+Pick by surface type per [design-intuition.md](./design-intuition.md)'s DENSITY dial: on a dense screen, a Regular 32px
 heading under a Bold `h1` reads as clearer hierarchy than two Bold sizes competing.
 
 ## Named utility text styles (`txt01`–`txt09`)
@@ -154,7 +154,7 @@ Bold for both would flatten that distinction.
 ## Reconciles the earlier color/typography Do's and Don'ts
 
 The headline **color** rule is settled and unchanged: headlines are `#170F5F`
-(`--mdtTextPrimary`, matching the on-screen-header navy from `app-header-logo-lockup.md` — a third
+(`--mdtTextPrimary`, matching the on-screen-header navy from [app-header-logo-lockup.md](./app-header-logo-lockup.md) — a third
 independent source confirming that hex), not the plain `#140F4B` Navy token.
 
 The headline **weight** is `AvenirNextWorld-Bold`, per Brand Central's explicit "Use Regular, Demi,

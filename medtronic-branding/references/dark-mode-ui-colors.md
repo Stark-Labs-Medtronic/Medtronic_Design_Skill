@@ -2,12 +2,12 @@
 
 **Source:** Medtronic's internal UI Design System (Zeroheight styleguide, "Dark Mode Colors"
 page) — handed to this skill directly by a user with authenticated access, pasted verbatim as
-data. This is a **different, more specific source** than `color-tokens.md` /
-`brand-guidelines.md` (which come from the Brand Central marketing/identity guidelines): this one
+data. This is a **different, more specific source** than [color-tokens.md](./color-tokens.md) /
+[brand-guidelines.md](./brand-guidelines.md) (which come from the Brand Central marketing/identity guidelines): this one
 is the actual **product/app UI token set**, scoped specifically to dark-mode interface design —
 use it for React/Streamlit/app dark themes, not for marketing collateral.
 
-**Important distinction from `theme-presets.md`'s old guidance:** Brand Central says Navy
+**Important distinction from [theme-presets.md](./theme-presets.md)'s old guidance:** Brand Central says Navy
 (`#140F4B`) and Electric Blue are approved **dark backgrounds for marketing/print** (logo and
 Symbol placement). The actual **product UI dark-mode background is a neutral dark gray scale**
 (`#121212` at its darkest), not Navy — these are two different, both-valid conventions for two

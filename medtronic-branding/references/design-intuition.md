@@ -35,7 +35,7 @@ generating anything:
    prospective customer browsing marketing. Regulated/clinical audiences override aesthetic
    preference every time (see the Density/Motion table).
 3. **Existing product context** — is this a new page in an existing app (match its density/shell
-   choice — see `composition.md`), or a greenfield build (you get to choose the shell)?
+   choice — see [composition.md](./composition.md)), or a greenfield build (you get to choose the shell)?
 
 State a one-line **Design Read** before generating code, e.g.:
 *"Reading this as: an internal clinical dashboard for time-pressured staff — high density, low
@@ -43,7 +43,7 @@ motion, App Dark Mode available, web-app-style shell with side nav."*
 *"Reading this as: a public marketing landing page — moderate density, restrained-but-present
 motion, website-style shell, Signature Light theme, hero-scale logo."*
 
-Unless the brief already specifies them, **ask** — don't guess and rebuild later. See `SKILL.md`'s
+Unless the brief already specifies them, **ask** — don't guess and rebuild later. See [SKILL.md](../SKILL.md)'s
 **Step 0.5** for the full rule and the exact question set: one batch of up to 4 questions covering
 **page structure / shell archetype**, **color combination** (from the documented menu in
 `theme-presets.md`), **light vs. dark**, and **stack / surface type**.
@@ -76,7 +76,7 @@ agency-tier chaos (rotated cards, mesh gradients, oversized display type) — th
 | Marketing/website | 5–6 | 4 | 3 | Hero banners, website-style shell, more whitespace is appropriate here than anywhere else in the system |
 | Product dashboard (internal, non-clinical) | 4 | 3 | 5–6 | Web app-style shell, side nav, Compact component tier for data-dense areas |
 | Clinical / regulated tool | 2–3 | 1–2 | 6–8 | Motion should be nearly invisible — a clinician mid-task should never wonder if something is still loading or already changed. Favor instant, obvious state changes over animated ones. |
-| Mobile app | 3–4 | 3 | 4–5 | 64px header rule still applies; bottom sheet preferred over side sheet per `overlays-and-feedback.md` |
+| Mobile app | 3–4 | 3 | 4–5 | 64px header rule still applies; bottom sheet preferred over side sheet per [overlays-and-feedback.md](./overlays-and-feedback.md) |
 
 ## Composition archetypes — pick one deliberately, don't default to the first idea
 
@@ -85,7 +85,7 @@ generic AI layout" usually isn't a brand-accuracy failure — it's picking the s
 variant every time instead of choosing deliberately from what's actually available. Before laying
 out a page, explicitly pick from these real (not invented) options:
 
-### Hero archetypes (`ui-components.md` → Hero banners)
+### Hero archetypes ([ui-components.md](./ui-components.md) → Hero banners)
 
 | Archetype | When to use |
 | --- | --- |
@@ -120,7 +120,7 @@ source dataset's example hex values.
 Never mix shell archetypes on one page (e.g. a floating-card app shell with a `.com`-style footer)
 — pick one shell family and stay in it end to end.
 
-### Tile/bento rhythm (`carbon-design-system.md` → 2x Grid aspect ratios)
+### Tile/bento rhythm ([carbon-design-system.md](./carbon-design-system.md) → 2x Grid aspect ratios)
 
 When a page needs a card/tile grid (feature grid, dashboard summary tiles, a bento layout), don't
 repeat one tile size and shape down the page — that's the specific "one-sided repetition" tell.
@@ -151,8 +151,8 @@ reaching for one is a brand failure, not a bold choice. What's actually availabl
 
 | Signature | What it looks like in this system |
 | --- | --- |
-| **A data moment** | The primary metric treated as the hero — `.txt08-headline`/`.txt09-display` scale on the number itself, with the chart as quiet support. Or one genuinely well-chosen chart type (per `ux-accessibility-checklist.md`) instead of three generic ones. |
-| **A typographic moment** | One Bold-weight 56px/72px headline given real space, against otherwise compact type — per the Weight Context Matrix in `typography.md`. The documented display scale exists and is almost never used. |
+| **A data moment** | The primary metric treated as the hero — `.txt08-headline`/`.txt09-display` scale on the number itself, with the chart as quiet support. Or one genuinely well-chosen chart type (per [ux-accessibility-checklist.md](./ux-accessibility-checklist.md)) instead of three generic ones. |
+| **A typographic moment** | One Bold-weight 56px/72px headline given real space, against otherwise compact type — per the Weight Context Matrix in [typography.md](./typography.md). The documented display scale exists and is almost never used. |
 | **A composed empty/first-run state** | The state most products neglect, done properly — Symbol or thematic icon, one clear sentence, one action. Memorable precisely because nobody expects care here. |
 | **A structural asymmetry** | A deliberate hero split or a 2:1 tile anchoring an otherwise 1:1 grid — using the documented aspect ratios, not an invented layout. |
 | **A meaningful Symbol placement** | The Full-life Symbol at an end-of-flow or completion moment, per its documented complementary-mark role — never as the only brand mark on the screen. |
@@ -197,7 +197,7 @@ Medtronic UI ends up looking like generic Bootstrap/Tailwind-default slop wearin
 
 - **One accent per screen: Electric Blue (`#1010EB`).** Never let a second accent color
   (Pink/Orange/Teal/etc. from the accent palette) creep in as a "second brand color" for buttons
-  or links just because it's technically in `ui-design-system-colors.md` — those accents are for
+  or links just because it's technically in [ui-design-system-colors.md](./ui-design-system-colors.md) — those accents are for
   **data visualization only**, never UI chrome. A screen with an Electric Blue primary button and
   a Teal secondary button is a Do NOT documented explicitly in `ui-design-system-colors.md`.
 - **Chart color depends on series count — don't reach for Electric Blue by reflex.** A
@@ -207,7 +207,7 @@ Medtronic UI ends up looking like generic Bootstrap/Tailwind-default slop wearin
   Electric Blue**, then continues in the documented preferred order (Light Blue → Pink → Orange →
   Lavender → Green → Purple → Teal → Red → Brown). Never invent a different order or skip straight
   to a "nice looking" color out of sequence. See `ui-design-system-colors.md`'s Do's/Don'ts.
-- Light and dark mode use **different exact tokens** (see `dark-mode-ui-colors.md` vs
+- Light and dark mode use **different exact tokens** (see [dark-mode-ui-colors.md](./dark-mode-ui-colors.md) vs
   `ui-design-system-colors.md`) — never algorithmically darken/lighten a light-mode hex to fake a
   dark-mode color.
 
@@ -233,7 +233,7 @@ Medtronic UI ends up looking like generic Bootstrap/Tailwind-default slop wearin
   out 77% black by name.
 - **Never substitute a system font** (Inter, Roboto, Arial, "sans-serif" left un-overridden) when
   Avenir Next World is available and bundled at `assets/fonts/avenir-next-world/` — self-host it
-  per `react-integration.md`/`streamlit-integration.md`. A Medtronic UI in Inter is an immediate,
+  per [react-integration.md](./react-integration.md)/[streamlit-integration.md](./streamlit-integration.md). A Medtronic UI in Inter is an immediate,
   visible brand miss.
 - One emphasis mechanism: **bold/strong text uses the Demi font file**, *never* `font-weight:
   bold` on the Regular file (Avenir Next World's weights are separate font files, not a single
@@ -278,7 +278,7 @@ cleanup, not relying on animation-end for state correctness).
 matches what you're building, never invent a fourth. (Previously documented as "two, and only
 two" — the floating-header recipe was missed; corrected, see `SKILL.md`'s Contradiction Ledger.)
 
-- **Popover/dropdown/menu elevation** (`navigation.md`):
+- **Popover/dropdown/menu elevation** ([navigation.md](./navigation.md)):
   `0 1px 8px rgba(0,0,0,.12), 0 3px 4px rgba(0,0,0,.14), 0 3px 3px rgba(0,0,0,.2)`
 - **Modal/sheet elevation** (`overlays-and-feedback.md`, stronger):
   `0 1px 18px rgba(0,0,0,.12), 0 6px 10px rgba(0,0,0,.14), 0 3px 5px rgba(0,0,0,.2)`
@@ -293,7 +293,7 @@ not a fourth recipe to build from; see the Contradiction Ledger.)
 
 ### Layout Hard Rules (fit-and-finish, not just brand accuracy)
 
-- **Header is always exactly 64px** (`global-header.md`) — never taller "for breathing room."
+- **Header is always exactly 64px** ([global-header.md](./global-header.md)) — never taller "for breathing room."
 - **Hero must fit believably in the first viewport** on desktop — a headline that forces 4+ lines
   or pushes the CTA below the fold is a font-scale error, not a copy-length problem worth
   tolerating.
@@ -307,7 +307,7 @@ not a fourth recipe to build from; see the Contradiction Ledger.)
 - **Button/text contrast is checked, not assumed.** A ghost/secondary button over a photo or
   gradient background needs a scrim or border — ghost buttons with no border floating over
   variable-contrast imagery is a real, easy-to-ship accessibility bug.
-- **Form labels sit above the field, always** (per `forms-and-inputs.md`) — never
+- **Form labels sit above the field, always** (per [forms-and-inputs.md](./forms-and-inputs.md)) — never
   placeholder-as-label; the required-field asterisk is `#C121EB` (Important/purple), not red.
 
 ### Interactive States (don't ship the "happy path" only)
@@ -370,7 +370,7 @@ retrospective. If a box fails, fix the work; don't ship it with a caveat in pros
 - [ ] Any animation uses a documented duration + productive easing curve, `transform`/`opacity`
       only, nothing linear or bouncy
 - [ ] Header is 64px; nav fits on one line at desktop; hero fits the first viewport
-- [ ] Every logo/lockup/Symbol size came from `sizing-standard.md` **§0 Decision Table**, with only
+- [ ] Every logo/lockup/Symbol size came from [sizing-standard.md](./sizing-standard.md) **§0 Decision Table**, with only
       one axis set — and **no brand-asset dimension was taken from a spacing token** (no 4px logo)
 - [ ] No wrapped button text; one CTA label per intent on the page
 - [ ] Loading/empty/error states are designed, not just the happy path
@@ -385,7 +385,7 @@ retrospective. If a box fails, fix the work; don't ship it with a caveat in pros
       label was truncated if it was essential text (primary actions, errors, safety text)
 - [ ] Nothing was invented — every color/size/font/shadow traces to a specific file in
       `references/`; if something genuinely isn't documented, it was flagged as a gap (per
-      `brand-guidelines.md`'s no-fabrication rule), not guessed
+      [brand-guidelines.md](./brand-guidelines.md)'s no-fabrication rule), not guessed
 - [ ] **Streamlit only:** the alignment pre-flight in
       [streamlit-layout.md](./streamlit-layout.md) §7 also passes
 - [ ] For anything not covered above, [ux-accessibility-checklist.md](./ux-accessibility-checklist.md)

@@ -9,7 +9,8 @@ Applies to all digital product UI (React/Streamlit/web apps), not marketing/prin
 All text/icon-vs-background color pairings should meet **APCA** (Accessible Perceptual Contrast
 Algorithm) standards, not the older WCAG 2.x contrast-ratio formula. Reference:
 [github.com/Myndex/SAPC-APCA](https://github.com/Myndex/SAPC-APCA/tree/master/documentation).
-When picking colors from `ui-design-system-colors.md` / `dark-mode-ui-colors.md`, use the
+When picking colors from [ui-design-system-colors.md](./ui-design-system-colors.md) /
+[dark-mode-ui-colors.md](./dark-mode-ui-colors.md), use the
 provided `Text & Icon.*` opacity tokens as-is rather than substituting an arbitrary similar color
 — they were chosen to hold up under APCA.
 
@@ -30,6 +31,7 @@ Components must support font-size scaling up to **200%** without breaking usabil
 | Small icon buttons (e.g. 24×24px) | Visual/hit-box size can be smaller than the minimums above | Only acceptable if the element has a **4px margin on all sides**, effectively restoring a 32×32px total footprint |
 
 This is the authoritative Medtronic spec for touch-target sizing in product UI — it supersedes
-the generic WCAG/Apple/Google-sourced tiers in `layout-and-spacing.md` §2 for anything built to
-this Design System (that file's 40/44/48px tiers remain valid as general industry cross-reference,
-but 48×48px is the Medtronic-specific hard minimum for essential elements).
+the generic WCAG/Apple/Google-sourced tiers in [layout-and-spacing.md](./layout-and-spacing.md) §2
+for anything built to this Design System (that file's 40/44/48px tiers remain valid as general
+industry cross-reference, but 48×48px is the Medtronic-specific hard minimum for essential
+elements).

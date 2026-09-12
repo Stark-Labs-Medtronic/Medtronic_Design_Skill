@@ -9,7 +9,7 @@ documents, and data files) at
 ## Why this is in a Medtronic branding skill
 
 Three reasons — the first two traced to explicit Medtronic guidance, the third a deliberate
-skill-owner decision recorded in `SKILL.md`'s Local Overrides:
+skill-owner decision recorded in [SKILL.md](../SKILL.md)'s Local Overrides:
 
 1. **App icons:** [application-icons.md](./application-icons.md) documents that Medtronic's own
    Application Icon Template "uses the Carbon library as a baseline" — custom app icons should
@@ -28,14 +28,14 @@ skill-owner decision recorded in `SKILL.md`'s Local Overrides:
 
 **Precedence rule: Medtronic's own specs always take priority — with one recorded exception.** Only
 reach for Carbon's grid/spacing system when building general page-shell/grid structure and nothing in
-`composition.md`/`layout-and-spacing.md`/`sizing-standard.md` already covers it. Never substitute
+[composition.md](./composition.md)/[layout-and-spacing.md](./layout-and-spacing.md)/[sizing-standard.md](./sizing-standard.md) already covers it. Never substitute
 Carbon's **colors, type, or component visual style** for Medtronic's own. **Icons are the documented
 exception** — Carbon icons are the default, per below.
 
 ## Icons `[MANDATORY]` — Carbon is the default UI icon system
 
 > **Local override.** Brand Central frames Carbon as an *approved fallback* for when the bundled
-> Medtronic set doesn't cover a need (`brand-guidelines.md`). This skill inverts that: Carbon is the
+> Medtronic set doesn't cover a need ([brand-guidelines.md](./brand-guidelines.md)). This skill inverts that: Carbon is the
 > default for all UI iconography. Recorded in `SKILL.md`'s Local Overrides table with rationale.
 > This is a skill-owner decision, **not** a Medtronic brand fact — do not cite it as one.
 
@@ -228,7 +228,7 @@ grid's columns specifically).
 `assets/third-party/carbon-design-system/` contains: `pages/**/content.md` + `meta.json` (cleaned
 text + metadata for every crawled page — the raw `page.html` DOM is **not** bundled; use
 `content.md` instead), `assets/icons/` (2739 SVGs) + `assets/pictograms/` (1565 SVGs) — the actual
-icon baseline referenced by `application-icons.md`, `assets/images/`, `assets/documents/`,
+icon baseline referenced by [application-icons.md](./application-icons.md), `assets/images/`, `assets/documents/`,
 `assets/data/` (`llms.txt` etc.), and `catalog/` (`icons-manifest.json`,
 `pictograms-manifest.json`, `manifest.json`, `asset-index.json`, `external-resources.json`,
 `REPORT.md`) — the indices needed to look up an icon/pictogram by name rather than guessing a

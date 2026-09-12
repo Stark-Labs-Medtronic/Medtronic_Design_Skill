@@ -2,12 +2,12 @@
 
 Ready-to-use combinations of the exact tokens in [color-tokens.md](./color-tokens.md), the rules
 in [brand-guidelines.md](./brand-guidelines.md), and the real asset files in [`../assets/`](../assets/).
-**Offer these to the user as the Step 0.5 color-combination menu** (`SKILL.md`) rather than picking
+**Offer these to the user as the Step 0.5 color-combination menu** ([SKILL.md](../SKILL.md)) rather than picking
 one silently, then layer in the specific screen's content.
 
-Every hex value below traces back to `color-tokens.md`. Where the source guidelines describe a
+Every hex value below traces back to [color-tokens.md](./color-tokens.md). Where the source guidelines describe a
 rule but the exact value only exists in an uncaptioned diagram (not extractable as text — see the
-"Content gaps" note in `brand-guidelines.md`), that gap is called out explicitly and **no
+"Content gaps" note in [brand-guidelines.md](./brand-guidelines.md)), that gap is called out explicitly and **no
 substitute value is invented** — the preset falls back to an exact, already-documented token
 instead of guessing a new one.
 
@@ -30,7 +30,7 @@ the same breath:
 - A full-width `layout="wide"` container holding a single narrow form
 - Equal-weight cards in a uniform grid where the content isn't equally important
 
-**Pick the shell archetype from `design-intuition.md` and the color combination from this file as two
+**Pick the shell archetype from [design-intuition.md](./design-intuition.md) and the color combination from this file as two
 separate, deliberate decisions.** Note that the combinations below are *page-level* themes — none of
 them prescribes a sidebar treatment, and picking one does not imply a colored sidebar.
 
@@ -232,7 +232,7 @@ Every value is an existing token; nothing new is introduced.
 
 Pairs naturally with the "gray header + white body" shell variant in `design-intuition.md`. At
 DENSITY 6+, prefer `.txt06-headline` (Regular, 32px) over the Bold variant for *section* headings, so
-the Bold `h1`/`h2` stays the dominant tier — see the Weight Context Matrix in `typography.md`.
+the Bold `h1`/`h2` stays the dominant tier — see the Weight Context Matrix in [typography.md](./typography.md).
 
 **Assets:** same as Signature Light. Carbon icons at `color: var(--text)`.
 
@@ -275,7 +275,7 @@ navy — never the navy wordmark on a navy bar). Carbon icons in the header at
 `color: rgba(255,255,255,0.9)`, in the body at `color: var(--text)` — one file, two contexts, because
 Carbon inherits `currentColor`.
 
-Header is 64px per `global-header.md`, logo at 28px per `sizing-standard.md` §0.
+Header is 64px per [global-header.md](./global-header.md), logo at 28px per [sizing-standard.md](./sizing-standard.md) §0.
 
 ## Picking a preset
 

@@ -3,8 +3,8 @@
 **Source:** Medtronic's internal UI Design System (Zeroheight styleguide, "Application Icons"
 page) — handed to this skill directly by a user with authenticated access, pasted verbatim as
 data. Scope: the actual app-icon graphic submitted to the App Store/Play Store — not in-app
-functional/thematic icons (see `brand-guidelines.md` Iconography section for those) and not the
-general Full-life Symbol used in logos/lockups (see `sizing-standard.md`).
+functional/thematic icons (see [brand-guidelines.md](./brand-guidelines.md) Iconography section for those) and not the
+general Full-life Symbol used in logos/lockups (see [sizing-standard.md](./sizing-standard.md)).
 
 ## Overview
 

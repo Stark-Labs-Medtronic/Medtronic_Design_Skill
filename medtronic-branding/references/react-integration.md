@@ -19,7 +19,7 @@ single-family + `font-weight`-descriptor approach below** — it maps each weigh
 @font-face { font-family: "Avenir Next World"; font-style: italic; src: url("/fonts/AvenirNextWorld-Italic.ttf") format("truetype"); }
 ```
 
-> **Reconciling this with `typography.md`'s "never use `font-weight`" rule.** There are two valid
+> **Reconciling this with [typography.md](./typography.md)'s "never use `font-weight`" rule.** There are two valid
 > strategies, and the rule is about not mixing them:
 >
 > | Strategy | Weight expressed as | `font-weight` |
@@ -170,7 +170,7 @@ export function MedtronicLogo({ variant = 'navy-digital', height = 28 }: { varia
 
 Default to `navy-digital` (`#170F5F`) for any on-screen app/website header — the UI Design System
 explicitly warns the standard Navy fill (`#140F4B`) reads as near-black on some screens. Only use
-the plain `navy` variant for print/marketing contexts, per `app-header-logo-lockup.md`.
+the plain `navy` variant for print/marketing contexts, per [app-header-logo-lockup.md](./app-header-logo-lockup.md).
 
 Every logo/lockup/Symbol/icon has a real measured aspect ratio and a recommended size per context
 in [sizing-standard.md](./sizing-standard.md) — check it before picking a height/width, especially
@@ -189,7 +189,7 @@ recolor the navy SVG with a CSS filter to fake white.
 Use the logo+tagline lockup (`assets/logos/tagline-lockup-horizontal/`, or
 `tagline-lockup-vertical/` for narrow/mobile layouts) for hero/landing sections or page footers —
 not for a compact app header/nav bar (use the plain wordmark there instead). Size it at 56–80px
-height for a hero (per `sizing-standard.md`) — smaller than that and the tagline text stops being
+height for a hero (per [sizing-standard.md](./sizing-standard.md)) — smaller than that and the tagline text stops being
 comfortably readable.
 
 For an actual `favicon.ico` / `apple-touch-icon`, use
@@ -298,7 +298,7 @@ reference first and translate its measurements/rules into components:
 ## 6. Performance quick-reference (third-party, general React/Next.js practice)
 
 Not brand-specific, but worth checking on any data-driven Medtronic app — condensed from the same
-third-party source as `ux-accessibility-checklist.md`:
+third-party source as [ux-accessibility-checklist.md](./ux-accessibility-checklist.md):
 
 - Run independent async calls with `Promise.all()` instead of sequential `await`s; in API routes,
   start promises immediately and `await` them as late as possible instead of awaiting one at a
@@ -317,7 +317,7 @@ third-party source as `ux-accessibility-checklist.md`:
 - Don't generate a new "Medtronic-style" logo/wordmark with an LLM or font — always use the
   bundled artwork.
 - Don't invent hex colors "close to" brand blue — use the exact tokens. If a needed value (like a
-  dark-mode-specific shade) genuinely isn't in `color-tokens.md` or `theme-presets.md`, say so and
+  dark-mode-specific shade) genuinely isn't in [color-tokens.md](./color-tokens.md) or [theme-presets.md](./theme-presets.md), say so and
   use the closest exact existing token rather than guessing a new one.
 - Don't center the logo in a dense layout, recolor it, or place it on a low-contrast background.
 - Don't use the Full-life Symbol as the only brand mark on a screen — pair it with the wordmark.

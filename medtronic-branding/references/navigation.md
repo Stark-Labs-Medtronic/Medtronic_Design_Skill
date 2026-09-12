@@ -7,7 +7,7 @@ verbatim as data. Figma component links from the source are preserved as citatio
 
 ## Top nav (website-style shell)
 
-- **Flat header:** 1440×121px (64px header + 56px nav row, per `global-header.md`'s 64px hard
+- **Flat header:** 1440×121px (64px header + 56px nav row, per [global-header.md](./global-header.md)'s 64px hard
   rule — see that file's reconciling note; this is not a violation of it), 1px inside border, no
   fill specified (transparent/inherits page bg).
 - **Floating header:** same 1440×121px footprint, fill `#F5F5F5` (`General.Surface.level 1`), 1px
@@ -16,7 +16,7 @@ verbatim as data. Figma component links from the source are preserved as citatio
   (stacked, low-to-high blur — gives a soft "floating card" elevation look).
 - Can optionally open a **flyout menu** with multiple levels of links (subnav). Subnav items have
   hover/active/default visual states (no new tokens beyond the standard interactive-state colors
-  in `ui-design-system-colors.md`).
+  in [ui-design-system-colors.md](./ui-design-system-colors.md)).
 
 ## Side nav (web app-style shell)
 
@@ -40,7 +40,7 @@ Rules:
 - Never shown on the Home or primary landing page — only on second-level pages and deeper.
 - The current page is **not** shown as a clickable crumb — the trail ends in a bare `/`, and the
   current page's title displays immediately below the breadcrumb bar using the page-title text
-  style (`h1`/`.txt07-headline`, see `typography.md`).
+  style (`h1`/`.txt07-headline`, see [typography.md](./typography.md)).
 - Every segment in the trail is clickable and navigates to that level.
 
 ## Tabs
@@ -87,7 +87,7 @@ exact size/color tokens — but the real `mdt-app-footer.css` (bundled at
 [assets/code-templates/html-css-framework/css/mdt-app-footer.css](../assets/code-templates/html-css-framework/css/mdt-app-footer.css))
 confirms the footer is a **dark surface with white text** (`--mdtTextWhite`, white-bordered
 dividers, hover links turn `--mdtTextLinkDkBg` `#86A9FF` with a dashed underline) — this
-corroborates the white-logo-on-footer guidance in `app-header-logo-lockup.md` over the
+corroborates the white-logo-on-footer guidance in [app-header-logo-lockup.md](./app-header-logo-lockup.md) over the
 navy-text-showing reference screenshot flagged there as a likely mismatch.
 
 Two working footer HTML examples are bundled at

@@ -118,7 +118,7 @@ variant.
   (`simplified-symbol-electric-blue.svg`, `simplified-symbol-navy.svg`,
   `simplified-symbol-white.svg`). See [application-icons.md](./application-icons.md) for usage
   rules. This entry previously said the file was "not included in any of the source zips in this
-  workspace," which was false — corrected, logged in `SKILL.md`'s Contradiction Ledger.
+  workspace," which was false — corrected, logged in [SKILL.md](../SKILL.md)'s Contradiction Ledger.
 
 Assets: [`assets/symbol/`](../assets/symbol/) (`symbol-full-color`, `symbol-full-color-reverse`,
 `symbol-white`, `symbol-black`, plus one-color `symbol-electric-blue` / `symbol-light-blue` /
@@ -269,7 +269,7 @@ Be upfront about what genuinely isn't covered rather than inventing plausible-so
 - **The exact dark-mode desaturated Electric Blue value — resolved for product UI, still open for
   marketing.** These guidelines state the rule ("For dark mode, we use less saturated Electric
   Blue to improve legibility") without a hex value for marketing/print dark surfaces (Navy Dark
-  preset still uses the exact unmodified `#1010EB` there — see `theme-presets.md`). For
+  preset still uses the exact unmodified `#1010EB` there — see [theme-presets.md](./theme-presets.md)). For
   product/app UI specifically, the separate Medtronic UI Design System *does* have an official
   dark-mode blue (`#4A7DFF`) — see [dark-mode-ui-colors.md](./dark-mode-ui-colors.md) and the
   App Dark Mode preset in `theme-presets.md`. Don't assume the two contexts share one answer

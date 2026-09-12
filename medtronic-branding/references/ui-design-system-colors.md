@@ -6,7 +6,7 @@ to this skill directly by a user with authenticated access, pasted verbatim as d
 detailed, product/app-UI-specific token set than the Brand Central marketing colors in
 [color-tokens.md](./color-tokens.md). Use this file for the actual token values behind any
 `General.*` / `Text & Icon.*` / `Standard colors.*` name you see referenced elsewhere in this
-skill (including the still-unresolved-looking aliases in `dark-mode-ui-colors.md` — most of those
+skill (including the still-unresolved-looking aliases in [dark-mode-ui-colors.md](./dark-mode-ui-colors.md) — most of those
 are now resolved below).
 
 ## Action / interactive
@@ -16,7 +16,7 @@ are now resolved below).
 | `General.Interface.Action` | `#1010EB` | Electric Blue — controls/components users can interact with |
 | `General.Interface.Action hover` | `#0C0CA5` | Button hover state |
 | `General.Interface.Action active` | `#140F4B` | |
-| `General.Interface.Action: secondary` | `#1010EB` | Non-primary (secondary/outline) buttons in **light mode**: Electric Blue text/icon/border on a transparent fill — see `sizing-standard.md` §8's `.btn-secondary` variant. For the dark-mode equivalent (white text/icon/border), see `dark-mode-ui-colors.md`'s own Action:secondary entry |
+| `General.Interface.Action: secondary` | `#1010EB` | Non-primary (secondary/outline) buttons in **light mode**: Electric Blue text/icon/border on a transparent fill — see [sizing-standard.md](./sizing-standard.md) §8's `.btn-secondary` variant. For the dark-mode equivalent (white text/icon/border), see `dark-mode-ui-colors.md`'s own Action:secondary entry |
 | `General.Interface.Focus` | `#ED7008` | Focus ring/outline — note this differs from the dark-mode Focus color (`#FFAD00`) |
 
 ## Surface (backgrounds)
@@ -152,7 +152,7 @@ Electric Blue, Navy Blue, Light Blue, Pink, Orange, Lavender, Green, Purple, Tea
   "one of several," which isn't true here.
 - Don't lead with Electric Blue in a **multi-series/multi-color chart** — lead with Navy Blue,
   then continue in the preferred order above (Light Blue → Pink → Orange → Lavender → Green →
-  Purple → Teal → Red → Brown). See the Contradiction Ledger in `SKILL.md` — this bullet used to
+  Purple → Teal → Red → Brown). See the Contradiction Ledger in [SKILL.md](../SKILL.md) — this bullet used to
   read as self-contradictory (Electric Blue for "single-data-point" vs. "only one data source" in
   the same breath); split into three unambiguous cases above.
 - Don't use Navy Blue alone in a chart — it reads as near-black.
@@ -214,7 +214,7 @@ links, buttons, or icons (use the Action/Text-Icon/Semantic tables above for tho
 | 100 | `#24140A` | `#1C2A0A` | `#150C3E` | `#082542` | `#140F4B` | `#331D05` | `#390120` | `#320A2F` | `#3B000B` | `#002922` |
 
 `Standard colors.Misc.navy` = `#170F5F` (the same on-screen/app-header navy documented in
-`app-header-logo-lockup.md` — good cross-validation from a second, independent source page) and
+[app-header-logo-lockup.md](./app-header-logo-lockup.md) — good cross-validation from a second, independent source page) and
 `Standard colors.Misc.orange` = `#ED7008` (same as `General.Interface.Focus` above).
 
 ## Design tokens (raw JSON, tint stacks only)

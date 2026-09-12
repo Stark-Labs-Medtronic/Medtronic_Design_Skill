@@ -23,7 +23,7 @@ icon padding, small badges, or tight inline gaps where 8px would feel too loose.
 - Container padding: **24–40px**, so bordered cards/sections stay clearly distinguishable
   (matters most for low-vision users).
 - This independently reinforces Medtronic's own composition rule already in
-  `brand-guidelines.md`: "use the grid with a multiple of 4 units" — the 8px grid here is a
+  [brand-guidelines.md](./brand-guidelines.md): "use the grid with a multiple of 4 units" — the 8px grid here is a
   (compatible) refinement of that for spacing specifically, not a contradiction of it.
 
 ```css
@@ -41,11 +41,11 @@ generic fallback only where no official Medtronic spec covers the value.
 
 > **`[MANDATORY]` Spacing tokens are never asset dimensions.** `--space-1: 4px` is the tightest
 > *gap* in the system, not a size. Never apply any `--space-*` value as the width or height of a
-> logo, lockup, Symbol, or icon — those come from `sizing-standard.md` §0. A logo height below 15px
+> logo, lockup, Symbol, or icon — those come from [sizing-standard.md](./sizing-standard.md) §0. A logo height below 15px
 > means a spacing token was read as a dimension.
 >
 > Note also that `--space-3` (12px) and `--space-8` (48px) have **no** Medtronic equivalent in
-> `composition.md`'s official scale — prefer the official tiers where one applies.
+> [composition.md](./composition.md)'s official scale — prefer the official tiers where one applies.
 
 ## 2. Touch targets — minimum interactive size
 
@@ -64,7 +64,7 @@ not Recommended-default.
 [accessibility.md](./accessibility.md) instead**: 48×48px is a hard minimum for essential
 interactive elements, non-essential elements need 32×32px of unshared spacing, and a 24×24px icon
 button is fine only with a 4px margin. The tiers above remain a valid generic fallback only when
-nothing in `accessibility.md` covers the case.
+nothing in [accessibility.md](./accessibility.md) covers the case.
 
 ## 3. Responsive breakpoints
 

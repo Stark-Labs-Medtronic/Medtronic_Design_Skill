@@ -34,7 +34,7 @@ cross-validated against — corrected. If you write `max-width` queries instead,
 the opposite pixel order (widest first) or later rules silently win over earlier ones.
 
 This **supersedes** the generic 3-tier breakpoint convention previously documented in
-`layout-and-spacing.md` §3 for anything built to this Design System — use these four exact
+[layout-and-spacing.md](./layout-and-spacing.md) §3 for anything built to this Design System — use these four exact
 tiers/pixel values instead of the simplified generic ones.
 
 ## Grid and spacing scale
@@ -44,7 +44,7 @@ type) may align to a 4px grid instead.
 
 > **`[MANDATORY]` These are gap/padding/margin values only.** Never use a value from this table as
 > the width or height of a logo, lockup, Symbol, or icon. Brand-asset dimensions come from
-> `sizing-standard.md` §0 and nowhere else — a 4px logo is always a bug.
+> [sizing-standard.md](./sizing-standard.md) §0 and nowhere else — a 4px logo is always a bug.
 
 | Spacing | Value | Sass variable |
 | --- | --- | --- |

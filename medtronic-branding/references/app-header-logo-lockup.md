@@ -3,7 +3,7 @@
 **Source:** Medtronic's internal UI Design System (Zeroheight, "Logo" page) — handed to this
 skill directly by a user with authenticated access. This is the **product/app UI-specific**
 logo guidance (header bars, favicons, app-name lockups), complementing — and in one important
-place, correcting — the Brand Central identity rules in `brand-guidelines.md`.
+place, correcting — the Brand Central identity rules in [brand-guidelines.md](./brand-guidelines.md).
 
 ## Critical correction: logo color for on-screen headers
 
@@ -54,7 +54,7 @@ Two documented layout patterns for pairing the Medtronic logo with an app's own 
 - Divider pipe: low-emphasis black (light gray), not full-strength black.
 - **Don't** use navy-blue-colored or thin-weight fonts for the application name. `[MANDATORY]`
   **Scope: this rule governs the inline horizontal desktop lockup only** (logo | App Name on one
-  baseline). It does **not** govern page headings — `h1`–`h3` are **Bold** per `typography.md`, and
+  baseline). It does **not** govern page headings — `h1`–`h3` are **Bold** per [typography.md](./typography.md), and
   that is not a conflict. It also does not govern the mobile stacked lockup below, which has its own
   explicit spec.
 - **Don't** pair the logo+tagline lockup together with an application name in the same header —
@@ -63,7 +63,7 @@ Two documented layout patterns for pairing the Medtronic logo with an app's own 
 **Mobile stacked:** Medtronic logo stacked above the application name.
 
 - Medtronic logo: **15px tall** in this stacked/mobile arrangement — an exact, documented pixel
-  value (contrast with `sizing-standard.md`'s own Compact-tier range of 24–32px, which is this
+  value (contrast with [sizing-standard.md](./sizing-standard.md)'s own Compact-tier range of 24–32px, which is this
   skill's own engineering recommendation for a *generic* header logo; 15px is Medtronic's own
   specific spec for this *particular* stacked mobile lockup pattern — don't average the two or
   treat them as interchangeable).
@@ -84,7 +84,7 @@ Two documented layout patterns for pairing the Medtronic logo with an app's own 
 > | Stacked (mobile): logo above app name | `.txt05-headline` — Bold, 24px, navy `#170F5F` |
 >
 > Pick the arrangement first, then take that row's style. Never blend them, and never apply the
-> desktop prohibition to the stacked lockup or vice versa. Logged in `SKILL.md`'s Contradiction
+> desktop prohibition to the stacked lockup or vice versa. Logged in [SKILL.md](../SKILL.md)'s Contradiction
 > Ledger.
 
 ## Logo combination hierarchy
@@ -95,4 +95,4 @@ principles already covered in `brand-guidelines.md` (clear space, relative sizin
 competing elements, legibility) — no new numeric specs beyond what's captured above were
 extractable from the diagrams provided. For the full visual reference, Brand Central's
 downloadable logo assets remain the canonical source (see `brand-guidelines.md` and
-`asset-manifest.md`).
+[asset-manifest.md](./asset-manifest.md)).

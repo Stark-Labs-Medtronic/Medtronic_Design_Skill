@@ -18,7 +18,7 @@ never changes, mobile included.
 > [mdt-app-template.css](../assets/code-templates/html-css-framework/css/mdt-app-template.css):
 > `grid-template-rows: 64px 56px` once a nav row is present, ≈120px + a 1px border ≈ 121px). A page
 > with both a header and a below-header nav row is not a violation of the 64px rule — the rule
-> governs the header row in isolation. Logged in `SKILL.md`'s Contradiction Ledger.
+> governs the header row in isolation. Logged in [SKILL.md](../SKILL.md)'s Contradiction Ledger.
 
 ## Two header styles
 
@@ -30,7 +30,7 @@ be white, gray, or transparent in either style.
 | **Application style** | Expands to 100% of viewport width | Edge-to-edge; hamburger menu (left) toggles the side nav; avatar component (right) opens a popover (profile / user prefs / log out) |
 | **Website style** | Has a max-width | Content centered, with auto-expanding left/right margins |
 
-App name is optional but recommended next to the logo — see `app-header-logo-lockup.md` for the
+App name is optional but recommended next to the logo — see [app-header-logo-lockup.md](./app-header-logo-lockup.md) for the
 exact logo+app-name lockup measurements (baseline alignment, cap-height matching).
 
 ## Responsive behavior

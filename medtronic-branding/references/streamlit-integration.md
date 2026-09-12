@@ -73,7 +73,7 @@ font = "sans-serif"
 > `font-weight: 700` on headings **is** acceptable when the real font is missing — see the
 > fallback caveat in [typography.md](./typography.md).
 
-### Full dark mode instead (see `theme-presets.md`)
+### Full dark mode instead (see [theme-presets.md](./theme-presets.md))
 
 If the whole app (not just the sidebar) should be dark, use one of these instead of the light one
 above — don't mix light `[theme]` with a dark sidebar and call it "dark mode".
@@ -211,7 +211,7 @@ SVGs for places you render freely with `st.markdown`.
 ## 5. Data viz colors
 
 For `st.bar_chart` / `st.line_chart` / Altair/Plotly charts, pass an explicit brand color
-sequence instead of the default palette — per `ui-design-system-colors.md`'s Do's/Don'ts, a
+sequence instead of the default palette — per [ui-design-system-colors.md](./ui-design-system-colors.md)'s Do's/Don'ts, a
 **multi-series chart leads with Navy Blue, not Electric Blue** (Electric Blue is reserved for
 single-data-point charts), then continues in the documented preferred order:
 
@@ -241,10 +241,10 @@ claiming coverage:
 
 | Spec | Gap |
 | --- | --- |
-| `ui-components.md` badge: 99+ overflow, 24×24, 2px top-right offset | `st.badge` has no overflow or offset control |
-| `overlays-and-feedback.md` modal: size tiers + 3-layer shadow | `st.dialog` offers `width` only, no shadow control |
-| `navigation.md` tabs: filled-vs-outline 56px variants | `st.tabs` has one visual style |
-| `composition.md` exact 8px padding | Container padding is fixed — see the spacing table in `streamlit-layout.md` |
+| [ui-components.md](./ui-components.md) badge: 99+ overflow, 24×24, 2px top-right offset | `st.badge` has no overflow or offset control |
+| [overlays-and-feedback.md](./overlays-and-feedback.md) modal: size tiers + 3-layer shadow | `st.dialog` offers `width` only, no shadow control |
+| [navigation.md](./navigation.md) tabs: filled-vs-outline 56px variants | `st.tabs` has one visual style |
+| [composition.md](./composition.md) exact 8px padding | Container padding is fixed — see the spacing table in [streamlit-layout.md](./streamlit-layout.md) |
 
 For these, use the native widget and accept the approximation, or state plainly that exact fidelity
 needs React. **Don't inject CSS against Streamlit's internal class names** — they aren't a public API

@@ -169,4 +169,4 @@ A specialized text input for search/filtering. Pill-shaped (`border-radius: 9999
   Medium (global headers / smaller screens), Small (toolbars for data-table/list search) — exact
   pixel sizes for Medium/Small weren't given in the source text.
 - Used extensively inside the Global Header, Website header, and Application Shell components —
-  confirms the search field's home is the header, per `global-header.md`.
+  confirms the search field's home is the header, per [global-header.md](./global-header.md).
