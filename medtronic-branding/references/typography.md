@@ -28,29 +28,18 @@ Base document: `html { font-size: 16px; line-height: 30px; }`, `body` uses `Aven
 color `var(--mdtText)` (`rgba(0,0,0,0.77)` — the "77% black" body-text rule already documented in
 `ui-design-system-colors.md`, confirmed byte-for-byte from source code).
 
-## `[MANDATORY]` Headlines are Bold — resolving a conflict between Medtronic's own sources
+## `[MANDATORY]` Headlines are Bold
 
-Medtronic ships **three** sources that disagree about headline weight. This is a real contradiction
-in the source material, not an error in this skill:
+Brand Central: "Use **Regular, Demi, or Bold** weight for headlines; **avoid Thin** weight if it
+hurts legibility." Thin at 44–72px is the weight most prone to legibility failure — thin strokes at
+display size are exactly the case that warning is about, and it fails hardest for the low-vision
+and time-pressured clinical users much of this skill's output serves.
 
-| Source | Says | Authority |
-| --- | --- | --- |
-| **Brand Central guidelines** (`brand-guidelines.md`) | "Use **Regular, Demi, or Bold** weight for headlines; **avoid Thin** weight if it hurts legibility" | Brand rule |
-| **UI Design System — Colors page** (`ui-design-system-colors.md`) | "Do use large **thin** fonts … for headlines" | Styleguide prose |
-| **`mdt-variables.css`** (HTML/CSS Framework starter code) | `h1,h2,h3 { font-family: "AvenirNextWorld-Thin" }` | Framework default |
-
-**Resolution: headlines use `AvenirNextWorld-Bold`.** Brand Central is the higher authority on a
-brand question than framework starter code, and it explicitly sanctions Bold while explicitly
-cautioning against Thin. Thin at 44–72px is also the weight most prone to legibility failure — thin
-strokes at display size are exactly the case Brand Central's "avoid Thin if it hurts legibility"
-warning is about, and it fails hardest for the low-vision and time-pressured clinical users much of
-this skill's output serves.
-
-> **The bundled `mdt-variables.css` still ships Thin** — it is vendored Medtronic source and is kept
-> byte-accurate for provenance. Apply
-> [`css/mdt-typography-override.css`](../assets/code-templates/html-css-framework/css/mdt-typography-override.css)
-> **after** it to get the Bold headings. If you are writing fresh CSS rather than using the starter
-> kit, just follow the matrix below directly.
+Medtronic's HTML/CSS Framework starter kit originally shipped Thin for `h1`–`h3` and the named
+headline/display classes. This skill uses `AvenirNextWorld-Bold` there instead — a documented
+**Local Override** (see the table in `SKILL.md`), baked directly into the bundled
+`mdt-variables.css` rather than layered on top of it, so there's one file to read instead of two.
+If you're writing fresh CSS rather than using the starter kit, just follow the matrix below.
 
 ## `[MANDATORY]` Never express weight with `font-weight`
 
@@ -127,30 +116,28 @@ heading under a Bold `h1` reads as clearer hierarchy than two Bold sizes competi
 ## Named utility text styles (`txt01`–`txt09`)
 
 A parallel, more granular scale used for non-heading text (captions, eyebrows, body copy at
-different densities, buttons, and large display/marketing text). **The `Font` column below is the
-weight to use — headline/display styles are Bold per the resolution above. The `Vendored CSS` column
-records what the untouched `mdt-variables.css` ships, so the two are never confused.**
+different densities, buttons, and large display/marketing text).
 
-| Class | Font | Size | Vendored CSS | Notes |
-| --- | --- | --- | --- | --- |
-| `.txt01-caption` | Regular | 12px | Regular | |
-| `.txt01-caption_alt` | Italic | 12px | Italic | |
-| `.txt01-eyebrow` | Demi | 12px | Demi | Uppercase, 1.3px letter-spacing, `--mdtTextLow` color |
-| `.txt01-label` | Regular | 12px | Regular | Uppercase |
-| `.txt02-body` | Regular | 14px | Regular | `--mdtText` color |
-| `.txt02-eyebrow` | Demi | 14px | Demi | Uppercase, 1.5px letter-spacing, `--mdtTextLow` color |
-| `.txt02-button` | Demi | 14px | Demi | Small-button label text |
-| `.txt03-body` | Regular | 16px | Regular | `--mdtText` color |
-| `.txt03-button` | Demi | 16px | Demi | Default-button label text, 0.6px letter-spacing |
-| `.txt04-body` | Regular | 20px | Regular | `--mdtText` color, line-height 1.75 |
-| `.txt04-headline` | Regular | 20px | Regular | `--mdtTextPrimary` color — smallest headline, stays Regular |
-| `.txt05-body` | Regular | 24px | Regular | `--mdtText` color |
-| `.txt05-headline` | **Bold** | 24px | Thin | `--mdtTextPrimary` color |
-| `.txt06-headline` | Regular | 32px | Regular | `--mdtTextPrimary` color |
-| `.txt06-headline_bold` | **Bold** | 32px | *(was `_thin`, Thin)* | `--mdtTextPrimary` color |
-| `.txt07-headline` | **Bold** | 44px | Thin | `--mdtTextPrimary` color |
-| `.txt08-headline` | **Bold** | 56px | Thin | `--mdtTextPrimary` color |
-| `.txt09-display` | **Bold** | 72px | Thin | `--mdtTextPrimary` color, block-level |
+| Class | Font | Size | Notes |
+| --- | --- | --- | --- |
+| `.txt01-caption` | Regular | 12px | |
+| `.txt01-caption_alt` | Italic | 12px | |
+| `.txt01-eyebrow` | Demi | 12px | Uppercase, 1.3px letter-spacing, `--mdtTextLow` color |
+| `.txt01-label` | Regular | 12px | Uppercase |
+| `.txt02-body` | Regular | 14px | `--mdtText` color |
+| `.txt02-eyebrow` | Demi | 14px | Uppercase, 1.5px letter-spacing, `--mdtTextLow` color |
+| `.txt02-button` | Demi | 14px | Small-button label text |
+| `.txt03-body` | Regular | 16px | `--mdtText` color |
+| `.txt03-button` | Demi | 16px | Default-button label text, 0.6px letter-spacing |
+| `.txt04-body` | Regular | 20px | `--mdtText` color, line-height 1.75 |
+| `.txt04-headline` | Regular | 20px | `--mdtTextPrimary` color — smallest headline, stays Regular |
+| `.txt05-body` | Regular | 24px | `--mdtText` color |
+| `.txt05-headline` | **Bold** | 24px | `--mdtTextPrimary` color |
+| `.txt06-headline` | Regular | 32px | `--mdtTextPrimary` color |
+| `.txt06-headline_bold` | **Bold** | 32px | `--mdtTextPrimary` color |
+| `.txt07-headline` | **Bold** | 44px | `--mdtTextPrimary` color |
+| `.txt08-headline` | **Bold** | 56px | `--mdtTextPrimary` color |
+| `.txt09-display` | **Bold** | 72px | `--mdtTextPrimary` color, block-level |
 
 > `.txt06-headline_thin` is **renamed to `.txt06-headline_bold`** so the class name doesn't lie about
 > its weight. If a project already ships markup using `_thin`, keep an alias rather than silently
@@ -170,8 +157,6 @@ The headline **color** rule is settled and unchanged: headlines are `#170F5F`
 (`--mdtTextPrimary`, matching the on-screen-header navy from `app-header-logo-lockup.md` — a third
 independent source confirming that hex), not the plain `#140F4B` Navy token.
 
-The headline **weight** half of `ui-design-system-colors.md`'s "Do use large thin fonts and navy blue
-text color for headlines" is **superseded** — headlines use `AvenirNextWorld-Bold`, per Brand
-Central's explicit "Use Regular, Demi, or Bold weight for headlines; avoid Thin weight if it hurts
-legibility." See the resolution section at the top of this file and the Contradiction Ledger in
-`SKILL.md`. The color half of that rule still stands.
+The headline **weight** is `AvenirNextWorld-Bold`, per Brand Central's explicit "Use Regular, Demi,
+or Bold weight for headlines; avoid Thin weight if it hurts legibility." See the resolution section
+at the top of this file.

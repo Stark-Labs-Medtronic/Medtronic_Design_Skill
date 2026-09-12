@@ -59,11 +59,6 @@ The standard "lead with blue and white" look the guidelines describe as the defa
 | Secondary / disclaimer text | Text.Normal.low (`--mdtTextLow`) | `rgba(0, 0, 0, 0.55)` |
 | Divider / border | Navy at low opacity | `rgba(20, 15, 75, 0.12)` *(structural opacity of the Navy token, not a new hue)* |
 
-> **Corrected:** body text was previously listed as `#3C3C3C`. The real value is
-> `rgba(0, 0, 0, 0.77)` (`--mdtText`), confirmed byte-for-byte in `mdt-variables.css`. `#3C3C3C` was
-> an approximation and failed `design-intuition.md`'s own "body is 77% black" pre-flight box. Logged
-> in `SKILL.md`'s Contradiction Ledger.
-
 **Assets to use:** logo = `assets/logos/wordmark/medtronic-logo-navy-digital.svg` (`#170F5F`, the
 on-screen variant) · symbol (if used) = `assets/symbol/symbol-full-color.svg` · icons = **Carbon**,
 colored via `color: var(--text)`; `assets/icons/thematic/` (blue) for brand/editorial moments.

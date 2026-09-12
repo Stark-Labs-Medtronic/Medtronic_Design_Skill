@@ -33,7 +33,7 @@ Bundled at `assets/symbol/mobile-app-icon/`:
 | File | Fill color (verified via grep) | Notes |
 | --- | --- | --- |
 | `simplified-symbol-electric-blue.svg` | `#1010EB` | Matches the standard Electric Blue token exactly |
-| `simplified-symbol-navy.svg` | `#140E4B` | **Off by one character from the standard Navy token `#140F4B`** (`E` vs `F`) — likely an export-tool rounding artifact in the source file, not re-derived/corrected here per this skill's no-fabrication rule. If pixel-exact brand navy matters, verify with Global Brand before shipping, or substitute the standard `#140F4B` fill. |
+| `simplified-symbol-navy.svg` | `#140F4B` | Matches the standard Navy token exactly |
 | `simplified-symbol-white.svg` | `#FFFFFF` | |
 
 This is a **different asset** from the general-purpose Symbol files in `assets/symbol/` (e.g.

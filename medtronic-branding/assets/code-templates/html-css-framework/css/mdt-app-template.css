@@ -9,14 +9,6 @@
 @import "mdt-app-footer.css";
 @import "mdt-components.css";
 
-/* ADDED BY THE medtronic-branding SKILL (not part of Medtronic's original kit).
-   Overrides headline weight from Thin to AvenirNextWorld-Bold, per Brand Central's
-   "Use Regular, Demi, or Bold weight for headlines; avoid Thin weight if it hurts
-   legibility." Must stay LAST so it wins the cascade over mdt-variables.css.
-   Remove this line to restore the stock Thin headings.
-   See references/typography.md for the full resolution. */
-@import "mdt-typography-override.css";
-
 /* Screen-reader-only hides content from viewer, 
 but content is still read by screen readers 
 for accessibility compliance */

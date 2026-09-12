@@ -25,14 +25,10 @@ contexts per the original guidelines).
 ## Logo placement
 
 - **Primary/header logo**: top header bar, navy digital text color `#170F5F` — the SVG above.
-- **Optional footer logo**: on a navy-blue footer background, use the logo **+ tagline**
-  lockup, white text. A reference preview image was provided for this
-  (`assets/logos/wordmark/uidesignsystem-footer-logo-reference.png`), but its actual pixel
-  content shows navy text, not white — **this looks like a caption/asset mismatch on the source
-  page**, not a confirmed white-on-navy asset. Don't treat that PNG as verified white-text
-  artwork; use the already-bundled, confirmed `assets/logos/tagline-lockup-horizontal/medtronic-logo-tagline-white.svg`
-  for an actual white-on-navy footer lockup instead, and flag the mismatch if the source page is
-  ever revisited.
+- **Optional footer logo**: on a navy-blue footer background, use the logo **+ tagline** lockup,
+  white text —
+  [`assets/logos/tagline-lockup-horizontal/medtronic-logo-tagline-white.svg`](../assets/logos/tagline-lockup-horizontal/medtronic-logo-tagline-white.svg)
+  (confirmed `fill:#FFFFFF` in the file itself).
 
 ## Favicon
 

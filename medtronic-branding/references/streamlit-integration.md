@@ -64,8 +64,8 @@ font = "sans-serif"
 >    `[server] enableStaticServing = true`.
 > 2. Load `@font-face` declarations for `AvenirNextWorld`, `-Bold`, `-Demi`, and `-Italic` via a
 >    single `st.markdown(..., unsafe_allow_html=True)` at the top of the entrypoint page — mirror the
->    real declarations in `mdt-variables.css`, plus the `-Bold` face from
->    `mdt-typography-override.css`. Headings use `AvenirNextWorld-Bold`.
+>    real declarations in `mdt-variables.css` (it includes `-Bold`). Headings use
+>    `AvenirNextWorld-Bold`.
 > 3. **Then change `font` to `"Avenir Next World"`** in every `config.toml` block above.
 >
 > Only leave `font = "sans-serif"` if the project genuinely can't self-host — and in that case tell
@@ -130,8 +130,9 @@ folder first. Use the white wordmark variant instead if the header/sidebar backg
 navy (per [brand-guidelines.md](../references/brand-guidelines.md) contrast rules). `st.logo()`
 sizes the image itself (fixed internal height, ~32px) — if you need the "hero" scale from
 [sizing-standard.md](./sizing-standard.md) (e.g. 60px+ for a landing page), render it with
-`st.image(..., width=...)` instead and compute the width from the logo's real 2.741:1 ratio
-rather than guessing a width that stretches it.
+`st.image(..., width=...)` instead and compute the width from `medtronic-logo-navy-digital.svg`'s
+real **6.091:1** ratio (not the plain wordmark's 2.741:1) rather than guessing a width that
+stretches it.
 
 ## 3. Buttons
 

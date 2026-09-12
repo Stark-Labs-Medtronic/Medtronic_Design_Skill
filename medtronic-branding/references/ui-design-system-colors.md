@@ -88,11 +88,8 @@ light-mode semantic tokens") — dark mode uses these exact same values for sema
 
 ### Typography color Do's and Don'ts
 
-- Do use large fonts and navy blue text color for headlines. **Weight: use `AvenirNextWorld-Bold`.**
-  (The original styleguide wording here was "large *thin* fonts". That half is **superseded** —
-  Brand Central says "Use Regular, Demi, or Bold weight for headlines; avoid Thin weight if it hurts
-  legibility." See the resolution in [typography.md](./typography.md) and the Contradiction Ledger in
-  `SKILL.md`. The navy-color half of the rule still stands: `#170F5F`.)
+- Do use large fonts and navy blue text color (`#170F5F`) for headlines. **Weight: use
+  `AvenirNextWorld-Bold`** — see the Weight Context Matrix in [typography.md](./typography.md).
 - Do use 77% black (`rgba(0,0,0,0.77)` — `Text & Icon.Normal.Standard`) for body text.
 - Do use Electric Blue (`#1010EB`) for links only.
 - Do use low-emphasis text for eyebrow text.

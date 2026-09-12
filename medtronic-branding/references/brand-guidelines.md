@@ -1,8 +1,9 @@
 # Medtronic Brand Guidelines — Condensed Reference
 
 Source: `1st Half Guidelines.docx`, `2nd Half Guidelines.docx`, `Style Guide.pdf` (Global Brand /
-Brand Central). This is a condensed, dev-oriented summary. For anything not covered here or for
-legal/regulatory copy review, defer to the full source documents in the `Archive/` folder.
+Brand Central), condensed into this dev-oriented summary — the originals aren't part of this
+skill. For anything not covered here, or for legal/regulatory copy review, that's a genuine gap:
+say so and point to Global Brand/Brand Central directly rather than guessing.
 
 ## Brand hierarchy (masterbrand rule)
 
@@ -50,8 +51,9 @@ From Medtronic's own "Logo Selection Guide" (bundled inside `coll-art-medtronic-
 - **Orientation**: `h` = horizontal, `v` = vertical (stacked). Plain English wordmark files have
   no orientation infix — there's only one arrangement of the wordmark itself; orientation only
   applies to lockups (logo+tagline, logo+Symbol).
-- **Language**: `en` (English), `ar` (Arabic), `zs` (Chinese) — not bundled in this skill; get
-  them from `art-logo-tag-all.zip` / `coll-art-medtronic-logos.zip` in `Archive/` if needed.
+- **Language**: `en` (English), `ar` (Arabic), `zs` (Chinese) — only the English wordmark is
+  bundled with this skill. A non-English wordmark is a genuine gap: say so and point to Global
+  Brand rather than approximating one.
 - **Usage**: `rgb` = digital screens, `cmyk` = standard print, `spot` = specialized print using a
   pre-mixed Pantone ink for precise, consistent color.
 - **Color**, per Medtronic's own guidance, verbatim: **`bl` (blue)** — "use blue on white or
@@ -66,18 +68,18 @@ From Medtronic's own "Logo Selection Guide" (bundled inside `coll-art-medtronic-
   Streamlit/web work**, falling back to `.png` only where SVG isn't supported.
 
 This confirms the format choice already made for every asset bundled in this skill (SVG primary,
-PNG fallback) and is the authoritative source if you're ever choosing among the unbundled
-`Archive/` files directly.
+PNG fallback).
 
 Both orientations of the logo+tagline lockup are bundled:
 [`assets/logos/tagline-lockup-horizontal/`](../assets/logos/tagline-lockup-horizontal/) (logo
 left, tagline wraps to its right — for wide headers/footers) and
 [`assets/logos/tagline-lockup-vertical/`](../assets/logos/tagline-lockup-vertical/) (logo on top,
 tagline below, left-aligned — for narrow sidebars, mobile layouts, or square social/app tiles).
-The source zip also has centered-stacked variants (`c`/`c1`) that look near-identical to the
-vertical one at a glance; they're not bundled since they don't add a meaningfully different
-layout option — get them from `art-logo-tag-all.zip` in `Archive/` if a centered-not-left-aligned
-stacked lockup is specifically needed.
+Medtronic's original source material also has centered-stacked variants (`c`/`c1`) that look
+near-identical to the vertical one at a glance; they're not bundled with this skill since they
+don't add a meaningfully different layout option. If a centered-not-left-aligned stacked lockup is
+specifically needed, that's a gap — say so rather than silently substituting the bundled vertical
+variant.
 
 ## Tagline rules ("engineering the extraordinary")
 
@@ -115,10 +117,8 @@ stacked lockup is specifically needed.
   [`assets/symbol/mobile-app-icon/`](../assets/symbol/mobile-app-icon/)
   (`simplified-symbol-electric-blue.svg`, `simplified-symbol-navy.svg`,
   `simplified-symbol-white.svg`). See [application-icons.md](./application-icons.md) for usage
-  rules. Note its navy fill is `#140e4b`, one character off the standard Navy token `#140F4B` — a
-  source-file artifact, flagged here rather than silently "corrected" in the asset itself. This
-  entry previously said the file was "not included in any of the source zips in this workspace,"
-  which was false — corrected, logged in `SKILL.md`'s Contradiction Ledger.
+  rules. This entry previously said the file was "not included in any of the source zips in this
+  workspace," which was false — corrected, logged in `SKILL.md`'s Contradiction Ledger.
 
 Assets: [`assets/symbol/`](../assets/symbol/) (`symbol-full-color`, `symbol-full-color-reverse`,
 `symbol-white`, `symbol-black`, plus one-color `symbol-electric-blue` / `symbol-light-blue` /
@@ -139,14 +139,13 @@ production favicon (white "M" on Electric Blue), per the UI Design System; see
   [`assets/fonts/avenir-next-world/*.ttf`](../assets/fonts/avenir-next-world/) (Regular, Italic,
   Thin, ThinIt, Demi, DemiIt, Bold, BoldIt) — self-host these directly rather than relying on a
   system-font fallback for any Medtronic-internal work. It remains a commercially licensed,
-  proprietary typeface: see "Typography and the license" below for what's required to redistribute
-  it **outside** this workspace, to a vendor or 3rd party.
+  proprietary typeface — see "Typography and the license" below.
 - Headlines are **sentence case**, never title case or ALL CAPS.
 - Use Regular, Demi, or Bold weight for headlines; avoid Thin weight if it hurts legibility.
-  `[MANDATORY]` **This skill resolves that to `AvenirNextWorld-Bold` for `h1`–`h3`.** This rule
-  outranks both the framework starter CSS (`mdt-variables.css`, which ships Thin) and the UI Design
-  System Colors page's "large thin fonts" prose — see the resolution at the top of
-  [typography.md](./typography.md).
+  `[MANDATORY]` **This skill resolves that to `AvenirNextWorld-Bold` for `h1`–`h3`.** The framework
+  starter CSS originally shipped Thin for headlines; this skill's `mdt-variables.css` bakes Bold in
+  directly instead, as a documented Local Override (see `SKILL.md`) — see the resolution at the top
+  of [typography.md](./typography.md).
 - Don't apply outlines/strokes to type. Don't use more than two colors/styles of emphasis in one
   block of text.
 - Body/disclaimer text colors: `#3C3C3C` (body), `#777777` (disclaimer/fine print) — see
@@ -155,30 +154,13 @@ production favicon (white "M" on Electric Blue), per the UI Design System; see
   backgrounds, or white on dark backgrounds. The electric-blue-to-blue gradient is allowed for
   **bold headlines ≥18pt on light backgrounds only**.
 
-### Typography and the license — redistributing outside this workspace
+### Typography and the license
 
-**The font files are already bundled and usable directly for Medtronic-internal work** — this
-section is corrected from an earlier revision that wrongly said the files weren't included; see
-`SKILL.md`'s Contradiction Ledger. It governs a narrower case: a vendor or 3rd party who needs the
-files **outside** Medtronic's own systems.
+The font files are already bundled and usable directly for Medtronic-internal work. Avenir Next
+World is a commercially licensed typeface, not free-to-use artwork — but this skill's scope is
+Medtronic-internal work only, so no license request or redistribution process is documented here.
 
-Avenir Next World is **not free-to-use artwork** — it's a commercially licensed typeface, and per
-`doc-avenir-next-world-agreement.docx` the license Medtronic holds *does* extend to vendors and
-3rd parties, but only after a specific process:
-
-1. The vendor/3rd party fills out the agreement doc with their name/email, their Medtronic
-   contact's name/email, and what the font will be used for.
-2. The vendor must confirm they have a confidentiality or service-level agreement with Medtronic.
-3. The vendor agrees to use the font **only on Medtronic materials** and to remove it from their
-   device(s) once the project or contract ends.
-4. The completed form is returned to Medtronic's Global Brand team, who then provisions the font
-   **to that vendor/3rd party** — not relevant when working from this workspace, where the files
-   already are.
-
-If a task is genuinely for a vendor/3rd party who doesn't have workspace access, tell them it
-requires filling out `doc-avenir-next-world-agreement.docx` and returning it to their Medtronic
-Global Brand contact, and that the font must be removed from their machine once the engagement
-ends. For prototyping contexts where self-hosting the real files isn't set up yet, this fallback
+For prototyping contexts where self-hosting the real files isn't set up yet, this fallback
 stack is a documented option — say explicitly that it's a substitute, not the real brand font:
 
 ```css
@@ -209,9 +191,10 @@ actions, e.g., search, close, download).
 
 Bundled: [`assets/icons/functional/`](../assets/icons/functional/) (286 SVGs, gray) and
 [`assets/icons/thematic/`](../assets/icons/thematic/) (91 SVGs, blue), plus **2,739 Carbon icons**
-at `assets/third-party/carbon-design-system/assets/icons/`. Full Medtronic icon set (all colors,
-plus AI source + PNG) is in `coll-icons-png-svg.zip` / `coll-icons-ai.zip` in `Archive/`
-if a specific icon or color variant isn't in the bundled subset.
+at `assets/third-party/carbon-design-system/assets/icons/`. The full Medtronic icon set (every
+color, plus AI vector source) isn't part of this skill — if a specific icon or color variant
+genuinely isn't in the bundled subset or Carbon's set, say so and point to Global Brand rather
+than hand-drawing or recoloring a substitute.
 
 ## Composition & layout
 

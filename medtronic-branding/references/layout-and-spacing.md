@@ -56,21 +56,15 @@ generic fallback only where no official Medtronic spec covers the value.
 | Safest cross-platform choice | 48×48px | Google Material Design — practitioner consensus is this is the more consistent choice when a product spans iOS + Android + web |
 
 Applies to buttons, icon buttons, tappable list items/rows, and nav links — not just literal
-`<button>` elements. **`[MANDATORY]` Correction, logged in `SKILL.md`'s Contradiction Ledger:**
-Medtronic's real default button (`sizing-standard.md` §8) is a **fixed 40px height** with
-**horizontal-only** padding (`padding: 0 1.5rem` — there is no vertical padding value, since height
-is set directly) — not the `12px 28px`/"~44–48px" figures this line previously (and wrongly)
-attributed to that section. That real 40px sits at this table's **Absolute-floor** tier, not the
-Recommended-default tier — it clears the general accessibility minimum but not Apple's 44px
-recommendation. The `12px 28px` figure is this file's *own* generic non-Medtronic fallback tier
-(§4 below), not the Medtronic spec — don't cite the two interchangeably.
+`<button>` elements. Medtronic's own default button (`sizing-standard.md` §8) is a fixed **40px**
+height, horizontal-padding-only (`0 1.5rem`) — that sits at this table's **Absolute-floor** tier,
+not Recommended-default.
 
-**Medtronic's own Digital Design System spec** (see [accessibility.md](./accessibility.md)) is
-more specific than the generic tiers above: **48×48px is a hard minimum** for essential
-interactive elements (primary CTAs, required-field inputs), non-essential elements may be visually
-smaller but need **32×32px** of unshared spacing between adjacent elements, and a small 24×24px
-icon button is fine only with a 4px margin on all sides. Prefer that spec over the generic tiers
-for anything built against this Design System.
+**For an actual Medtronic app, use the real official spec in
+[accessibility.md](./accessibility.md) instead**: 48×48px is a hard minimum for essential
+interactive elements, non-essential elements need 32×32px of unshared spacing, and a 24×24px icon
+button is fine only with a 4px margin. The tiers above remain a valid generic fallback only when
+nothing in `accessibility.md` covers the case.
 
 ## 3. Responsive breakpoints
 

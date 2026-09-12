@@ -61,7 +61,7 @@ preferred over solid hex for contrast consistency across varied dark backgrounds
 | `Text & Icon.Normal.Reduced` | `rgba(255, 255, 255, 0.7)` |
 | `Text & Icon.Normal.Disabled` | `rgba(255, 255, 255, 0.45)` |
 | `Text & Icon.Inverse.Emphasis` | `rgba(0, 0, 0, 0.9)` |
-| `Text & Icon.Inverse.Standard` | `rgba(0, 0, 0, 0.75)` |
+| `Text & Icon.Inverse.Standard` | `rgba(0, 0, 0, 0.77)` |
 | `Text & Icon.Inverse.Reduced` | `rgba(0, 0, 0, 0.55)` |
 | `Text & Icon.Inverse.Disabled` | `rgba(0, 0, 0, 0.3)` |
 | `Text & Icon.Normal.Accent` | `#DDE7FF` |

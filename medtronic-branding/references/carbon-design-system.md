@@ -223,23 +223,18 @@ Non-token spacing options also exist: `center` (fluidly center between two edges
 (one-sided growable/shrinkable space, typically asymmetric), `gutter` (space between the 12-column
 grid's columns specifically).
 
-## What's bundled, and what was deliberately excluded
+## What's bundled
 
-| Bundled | Not bundled | Why |
-| --- | --- | --- |
-| `pages/**/content.md` + `meta.json` (cleaned text + metadata, ~9MB, 356 pages per `catalog/manifest.json`'s `totalPages` and `catalog/REPORT.md`'s crawl count — was previously misstated as 350 here, self-contradicting this file's own opening line; note the actual on-disk `content.md` file count is 347, a residual crawl/dedup discrepancy not resolved by this doc fix, flagged for whoever next re-runs the crawl tooling) | `pages/**/page.html` (raw rendered DOM) | The raw HTML alone was **~997MB** — almost entirely duplicated inline SVG icon-gallery markup already available standalone in `assets/icons/`/`assets/pictograms/`. Pure bloat with no unique content over `content.md`. |
-| `assets/icons/*.svg` (2739 files), `assets/pictograms/*.svg` (1565 files) | — | The actual Carbon icon-baseline referenced by `application-icons.md` |
-| `assets/images/*`, `assets/documents/*` (IBM color palettes, Carbon builder tool, MCP extension), `assets/data/*` (`llms.txt`, Carbon's own AI-agent instructions) | — | Kept per explicit instruction to bundle the full crawl |
-| `catalog/*` (manifest.json, icons-manifest.json, pictograms-manifest.json, asset-index.json, external-resources.json, REPORT.md) | — | Indices needed to actually look up an icon/pictogram by name |
-| — | A handful of malformed page folders derived from broken links in Carbon's own site content (URLs with query strings that produced pathological folder names) | Explicitly flagged in the crawl's own `catalog/broken-links.json` as dead links, not real content |
-
-Use `catalog/icons-manifest.json` / `catalog/pictograms-manifest.json` to look up a specific icon's
-file path by name rather than guessing a filename.
+`assets/third-party/carbon-design-system/` contains: `pages/**/content.md` + `meta.json` (cleaned
+text + metadata for every crawled page — the raw `page.html` DOM is **not** bundled; use
+`content.md` instead), `assets/icons/` (2739 SVGs) + `assets/pictograms/` (1565 SVGs) — the actual
+icon baseline referenced by `application-icons.md`, `assets/images/`, `assets/documents/`,
+`assets/data/` (`llms.txt` etc.), and `catalog/` (`icons-manifest.json`,
+`pictograms-manifest.json`, `manifest.json`, `asset-index.json`, `external-resources.json`,
+`REPORT.md`) — the indices needed to look up an icon/pictogram by name rather than guessing a
+filename.
 
 ## Licensing note
 
-Carbon Design System is IBM's open-source project, published under the **Apache License 2.0**.
-This is separate from Medtronic's own proprietary brand assets bundled elsewhere in this skill —
-don't present Carbon icons/patterns as Medtronic-original work, and don't apply Medtronic's
-"never fabricate a brand fact" rule to Carbon content as if it were Medtronic's own (it's IBM's
-published, public documentation, reproduced here for reference/baseline purposes only).
+Carbon Design System is IBM's open-source project (Apache License 2.0), separate from Medtronic's
+own proprietary brand assets — don't present Carbon icons/patterns as Medtronic-original work.
