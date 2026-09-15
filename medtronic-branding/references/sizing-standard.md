@@ -19,7 +19,7 @@ lockup/icon files themselves.
    conventions (WCAG/platform touch-target minimums, typical header heights) and validated by
    rendering the actual assets in a real browser at these sizes (see the temp test app note at the
    bottom). They are **not** a rule copied from Medtronic's brand guidelines — the guidelines
-   don't specify exact pixel sizes (see the "Content gaps" note in `brand-guidelines.md`). Treat
+   don't specify exact pixel sizes (see the "Content gaps" note in [brand-guidelines.md](./brand-guidelines.md)). Treat
    these as this skill's own recommended defaults, adjustable per layout, not brand law.
 
 **Pick the context tier by visual isolation, not just DOM location.** A logo sitting alone in a
@@ -61,10 +61,10 @@ lockup — not a general small size.** There is no context in which a Medtronic 
 If you are about to write a logo height below 15px, you have picked up a **spacing** value by
 mistake. The usual culprits, all of which are gaps and padding, never asset dimensions:
 
-- `composition.md`'s `xxs | 4px | $spacing-xxs` — the first row of the spacing table
-- `layout-and-spacing.md`'s `--space-1: 4px` — the first CSS custom property in that file
+- [composition.md](./composition.md)'s `xxs | 4px | $spacing-xxs` — the first row of the spacing table
+- [layout-and-spacing.md](./layout-and-spacing.md)'s `--space-1: 4px` — the first CSS custom property in that file
 - Carbon's `$spacing-02 | 0.25rem | 4px`
-- `accessibility.md`'s "4px margin on all sides" — a *margin* on small icons, not a size
+- [accessibility.md](./accessibility.md)'s "4px margin on all sides" — a *margin* on small icons, not a size
 - The "4px sub-grid" note for icons and type — a *grid*, not a dimension
 - The leading digit of an aspect ratio (`4.289 : 1`) — a ratio, not pixels
 
@@ -93,7 +93,7 @@ Real aspect ratio (measured): **2.741 : 1** (width ÷ height) — e.g. `medtroni
 > `medtronic-logo-navy-digital.svg` instead — and that file's real, measured aspect ratio is
 > **6.091 : 1** (viewBox `438.5736084 × 72.0010681`), more than double the plain wordmark's ratio.
 > Using 2.741:1 to compute a header logo's width silently produces an asset less than half as wide
-> as it should be. Logged in `SKILL.md`'s Contradiction Ledger.
+> as it should be. Logged in [SKILL.md](../SKILL.md)'s Contradiction Ledger.
 >
 > | Context | Height | Resulting width (`-digital`, 6.091:1) |
 > | --- | --- | --- |
@@ -174,7 +174,7 @@ fixed ratio either — verified by inspecting multiple files (e.g. one sampled i
 set** — set only one dimension (height is usually more useful for aligning icons in a row of mixed
 content) and let width auto-compute per icon, or icons will stretch by a different, inconsistent
 amount. (Carbon icons are the one icon set in this skill that's genuinely square — see
-`carbon-design-system.md` §Sizing — don't apply this height-only rule to those.)
+[carbon-design-system.md](./carbon-design-system.md) §Sizing — don't apply this height-only rule to those.)
 
 | Context | Size (functional, height only) | Size (thematic, height only) |
 | --- | --- | --- |

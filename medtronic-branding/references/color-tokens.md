@@ -47,7 +47,7 @@ color (e.g., chart series, hover states, subtle backgrounds). Order is darkest (
 900"-ish) to lightest (index 9, "shade 50"-ish).
 
 **Light Blue family** (the `#0FC9F7` accent's tint stack — **not** the Medtronic Blues / Navy stack;
-for Navy and Electric Blue tints see the `Medtronic Blues` stack in `ui-design-system-colors.md`):
+for Navy and Electric Blue tints see the `Medtronic Blues` stack in [ui-design-system-colors.md](./ui-design-system-colors.md)):
 `#082542, #083C71, #0A5694, #0073B4, #009BDA, #0FC9F7, #48D6F9, #86E4FB, #C2F1FD, #E1F8FE`
 
 **Teal**:
@@ -59,23 +59,8 @@ for Navy and Electric Blue tints see the `Medtronic Blues` stack in `ui-design-s
 **Orange**:
 `#331D05, #4A2D00, #8C5300, #CC7A00, #F59300, #FFAD00, #FFC240, #FFD780, #FFEBBF, #FFF5DF`
 
-> **`[MANDATORY]` Three corrections to this section, logged in `SKILL.md`'s Contradiction Ledger:**
->
-> 1. The first stack was previously labelled "Navy / Blue family (anchors Electric Blue)". That was a
->    **mislabel** — those values are the **Light Blue** stack. Navy and Electric Blue live in the
->    separate `Medtronic Blues` stack. Going to this stack for a Navy tint gives the wrong hue family.
-> 2. Step 40 of that stack is **`#48D6F9`**, not `#49D6F9`. `ui-design-system-colors.md` is the UI
->    token source of record.
-> 3. The Teal stack's step 70 is **`#66FFE2`**, not `#67FFE2` — a one-character hex typo. Corrected
->    against `ui-design-system-colors.md`'s Teal table and its raw design-token JSON, both of which
->    already had the right value.
->
-> Orange is now the full 10 steps (was truncated at 9).
-
-> **Pink, Purple, Lavender, Red, and Brown tint stacks are already published in full** in
-> [ui-design-system-colors.md](./ui-design-system-colors.md) — read them there. (An earlier revision
-> of this file sent readers to `doc-color-palette-breakdown.pdf` in `Archive/`; that pointer was stale
-> and is no longer necessary.)
+**Pink, Purple, Lavender, Red, and Brown tint stacks are already published in full** in
+[ui-design-system-colors.md](./ui-design-system-colors.md) — read them there.
 
 ## Usage rules (from brand guidelines)
 

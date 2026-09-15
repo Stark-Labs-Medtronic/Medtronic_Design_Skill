@@ -1,6 +1,6 @@
 # Streamlit layout, alignment, and page structure
 
-`streamlit-integration.md` covers **theming** (colors, fonts, logo, buttons, icons). This file covers
+[streamlit-integration.md](./streamlit-integration.md) covers **theming** (colors, fonts, logo, buttons, icons). This file covers
 **structure** — page shell, columns, alignment, spacing, and the rules that keep a Streamlit app from
 looking like stacked widgets with no layout.
 
@@ -11,7 +11,7 @@ gestures at layout, defer here.
 
 Streamlit renders top-to-bottom in a single flow. Nothing enforces alignment, so the default outcome
 is a vertical stack of full-width widgets with inconsistent gaps and labels that don't share a
-baseline. Medtronic's own `composition.md` grid assumes CSS you don't control here. The rules below
+baseline. Medtronic's own [composition.md](./composition.md) grid assumes CSS you don't control here. The rules below
 translate that grid into Streamlit primitives.
 
 ## 1. Page shell `[MANDATORY]`
@@ -32,7 +32,7 @@ st.set_page_config(
 
 ### `layout` — choose deliberately `[ASK]` via the archetype question
 
-| Archetype (from `design-intuition.md`) | `layout` | Sidebar |
+| Archetype (from [design-intuition.md](./design-intuition.md)) | `layout` | Sidebar |
 | --- | --- | --- |
 | Product dashboard / tile-bento | `"wide"` | Optional — only if there is real navigation |
 | Clinical / data-dense tool | `"wide"` | `"expanded"` |
@@ -50,13 +50,13 @@ a ~730px content column, which is close to a comfortable reading measure.
 filters, or a mode switch. An app with three pages does not need a sidebar; `st.tabs` or
 `st.navigation` is the better fit.
 
-**Never add a colored sidebar as decoration.** See the anti-pattern rule in `theme-presets.md` — a
+**Never add a colored sidebar as decoration.** See the anti-pattern rule in [theme-presets.md](./theme-presets.md) — a
 navy sidebar next to a white content area is a *chosen* combination, never a default.
 
 ### The 64px header
 
-`global-header.md` mandates a 64px header on every platform. Streamlit has no native header slot, so
-build it as the first element and size the logo per `sizing-standard.md` §0:
+[global-header.md](./global-header.md) mandates a 64px header on every platform. Streamlit has no native header slot, so
+build it as the first element and size the logo per [sizing-standard.md](./sizing-standard.md) §0:
 
 ```python
 def brand_header(app_name: str):
@@ -78,7 +78,7 @@ def brand_header(app_name: str):
 ```
 
 Note the app name is **standard near-black, not navy and not thin** — that is the inline desktop
-lockup rule from `app-header-logo-lockup.md`. Serve static files from `static/` with
+lockup rule from [app-header-logo-lockup.md](./app-header-logo-lockup.md). Serve static files from `static/` with
 `[server] enableStaticServing = true` in `config.toml`.
 
 ## 2. Columns `[MANDATORY]`
@@ -193,7 +193,7 @@ Streamlit's internal classes breaks on every Streamlit upgrade, because those cl
 public API. The theme's own spacing is close enough to the 8px grid to be brand-acceptable.
 
 If a project genuinely requires exact `composition.md` spacing, say so explicitly and recommend
-React (`react-integration.md`) rather than fighting Streamlit's DOM.
+React ([react-integration.md](./react-integration.md)) rather than fighting Streamlit's DOM.
 
 ## 5. Multi-page structure
 

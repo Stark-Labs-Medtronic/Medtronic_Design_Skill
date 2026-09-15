@@ -10,7 +10,7 @@ copyright" sections for sentence-case headlines, active voice, acronym handling,
 and the legally-binding `™` placement and copyright-endnote rules. Apply those first; this file
 covers the craft layer they don't reach.
 
-**A documented gap to respect:** `brand-guidelines.md` records that Medtronic's **Brand voice /
+**A documented gap to respect:** [brand-guidelines.md](./brand-guidelines.md) records that Medtronic's **Brand voice /
 brand messaging** guidance was not captured in the source documents. So don't invent a "Medtronic
 tone of voice." Write clearly and follow the Style Guide defaults; if a task genuinely turns on
 brand tone, say so and point at Brand Central rather than filling the gap.
@@ -85,7 +85,7 @@ whether they're useful:
   associated with it ([ux-accessibility-checklist.md](./ux-accessibility-checklist.md)).
 - **Loading state — say what's loading** if it will take more than a moment. For streaming or
   agentic output, show partial results rather than a frozen spinner (already in
-  `ux-accessibility-checklist.md`'s AI-interaction section).
+  [ux-accessibility-checklist.md](./ux-accessibility-checklist.md)'s AI-interaction section).
 - **Destructive confirmations name the consequence**, not just the verb: "Delete 3 saved reports?
   This can't be undone."
 

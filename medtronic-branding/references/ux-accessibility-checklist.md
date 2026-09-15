@@ -8,7 +8,7 @@ archetypes. Bundled here because it's genuinely high-value and largely orthogona
 identity: these are fit-and-finish/accessibility/structure rules that apply regardless of which
 company's colors are on screen.
 
-**Precedence rule (same as `carbon-design-system.md`): Medtronic's own documented specs always
+**Precedence rule (same as [carbon-design-system.md](./carbon-design-system.md)): Medtronic's own documented specs always
 win where they overlap.** Notably: Medtronic's own [accessibility.md](./accessibility.md) already
 specifies **48×48px for essential interactive elements** and **32×32px minimum spacing for
 non-essential ones** — that is stricter than (and takes precedence over) the general WCAG 24×24px
@@ -22,7 +22,7 @@ tables — are WCAG 2.x shorthand carried over from this file's third-party sour
 a surface falls under `accessibility.md`'s APCA mandate, APCA is authoritative; treat a "4.5:1"
 figure here as a quick conservative floor, not this skill's actual contrast method.
 
-## Motion hygiene (tool-agnostic — complements `design-intuition.md`'s Motion section)
+## Motion hygiene (tool-agnostic — complements [design-intuition.md](./design-intuition.md)'s Motion section)
 
 - **Always honor `prefers-reduced-motion`.** When it matches, skip non-essential motion entirely
   and render the final state immediately — don't just slow the animation down.
@@ -91,7 +91,7 @@ cross-platform (React Native etc.) — select per-platform at runtime instead.
 ## Forms
 
 - Every input needs a real, visible `<label>` — placeholder text is never a substitute for a
-  label (this matches Medtronic's own `forms-and-inputs.md` static/dynamic label rule).
+  label (this matches Medtronic's own [forms-and-inputs.md](./forms-and-inputs.md) static/dynamic label rule).
 - Field-level errors go directly below their field and are programmatically associated with it
   (`aria-describedby`) — a top-level error summary alone, with no per-field indication, fails
   accessibility.
@@ -117,12 +117,12 @@ cross-platform (React Native etc.) — select per-platform at runtime instead.
   CSS px perimeter at 3:1 contrast against the adjacent color) — a faint 1px outline technically
   present but hard to see doesn't satisfy this.
 
-## Compact labels — badges, chips, and pills (directly relevant to `ui-components.md`)
+## Compact labels — badges, chips, and pills (directly relevant to [ui-components.md](./ui-components.md))
 
 - **Badges communicate state; chips/tags represent values or actions** — pick static (`<span>`)
   vs interactive (`<button>`) markup based on which one a given label actually is. Don't make every
   pill clickable "just in case," and don't encode status by color alone (pair color with an icon
-  or text, matching the semantic-color + text rule already in `ui-design-system-colors.md`).
+  or text, matching the semantic-color + text rule already in [ui-design-system-colors.md](./ui-design-system-colors.md)).
 - A compact label should stay on one line where practical; if truncation is unavoidable, expose
   the full value to keyboard/pointer/touch users (not a hover-only tooltip, which touch users
   can't reach) — never let a fixed-width badge silently wrap to a second line.

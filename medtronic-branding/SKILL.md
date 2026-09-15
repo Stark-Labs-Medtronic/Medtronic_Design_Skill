@@ -21,7 +21,7 @@ compatibility: >-
   "Internal use only" note in the repo README.
 
 metadata:
-  author: Medtronic Global Brand (packaged by ms68)
+  author: Medtronic Global Brand (packaged by kothal1 and ms68)
   version: 1.3.0
   category: design-system
   tags: [branding, design-system, react, streamlit, ui]
@@ -29,10 +29,10 @@ metadata:
 
 # Medtronic Branding
 
-Turns the raw Medtronic brand-kit zips and guideline docs (archived in `Archive/` alongside this
-skill's own working folder) into a ready-to-use design system: real logo/symbol/icon files plus
-exact color tokens, ready-made light/dark/hero theme presets, and condensed usage rules, so a UI
-can be branded correctly without re-deriving anything from scratch or guessing at colors.
+Turns Medtronic's raw brand-kit zips and guideline docs into a ready-to-use design system: real
+logo/symbol/icon files plus exact color tokens, ready-made light/dark/hero theme presets, and
+condensed usage rules, so a UI can be branded correctly without re-deriving anything from scratch
+or guessing at colors.
 
 ## Why this matters
 
@@ -53,8 +53,8 @@ close guess feels harmless (e.g., a slightly-desaturated version of Electric Blu
 When something is genuinely missing:
 1. Say so explicitly to the user — name the specific gap.
 2. Fall back to the closest **exact, already-documented** token/asset instead of a fabricated one.
-3. Point at where the real answer would come from (Global Brand, `Archive/` source docs, or
-   Brand Central directly) rather than filling the gap yourself.
+3. Point at where the real answer would come from (Global Brand or Brand Central directly) rather
+   than filling the gap yourself.
 
 `references/brand-guidelines.md` has a "Content gaps in the source guideline documents" section
 listing the known gaps (exact clear-space/minimum-size numbers, the dark-mode Electric Blue
@@ -104,8 +104,9 @@ facts, and so they can be reversed on purpose rather than by accident.
 | --- | --- | --- | --- |
 | **Carbon is the default icon system** | `brand-guidelines.md` frames Carbon as an *approved fallback* only when the bundled Medtronic set doesn't cover a need; the old `carbon-design-system.md` forbade Carbon icons outside app-icon baselining | Carbon's 2,739 icons are the default for **all** UI iconography. The 377 Medtronic functional/thematic icons are opt-in | One coherent, complete set with `fill="currentColor"` — recolors for light/dark from the text token, which structurally eliminates the gray-icon-on-dark-background bug the dual-variant Medtronic sets exist to manage. Carbon is already Medtronic's own documented app-icon baseline |
 | **The user is asked to choose a color combination** | `design-intuition.md` and this file previously said never to ask about color, because the palette is fixed | The user picks from an enumerated menu of brand-legal combinations, and may name specific tokens | Selecting *among documented combinations* is not the same as inventing a palette. The never-fabricate rule below is unchanged: no hex outside the bundled tokens, ever |
+| **Headlines are Bold, not Thin** | `brand-guidelines.md` says Regular/Demi/Bold for headlines, avoid Thin if it hurts legibility; the HTML/CSS Framework starter kit (`mdt-variables.css`) originally shipped Thin for `h1`–`h3` and the named headline/display classes | `mdt-variables.css` itself now declares `AvenirNextWorld-Bold` for those — baked in directly and marked with a comment, rather than layered on top via a second stylesheet | Thin at 44–72px is the weight most prone to legibility failure — exactly what Brand Central's warning is about. One file to read beats a "two sources disagree, apply this override after that" mechanism |
 
-Both overrides are scoped: they change **which documented option is chosen by default**, never
+All overrides are scoped: they change **which documented option is chosen by default**, never
 whether a value may be fabricated.
 
 ## Contradiction Ledger
@@ -115,37 +116,16 @@ row here rather than silently picking a side.**
 
 | Conflict | Resolution |
 | --- | --- |
-| **Headline weight: Bold vs. Thin — three conflicting Medtronic sources** | **Bold (`AvenirNextWorld-Bold`).** Brand Central says "Use Regular, Demi, or **Bold** weight for headlines; **avoid Thin** weight if it hurts legibility" — that outranks the framework starter CSS (`mdt-variables.css`, which ships Thin for h1–h3) and the UI Design System Colors page prose ("large thin fonts"). Thin at 44–72px is exactly the legibility case Brand Central warns about. The vendored CSS stays byte-accurate; `css/mdt-typography-override.css` carries the change. See `typography.md` |
-| `typography.md` `@font-face` table listed `AvenirNextWorld-Bold` for h1–h3 | The **font-family name was right, the provenance claim was wrong**: `mdt-variables.css` declares no Bold face, so an earlier revision was citing the framework CSS for something it doesn't contain. Bold is now used deliberately per the row above, with the `@font-face` declared in the override stylesheet |
-| Heading weight: Thin (`typography.md`) vs. "don't use thin-weight" (`app-header-logo-lockup.md`:59) | Now moot for page headings, which are Bold. `:59` still governs the **app name in the inline desktop header lockup** (standard black, not navy, not thin). The stacked mobile lockup's app name uses `.txt05-headline`, which is now **Bold** |
+| Heading weight: Bold (`typography.md`) vs. "don't use thin-weight" (`app-header-logo-lockup.md`:59) | Not actually a conflict — `:59` governs the **app name in the inline desktop header lockup** (standard black, not navy, not thin), a different element from page headings. The stacked mobile lockup's app name uses `.txt05-headline`, which is Bold |
 | Body text `rgba(0,0,0,0.77)` vs. `#3C3C3C` (`theme-presets.md`, `streamlit-integration.md`, `react-integration.md`) | **`rgba(0,0,0,0.77)`** (`--mdtText`) for product/app UI body copy — confirmed byte-for-byte in `mdt-variables.css`. `#3C3C3C` ("Body Text Dark Gray") is still a **real** token: use it for marketing/print surfaces, and anywhere an opaque fill is required because alpha text over a photo or gradient renders inconsistently. It was wrong only as the *product UI default* |
-| `ui-design-system-colors.md` said "77% black (`rgba(0,0,0,0.75)`)" | Internally inconsistent — 77% is `0.77`. Corrected |
-| Light Blue step 40: `#49D6F9` vs `#48D6F9` | **`#48D6F9`** (`ui-design-system-colors.md`) — it is the UI-token source of record |
 | Navy `#140F4B` vs `#170F5F` | `#170F5F` (`--mdtTextPrimary`) for **text/headlines and the on-screen logo fill**; `#140F4B` (`--mdtColorPrimary`) for **surfaces/fills**. Both official, different roles |
 | Dark-mode Electric Blue | **Product UI: `#4A7DFF`** (`dark-mode-ui-colors.md`, official). **Marketing on Navy: `#1010EB`** unmodified. `color-tokens.md`'s "use a less saturated blue" with no hex is superseded for product UI |
 | Semantic tokens differ light vs. dark (Caution `#F7A800`/`#F7AD00`, Confirm `#59A719`/`#7ECA2A`, Important `#C121EB`/`#D24ADF`, Focus `#ED7008`/`#FFAD00`) | Both official. Use the table matching the active mode. Never mix |
 | `Text & Icon.Inverse.*` resolves to opposite values per mode | Correct in each mode. Always resolve Inverse *within* the active mode's table |
 | `typography.md` forbids `font-weight` but `react-integration.md` uses `font-weight: 600/700` | **Two valid strategies; don't mix them.** *Family-per-weight* (what `mdt-variables.css` does — `AvenirNextWorld-Bold` as a family name) requires `font-weight: normal`. *Single family + `@font-face` weight descriptors* (recommended for React) requires `font-weight: 700` and is correct, because the descriptor maps the weight to the real file. Pick one per project. Documented in both files |
 | Breakpoints: `composition.md` (1440/1200/768/375) vs `layout-and-spacing.md` (600/1024) vs Carbon (320/672/1056/1312/1584) | **`composition.md`.** The 480px boundary in `typography.md`'s mobile override matches it |
-| Touch target 40px floor vs 48×48 | **48×48** (`accessibility.md`) |
-| Accent tint stacks "only in the source PDF" (`color-tokens.md`:61-63) | **Stale.** `ui-design-system-colors.md` already publishes all of them. Don't send the user to the PDF |
-| `color-tokens.md`:50 stack labelled "Navy / Blue family" | **Mislabel** — those values are the Light Blue stack. Corrected |
 | Spacing scale: `composition.md` (0/4/8/16/24/32/40) vs `layout-and-spacing.md` (adds 12, 48) | `composition.md` is the Medtronic scale. 12 and 48 have no Medtronic token; use them only where no token applies, and never as a brand-asset dimension |
-| `mdt-variables.css` declares `--mdtBorderLightGray` twice (lines 39–40) | Upstream bug in Medtronic's own CSS. The second declaration (`0.20`) wins in the cascade. Flagged, not silently fixed |
-| Shadow recipe count: "two, and only two" (`design-intuition.md`, `craft-details.md`) vs. a third real recipe in `navigation.md` (floating header) | **Three** documented recipes: popover/dropdown/menu, modal/sheet, floating-header. The real shipped `mdt-app-template.css`/`mdt-components.css` use a *fourth*, different single-layer shadow for the actual header element and `.elevation-low` — that's a known shipped-CSS-vs-documented gap, not a fourth recipe to build from |
-| Functional icons "confirmed 24×24, safe to set both dimensions" (`sizing-standard.md`) | **False.** Measured all 286 files in `assets/icons/functional/`: only 2 are exactly 24×24, 119 are 28×28, the rest are mixed/non-square. Corrected to height-only sizing, matching thematic icons. (Carbon icons, 32×32, are genuinely square — unaffected) |
-| Avenir Next World font files / Simplified Symbol mobile-icon SVGs described in `brand-guidelines.md` as "not bundled"/"not included" | **False** — both are bundled (`assets/fonts/avenir-next-world/*.ttf`, `assets/symbol/mobile-app-icon/*.svg`), and already correctly documented as such by `typography.md`/`asset-manifest.md`/`application-icons.md`. Corrected; the real licensing/redistribution-to-3rd-parties process is preserved, reframed around the files existing |
-| `sizing-standard.md`'s Wordmark ratio (2.741:1, from `medtronic-logo-navy.svg`) used for header-logo sizing math, while the asset actually mandated for on-screen headers is `medtronic-logo-navy-digital.svg` | **6.091:1** (viewBox `438.57×72.00`) is the ratio to use for header-logo sizing math — added to `sizing-standard.md` §1. The 2.741:1 figure remains correct for the print/marketing wordmark specifically |
-| This file's own Example 1 said to copy `medtronic-logo-navy.svg` for a React dashboard **header** | Same bug as the row above — an on-screen header needs `medtronic-logo-navy-digital.svg`. Fixed in Example 1 below; `theme-presets.md`'s Signature Light preset already used the correct `-digital` variant |
 | `global-header.md`'s "always exactly 64px" rule vs. `navigation.md`'s 121px website-style top-nav footprint | Not a conflict — 64px header + a separate 56px nav row (confirmed in `mdt-app-template.css`'s `grid-template-rows: 64px 56px`) = ≈121px. Cross-referenced in both files |
-| `carbon-design-system.md` self-contradicted on the crawled page count (350 in one table vs. 356 in its own opening line); the 350 figure was also copy-pasted into `asset-manifest.md` | **356** — matches `catalog/manifest.json`'s `totalPages` and `catalog/REPORT.md`'s crawl count. (The on-disk `content.md` file count is 347, a residual crawl/dedup discrepancy not resolved by this doc fix) |
-| `composition.md`'s illustrative breakpoint snippet used desktop-first `max-width` queries while claiming cross-validation against the real `mdt-app-template.css`, which is mobile-first (`min-width`) | Snippet rewritten mobile-first to match the real shipped CSS |
-| `ui-design-system-colors.md`'s own token table said `rgba(0,0,0,0.75)` for the value its own prose calls "77% black" | **0.77**, matching `mdt-variables.css`'s `--mdtText`. The table itself, not just the prose, is now corrected |
-| `color-tokens.md`'s Teal tint stack step 70: `#67FFE2` vs. `ui-design-system-colors.md`'s `#66FFE2` | **`#66FFE2`** — matches `ui-design-system-colors.md`'s table and its raw design-token JSON |
-| Chart color order: `design-intuition.md` said to lead multi-series charts with Electric Blue; `ui-design-system-colors.md`'s own Do/Don't said the opposite | `ui-design-system-colors.md`'s single self-contradictory bullet split into three unambiguous rules (single-data-point vs. single-series vs. multi-series). `design-intuition.md` and `streamlit-integration.md`'s `BRAND_CHART_COLORS` sample now match: **lead multi-series charts with Navy, not Electric Blue** |
-| `layout-and-spacing.md` and `react-integration.md` both cited `sizing-standard.md` §8 as the source of a `12px 28px`/"~44–48px" button figure that doesn't appear anywhere in that section | The real default button (`sizing-standard.md` §8) is a fixed **40px height**, horizontal-padding-only (`0 1.5rem`) — the Absolute-floor touch-target tier, not the Recommended-default tier. Both files corrected to cite it accurately |
-| `forms-and-inputs.md`'s reference CSS applied `height: 40px` to `input, textarea, select` together | The real `mdt-components.css` applies `height: 40px` only to `input, select` — `textarea` is deliberately excluded so it can grow. Corrected |
-| The `#170F5F` navy variant is called four different names across files | "Navy Blue (digital text variant)" (`color-tokens.md`), `--mdtTextPrimary` (`typography.md`/`ui-design-system-colors.md`), "navy-digital"/`--mdt-navy-digital` (`react-integration.md`, `streamlit-integration.md`), "Navy Blue Text color"/"on-screen navy" (`app-header-logo-lockup.md`, `design-intuition.md`) — all the same hex, aliased for context. No rewrite needed across files; canonical name is **"Navy (digital text variant)"** in prose, **`--mdtTextPrimary`** in code |
 
 ## Reporting the structure of a Markdown file
 
@@ -461,9 +441,8 @@ Step 0 before generating anything, then proceed through the Workflow below.
 8. **Apply the color tokens and typography exactly as documented** — copy hex values verbatim
    from `color-tokens.md` (or the relevant theme preset), use the sentence-case headline
    convention, and self-host the bundled `assets/fonts/avenir-next-world/*.ttf` files rather than
-   a system-font fallback (see the typography section of `brand-guidelines.md` for the
-   redistribution/licensing process if a vendor or 3rd party outside this workspace needs the
-   files).
+   a system-font fallback (see the typography section of `brand-guidelines.md` for licensing
+   notes).
 
 9. **Sanity-check before finishing**: run the full pre-flight gate in `design-intuition.md` — every
    box, honestly. Plus, for Streamlit, the alignment pre-flight in `streamlit-layout.md` §7. The
@@ -586,7 +565,7 @@ specifies the exact matching logo/Symbol/icon variant; don't mix variants across
 **Cause:** it's a genuine, documented gap in the source guidelines (see brand-guidelines.md's
 "Content gaps" section), not an oversight in this skill.
 **Solution:** say so explicitly and point to where the real answer would come from (Global Brand
-contact, Brand Central, or the raw source docs in `Archive/`) — never fill the gap with a guess.
+contact or Brand Central) — never fill the gap with a guess.
 
 ## Quick facts (so you don't need to open a reference file for the basics)
 
@@ -601,9 +580,8 @@ contact, Brand Central, or the raw source docs in `Archive/`) — never fill the
 - **Headlines (`h1`–`h3`) use `AvenirNextWorld-Bold`**, colored `#170F5F`. `h4` stays Regular. Set
   weight via the **font family name**, never `font-weight`. Full matrix in `typography.md`.
 - Buttons are pill-shaped (full circular end radius, not just rounded corners).
-- Full source guideline docs (`1st Half Guidelines.docx`, `2nd Half Guidelines.docx`,
-  `Style Guide.pdf`, `doc-color-palette-breakdown.pdf`) live in the `Archive/` folder if something
-  isn't covered by the condensed references.
+- If something isn't covered by the condensed references here, that's a genuine gap — say so and
+  point to Global Brand/Brand Central rather than guessing (see the Hard Rule above).
 
 ## Version History
 

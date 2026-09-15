@@ -36,7 +36,6 @@
    --mdtBkgdImportant: #f8ecff;
    --mdtBkgdDimmer: rgba(16, 16, 32, 0.6);
 
-   --mdtBorderLightGray: rgba(0, 0, 0, 0.10);
    --mdtBorderLightGray: rgba(0, 0, 0, 0.20);
    --mdtBorderDefaultGray: rgba(0, 0, 0, 0.30);
    --mdtBorderDarkGray: rgba(0, 0, 0, 0.55);
@@ -67,6 +66,16 @@
    src: url(../fonts/AvenirNextWorld-Demi.ttf) format("truetype");
 }
 
+/* ADDED BY THE medtronic-branding SKILL (not part of Medtronic's original kit).
+   Brand Central: "Use Regular, Demi, or Bold weight for headlines; avoid Thin
+   weight if it hurts legibility." The stock kit below originally shipped Thin
+   for headings; this skill uses Bold instead. See SKILL.md's Local Overrides
+   table and references/typography.md. */
+@font-face {
+   font-family: "AvenirNextWorld-Bold";
+   src: url(../fonts/AvenirNextWorld-Bold.ttf) format("truetype");
+}
+
 html {
    font-size: 16px;
    line-height: 30px;
@@ -77,10 +86,11 @@ body {
    color: var(--mdtText);
 }
 
+/* Bold per the skill's Local Override (original Medtronic value: AvenirNextWorld-Thin). */
 h1,
 h2,
 h3 {
-   font-family: "AvenirNextWorld-Thin";
+   font-family: "AvenirNextWorld-Bold";
    font-weight: normal;
    color: var(--mdtTextPrimary);
 }
@@ -247,7 +257,7 @@ em,
 }
 
 .txt05-headline {
-   font-family: "AvenirNextWorld-Thin";
+   font-family: "AvenirNextWorld-Bold";
    font-weight: normal;
    font-size: 1.5rem;
    /*24px*/
@@ -266,8 +276,11 @@ em,
    margin: 0 0 1rem 0;
 }
 
+/* Renamed from .txt06-headline_thin so the class name doesn't lie about its
+   weight; the _thin name is kept as an alias for markup that already uses it. */
+.txt06-headline_bold,
 .txt06-headline_thin {
-   font-family: "AvenirNextWorld-Thin";
+   font-family: "AvenirNextWorld-Bold";
    font-weight: normal;
    font-size: 2rem;
    /*32px*/
@@ -277,7 +290,7 @@ em,
 }
 
 .txt07-headline {
-   font-family: "AvenirNextWorld-Thin";
+   font-family: "AvenirNextWorld-Bold";
    font-weight: normal;
    font-size: 2.75rem;
    /*44px*/
@@ -287,7 +300,7 @@ em,
 }
 
 .txt08-headline {
-   font-family: "AvenirNextWorld-Thin";
+   font-family: "AvenirNextWorld-Bold";
    font-weight: normal;
    font-size: 3.5rem;
    /*56px*/
@@ -298,13 +311,30 @@ em,
 
 .txt09-display {
    display: block;
-   font-family: "AvenirNextWorld-Thin";
+   font-family: "AvenirNextWorld-Bold";
    font-weight: normal;
    font-size: 4.5rem;
    /*72px*/
    line-height: 5.175rem;
    color: var(--mdtTextPrimary);
    margin: 0 0 1.5rem 0;
+}
+
+/* ADDED BY THE medtronic-branding SKILL (not part of Medtronic's original kit).
+   Bold survives a missing-font fallback far better than Thin did (a system
+   sans-serif at font-weight:700 approximates Bold; a synthesised thin renders
+   as washed-out hairline text) - so allow font-weight:700 on these headings,
+   but only when the real Bold face fails to load. */
+@supports not (font-family: "AvenirNextWorld-Bold") {
+   h1, h2, h3,
+   .txt05-headline,
+   .txt06-headline_bold,
+   .txt06-headline_thin,
+   .txt07-headline,
+   .txt08-headline,
+   .txt09-display {
+      font-weight: 700;
+   }
 }
 
 @media only screen and (max-width: 480px) {

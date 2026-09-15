@@ -64,8 +64,8 @@ font = "sans-serif"
 >    `[server] enableStaticServing = true`.
 > 2. Load `@font-face` declarations for `AvenirNextWorld`, `-Bold`, `-Demi`, and `-Italic` via a
 >    single `st.markdown(..., unsafe_allow_html=True)` at the top of the entrypoint page — mirror the
->    real declarations in `mdt-variables.css`, plus the `-Bold` face from
->    `mdt-typography-override.css`. Headings use `AvenirNextWorld-Bold`.
+>    real declarations in `mdt-variables.css` (it includes `-Bold`). Headings use
+>    `AvenirNextWorld-Bold`.
 > 3. **Then change `font` to `"Avenir Next World"`** in every `config.toml` block above.
 >
 > Only leave `font = "sans-serif"` if the project genuinely can't self-host — and in that case tell
@@ -73,7 +73,7 @@ font = "sans-serif"
 > `font-weight: 700` on headings **is** acceptable when the real font is missing — see the
 > fallback caveat in [typography.md](./typography.md).
 
-### Full dark mode instead (see `theme-presets.md`)
+### Full dark mode instead (see [theme-presets.md](./theme-presets.md))
 
 If the whole app (not just the sidebar) should be dark, use one of these instead of the light one
 above — don't mix light `[theme]` with a dark sidebar and call it "dark mode".
@@ -130,8 +130,9 @@ folder first. Use the white wordmark variant instead if the header/sidebar backg
 navy (per [brand-guidelines.md](../references/brand-guidelines.md) contrast rules). `st.logo()`
 sizes the image itself (fixed internal height, ~32px) — if you need the "hero" scale from
 [sizing-standard.md](./sizing-standard.md) (e.g. 60px+ for a landing page), render it with
-`st.image(..., width=...)` instead and compute the width from the logo's real 2.741:1 ratio
-rather than guessing a width that stretches it.
+`st.image(..., width=...)` instead and compute the width from `medtronic-logo-navy-digital.svg`'s
+real **6.091:1** ratio (not the plain wordmark's 2.741:1) rather than guessing a width that
+stretches it.
 
 ## 3. Buttons
 
@@ -210,7 +211,7 @@ SVGs for places you render freely with `st.markdown`.
 ## 5. Data viz colors
 
 For `st.bar_chart` / `st.line_chart` / Altair/Plotly charts, pass an explicit brand color
-sequence instead of the default palette — per `ui-design-system-colors.md`'s Do's/Don'ts, a
+sequence instead of the default palette — per [ui-design-system-colors.md](./ui-design-system-colors.md)'s Do's/Don'ts, a
 **multi-series chart leads with Navy Blue, not Electric Blue** (Electric Blue is reserved for
 single-data-point charts), then continues in the documented preferred order:
 
@@ -240,10 +241,10 @@ claiming coverage:
 
 | Spec | Gap |
 | --- | --- |
-| `ui-components.md` badge: 99+ overflow, 24×24, 2px top-right offset | `st.badge` has no overflow or offset control |
-| `overlays-and-feedback.md` modal: size tiers + 3-layer shadow | `st.dialog` offers `width` only, no shadow control |
-| `navigation.md` tabs: filled-vs-outline 56px variants | `st.tabs` has one visual style |
-| `composition.md` exact 8px padding | Container padding is fixed — see the spacing table in `streamlit-layout.md` |
+| [ui-components.md](./ui-components.md) badge: 99+ overflow, 24×24, 2px top-right offset | `st.badge` has no overflow or offset control |
+| [overlays-and-feedback.md](./overlays-and-feedback.md) modal: size tiers + 3-layer shadow | `st.dialog` offers `width` only, no shadow control |
+| [navigation.md](./navigation.md) tabs: filled-vs-outline 56px variants | `st.tabs` has one visual style |
+| [composition.md](./composition.md) exact 8px padding | Container padding is fixed — see the spacing table in [streamlit-layout.md](./streamlit-layout.md) |
 
 For these, use the native widget and accept the approximation, or state plainly that exact fidelity
 needs React. **Don't inject CSS against Streamlit's internal class names** — they aren't a public API

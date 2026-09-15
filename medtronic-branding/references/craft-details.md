@@ -181,7 +181,7 @@ matters (1.3px on `.txt01-eyebrow`, 1.5px on `.txt02-eyebrow`, 0.6px on `.txt03-
 - **Carbon icons are `fill="currentColor"` by construction** — no hardcoded-fill problem, no
   `-white` folder to swap. Set `color`, not `fill`, and the same file works on light or dark
   backgrounds; see [carbon-design-system.md](./carbon-design-system.md) for sizing/lookup. This is
-  the default icon system for this skill (local override, see `SKILL.md`).
+  the default icon system for this skill (local override, see [SKILL.md](../SKILL.md)).
 - **Stroke weight tracks adjacent text weight.** An icon beside Regular-weight body copy wants a
   ~1.5px stroke; beside Demi (buttons, eyebrows, bold) it wants ~2px. A hairline icon next to bold
   text reads as a rendering bug.

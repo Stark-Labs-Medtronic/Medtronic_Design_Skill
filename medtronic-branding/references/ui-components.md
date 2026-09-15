@@ -76,7 +76,7 @@ detail.
 ## Flags
 
 Small colored indicators for tagging/labeling (distinct from `General.Semantic.*` status flags in
-`ui-design-system-colors.md` — these are generic tag/label chips, not semantic-status indicators).
+[ui-design-system-colors.md](./ui-design-system-colors.md) — these are generic tag/label chips, not semantic-status indicators).
 
 | Variant | Size (W×H) | Fill | Border radius |
 | --- | --- | --- | --- |
@@ -96,7 +96,7 @@ independent choices, not a fixed enum of named presets.
   breadcrumbs above it — the only pattern used on mobile).
 - **Size:** `Large` or `Medium` (no exact pixel heights were given in the source page).
 - **Background theme:** `Light` or `Dark` (pick per `ui-design-system-colors.md` /
-  `dark-mode-ui-colors.md` text/icon tokens for correct contrast).
+  [dark-mode-ui-colors.md](./dark-mode-ui-colors.md) text/icon tokens for correct contrast).
 
 | Breakpoint | Available combinations |
 | --- | --- |
@@ -124,5 +124,5 @@ system):
 | Style | Fill / border | Notes |
 | --- | --- | --- |
 | Icon | Fill `#100D78` (`Text & Icon.Normal.Accent`) | Generic person icon on a solid accent-color circle |
-| Initials | Fill `#100D78` | User's initials on a solid accent-color circle; used extensively in the Global Header/Application Shell/Mobile shell (confirms the avatar's home is the header, per `global-header.md`'s avatar-popover mention) |
+| Initials | Fill `#100D78` | User's initials on a solid accent-color circle; used extensively in the Global Header/Application Shell/Mobile shell (confirms the avatar's home is the header, per [global-header.md](./global-header.md)'s avatar-popover mention) |
 | Profile picture | 2px border in `#100D78` (no fill) | Frames an actual user photo instead of a color fill |
